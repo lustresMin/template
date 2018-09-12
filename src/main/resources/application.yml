@@ -1,0 +1,57 @@
+spring:
+  datasource:
+    url: jdbc:mysql://120.77.32.185:3306/xmjlgl?characterEncoding=utf-8&useSSL=false
+    username: xmjlgl
+    password: xmjlgl123456
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: update
+
+#指定模板的路径
+  freemarker:
+    template-loader-path: classpath:/templates/jap
+#spring.freemarker.allow-request-override=false
+#spring.freemarker.cache=true
+#spring.freemarker.check-template-location=true
+#spring.freemarker.charset=UTF-8
+#spring.freemarker.content-type=text/html
+#spring.freemarker.expose-request-attributes=false
+#spring.freemarker.expose-session-attributes=false
+#spring.freemarker.expose-spring-macro-helpers=false
+
+# 生成源文件的绝对地址
+controller: com.liaoin.controller
+
+server: com.liaoin.service
+
+serverImpl: com.liaoin.service.impl
+
+mappers: com.liaoin.mapper
+
+entity: com.liaoin.entity
+
+
+# 文件生成路径
+targetProject: D:/WorkSpace/template/src/main/java/
+# 包名
+packageName: com.liaoin
+# 指定数据库表名
+TABLE_NAME: t_model_function_point,t_projects_plan_new
+
+
+
+mapper:
+  mappers:
+    - tk.mybatis.mapper.common.Mapper
+#    - tk.mybatis.mapper.common.Mapper2
+  notEmpty: true
+
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+

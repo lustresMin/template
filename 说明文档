@@ -1,0 +1,33 @@
+使用说明:
+https://gitee.com/free/Mapper/wikis/Home?sort_id=14104
+
+Xml配置Mapper：
+https://gitee.com/free/Mapper/wikis/1.2-spring?sort_id=208197
+
+springBoot配置Mapper：
+添加依赖
+<dependency>
+  <groupId>tk.mybatis</groupId>
+  <artifactId>mapper-spring-boot-starter</artifactId>
+  <version>版本号</version>
+</dependency>
+
+第一种方式：
+    在 yml 格式中配置：
+    mapper:
+      mappers:
+        - tk.mybatis.mapper.common.Mapper
+        #- tk.mybatis.mapper.common.Mapper2
+      notEmpty: true
+
+    在 properties 配置中：
+    mapper.mappers=tk.mybatis.mapper.common.Mapper,tk.mybatis.mapper.common.Mapper2
+    mapper.notEmpty=true
+
+第二种方式
+    @MapperScan 注解配置
+    你可以给带有 @Configuration 的类配置该注解，或者直接配置到 Spring Boot 的启动类上，如下：
+    @SpringBootApplication
+    @tk.mybatis.spring.annotation.MapperScan(basePackages = "扫描包")
+    public class SampleMapperApplication implements CommandLineRunner {
+    注意：这里使用的 tk.mybatis.spring.annotation.MapperScan !
