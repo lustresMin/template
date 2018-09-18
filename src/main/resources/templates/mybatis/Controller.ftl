@@ -62,7 +62,7 @@ public class ${modelName}Controller {
         return ${fieldName}Service.findOne(${primaryKey.changeColumnName});
     }
 
-    @GetMapping("pageQuery")
+    @PostMapping("pageQuery")
     @ApiOperation(value = "条件分页查询",notes = "")
     public Result pageQuery(@ApiParam(value = "第几页", required = true) @RequestParam(value = "page") Integer page,
                             @ApiParam(value = "多少条",required = true)@RequestParam(value = "size") Integer size,
