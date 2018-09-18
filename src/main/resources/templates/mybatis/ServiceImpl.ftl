@@ -70,12 +70,12 @@ public class ${modelName}ServiceImpl implements ${modelName}Service {
     @Override
     public Result deleteGetById(${primaryKey.columnType} ${primaryKey.changeColumnName},Integer userId){
         if (${primaryKey.changeColumnName} == null){
-            return Result.fail(Tips.PARAMETER_ERROR.msg);
+            return fail(Tips.PARAMETER_ERROR.msg);
         }
         try{
             ${modelName} one = ${fieldName}Mapper.selectByPrimaryKey(${primaryKey.changeColumnName});
             if(one == null){
-                return fail(MSG_NOT.msg);
+                return fail(Tips.MSG_NOT.msg);
             }
             one.setDeleteTime(new Date());
             one.setDeleteUserId(userId);
