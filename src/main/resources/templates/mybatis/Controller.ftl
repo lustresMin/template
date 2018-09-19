@@ -29,42 +29,49 @@ public class ${modelName}Controller {
 
     @PostMapping("insert")
     @ApiOperation(value = "新增")
-    public Result insert(@Valid @RequestBody ${modelName} ${fieldName},
-                         @RequestParam Integer userId,
-                         BindingResult errors) {
+    @ApiImplicitParam(name = "authorization", value = "authorization", required = true, dataType = "string", paramType = "header")
+    public Result insert(@ApiParam(hidden = true)@AuthorizationUser Integer userId,
+                         @Valid @RequestBody ${modelName} ${fieldName},BindingResult errors) {
         return ${fieldName}Service.insert(${fieldName},userId);
     }
 
     @PutMapping("update")
     @ApiOperation(value = "修改")
-    public Result update(@Valid @RequestBody ${modelName} ${fieldName},
-                         @RequestParam Integer userId,
-                         BindingResult errors) {
+    @ApiImplicitParam(name = "authorization", value = "authorization", required = true, dataType = "string", paramType = "header")
+    public Result update(@ApiParam(hidden = true)@AuthorizationUser Integer userId,
+                         @Valid @RequestBody ${modelName} ${fieldName},BindingResult errors) {
         return ${fieldName}Service.update(${fieldName},userId);
     }
 
     @DeleteMapping("deleteInBatch")
     @ApiOperation(value = "批量删除")
-    public Result deleteInBatch(@RequestBody List<${modelName}> ${fieldName}List,@RequestParam Integer userId) {
+    @ApiImplicitParam(name = "authorization", value = "authorization", required = true, dataType = "string", paramType = "header")
+    public Result deleteInBatch(@RequestBody List<${modelName}> ${fieldName}List,
+                                @ApiParam(hidden = true)@AuthorizationUser Integer userId) {
         return ${fieldName}Service.deleteInBatch(${fieldName}List,userId);
     }
 
     @DeleteMapping("getById")
     @ApiOperation(value = "根据主键删除")
+    @ApiImplicitParam(name = "authorization", value = "authorization", required = true, dataType = "string", paramType = "header")
     public Result deleteGetById(@ApiParam(value = "主键",required = true)@RequestParam(value = "${primaryKey.changeColumnName}") ${primaryKey.columnType} ${primaryKey.changeColumnName},
-                                @RequestParam(value = "userId") Integer userId) {
+                                @ApiParam(hidden = true)@AuthorizationUser Integer userId) {
         return ${fieldName}Service.deleteGetById(${primaryKey.changeColumnName},userId);
     }
 
     @GetMapping("findOne")
     @ApiOperation(value = "根据主键查询")
-    public Result findOne(@ApiParam(value = "主键",required = true)@RequestParam(value = "${primaryKey.changeColumnName}") ${primaryKey.columnType} ${primaryKey.changeColumnName}) {
+    @ApiImplicitParam(name = "authorization", value = "authorization", required = true, dataType = "string", paramType = "header")
+    public Result findOne(@ApiParam(value = "主键",required = true)@RequestParam(value = "${primaryKey.changeColumnName}") ${primaryKey.columnType} ${primaryKey.changeColumnName},
+                          @ApiParam(hidden = true)@AuthorizationUser Integer userId) {
         return ${fieldName}Service.findOne(${primaryKey.changeColumnName});
     }
 
     @PostMapping("pageQuery")
     @ApiOperation(value = "条件分页查询",notes = "")
-    public Result pageQuery(@ApiParam(value = "第几页", required = true) @RequestParam(value = "page") Integer page,
+    @ApiImplicitParam(name = "authorization", value = "authorization", required = true, dataType = "string", paramType = "header")
+    public Result pageQuery(@ApiParam(hidden = true)@AuthorizationUser Integer userId,
+                            @ApiParam(value = "第几页", required = true) @RequestParam(value = "page") Integer page,
                             @ApiParam(value = "多少条",required = true)@RequestParam(value = "size") Integer size,
                             @ApiParam(value = "排序字段",required = false)@RequestParam(value = "sort",required = false)String sort,
                             @RequestBody(required = false) ${modelName} ${fieldName}) {
