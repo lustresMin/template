@@ -8,6 +8,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import com.liaoin.common.jackson.Result;
 
+/**
+ * @description ${comment}实体接口实现类
+ * @createDate ${.now?string("yyyy-MM-dd HH:mm:ss")}
+ * @version 1.0
+ * @author mc
+ */
 @RestController
 @RequestMapping("/consumer/${fieldName}/")
 @Api(tags  = "${fieldName}API")

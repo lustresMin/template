@@ -10,6 +10,12 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.util.List;
 
+/**
+ * @description ${comment}实体接口实现类
+ * @createDate ${.now?string("yyyy-MM-dd HH:mm:ss")}
+ * @version 1.0
+ * @author mc
+ */
 @RestController
 @RequestMapping("/${fieldName}/")
 @Api(tags  =  "${fieldName}API")

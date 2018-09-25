@@ -3,6 +3,12 @@ package ${packageName}.service;
 import org.springframework.data.domain.Pageable;
 import java.util.List;
 
+/**
+ * @description ${comment}实体接口实现类
+ * @createDate ${.now?string("yyyy-MM-dd HH:mm:ss")}
+ * @version 1.0
+ * @author mc
+ */
 public interface ${modelName}Service {
     /**
      * 新增

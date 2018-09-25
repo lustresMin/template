@@ -11,8 +11,17 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.transaction.annotation.Transactional;
+
+/**
+ * @description ${comment}实体接口实现类
+ * @createDate ${.now?string("yyyy-MM-dd HH:mm:ss")}
+ * @version 1.0
+ * @author mc
+ */
 
 @Service
+@Transactional(rollbackFor={RuntimeException.class, Exception.class})
 public class ${modelName}ServiceImpl implements ${modelName}Service {
     private Logger logger = LoggerFactory.getLogger(${modelName}ServiceImpl.class);
     @Resource
