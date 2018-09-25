@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mysql://39.104.16.81:3306/meeting?characterEncoding=utf-8&useSSL=false
+    url: jdbc:mysql://39.104.16.81:3306/liaoin_pm?characterEncoding=utf-8&useSSL=false
     username: root
     password: root
     driver-class-name: com.mysql.jdbc.Driver
@@ -12,7 +12,7 @@ spring:
 
 #指定模板的路径
   freemarker:
-    template-loader-path: classpath:/templates/mybatis
+    template-loader-path: classpath:/templates/jap
 
 #spring.freemarker.allow-request-override=false
 #spring.freemarker.cache=true
@@ -24,26 +24,26 @@ spring:
 #spring.freemarker.expose-spring-macro-helpers=false
 
 #需要生成的codegenerte
-data_resources: mybatis
+data_resources: jpa
 
 # 生成源文件的绝对地址
-controller: com.liaoin.smp.controller
+controller: com.liaoin.pm.controller
 
-server: com.liaoin.smp.service
+server: com.liaoin.pm.user.service
 
-serverImpl: com.liaoin.smp.service.impl
+serverImpl: com.liaoin.pm.user.service.impl
 
-mappers: com.liaoin.smp.mapper
+mappers: com.liaoin.pm.user.dao
 
-entity: com.liaoin.smp.entity
+entity: com.liaoin.pm.user.entity
 
 
 # 文件生成路径
 targetProject: D:/WorkSpace/template/src/main/java/
 # 包名
-packageName: com.liaoin.smp
+packageName: com.liaoin.pm.user
 # 指定数据库表名
-TABLE_NAME: smp_hy_nr_system_notice
+TABLE_NAME: t_user_department,t_user_extattr,t_user_info,t_user_menu,t_user_orderIn_depts,t_user_roles
 
 
 

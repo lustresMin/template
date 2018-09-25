@@ -96,6 +96,9 @@ public class FreemarkUtil {
         map.put("DATETIME", "java.util.Date");
         map.put("LONGTEXT", "String");
         map.put("FLOAT", "Float");
+        map.put("BIT", "Boolean");
+        map.put("TINYBLOB", "java.time.LocalDateTime");
+
         return map.get(typeName);
     }
     private static String getModelName(String str) {

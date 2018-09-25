@@ -52,16 +52,16 @@ public class CodeGenerateUtils {
                     // 生成serviceImpl层文件
                     inputFreemarkUtil.generateServiceImplFile(stringObjectMap, targetProject + serverImpl.replace(".", "/"));
 
-					if("data_resources".equals("mybatis")){
+					if(data_resources.equals("mybatis")){
 						// 生成DAO  Mapper 层接口文件
 						inputFreemarkUtil.generateMapperFile(stringObjectMap, targetProject + mappers.replace(".", "/"));
 					}
-					if("data_resources".equals("jpa")){
+					if(data_resources.equals("jpa")){
 						// 生成DAO  Repository 层接口文件
                     	inputFreemarkUtil.generateRepositoryFile(stringObjectMap, targetProject + mappers.replace(".", "/"));
 
 					}
-					if("data_resources".equals("mybatis")) {
+					if(data_resources.equals("mybatis")) {
 						//生成POJO
 						inputFreemarkUtil.generateModelFile(stringObjectMap, targetProject + entity.replace(".", "/"));
 					}
