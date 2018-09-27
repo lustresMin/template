@@ -70,7 +70,7 @@ public class ${modelName}Controller {
     public Result pageQuery(@ApiParam(hidden = true)@AuthorizationUser Integer userId,
                             @ApiParam(value = "第几页", required = true) @RequestParam(value = "page") Integer page,
                             @ApiParam(value = "多少条",required = true)@RequestParam(value = "size") Integer size,
-                            @ApiParam(value = "排序字段",required = false)String sort,
+                            @ApiParam(value = "排序字段",required = false)@RequestParam(value = "sort") String sort,
                             @RequestBody(required = false) ${modelName} ${fieldName}) {
         return ${fieldName}Service.pageQuery(page, size, sort, ${fieldName});
     }
