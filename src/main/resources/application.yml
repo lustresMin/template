@@ -29,21 +29,21 @@ data_resources: jpa
 # 生成源文件的绝对地址
 controller: com.liaoin.pm.controller
 
-server: com.liaoin.pm.user.service
+server: com.liaoin.pm.sale.service
 
-serverImpl: com.liaoin.pm.user.service.impl
+serverImpl: com.liaoin.pm.sale.service.impl
 
-mappers: com.liaoin.pm.user.dao
+mappers: com.liaoin.pm.sale.dao
 
-entity: com.liaoin.pm.user.entity
+entity: com.liaoin.pm.sale.entity
 
 
 # 文件生成路径
 targetProject: D:/WorkSpace/template/src/main/java/
 # 包名
-packageName: com.liaoin.pm.user
+packageName: com.liaoin.pm.sale
 # 指定数据库表名
-TABLE_NAME: t_user_department,t_user_extattr,t_user_info,t_user_menu,t_user_orderIn_depts,t_user_roles
+TABLE_NAME: t_sale_task,t_sale_task_chedule,t_sale_task_status_type
 
 
 

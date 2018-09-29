@@ -12,6 +12,7 @@ import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.transaction.annotation.Transactional;
+import java.util.*;
 
 /**
  * @description ${comment}实体接口实现类
@@ -23,28 +24,26 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional(rollbackFor={RuntimeException.class, Exception.class})
 public class ${modelName}ServiceImpl implements ${modelName}Service {
-    private Logger logger = LoggerFactory.getLogger(${modelName}ServiceImpl.class);
+    private Logger logger = LoggerFactory.getLogger(getClass());
     @Resource
     private ${modelName}Repository ${fieldName}Repository;
 
     @Override
     public Result insert(${modelName} ${fieldName}) {
-        logger.debug("增加信息->"+ToStringBuilder.reflectionToString(${fieldName}));
         if (${fieldName} == null){
             return fail(Tips.PARAMETER_ERROR.msg);
         }
-        ${fieldName}.setCreateTime(LocalDateTime.now());
+        ${fieldName}.setCreateTime(new Date());
         ${fieldName}Repository.save(${fieldName});
         return ok();
     }
 
     @Override
     public Result update(${modelName} ${fieldName}) {
-        logger.debug("删除信息->"+ToStringBuilder.reflectionToString(${fieldName}));
         if (${fieldName} == null){
             return fail(Tips.PARAMETER_ERROR.msg);
         }
-        ${fieldName}.setUpdateTime(LocalDateTime.now());
+        ${fieldName}.setUpdateTime(new Date());
         ${fieldName}Repository.save(${fieldName});
         return ok();
     }
@@ -65,7 +64,7 @@ public class ${modelName}ServiceImpl implements ${modelName}Service {
         }
         ${modelName} one = ${fieldName}Repository.getOne(id);
         if(one != null){
-            ${fieldName}Repository.deleteById(id);
+            ${fieldName}Repository.delete(id);
         }
         return ok();
     }
@@ -85,16 +84,16 @@ public class ${modelName}ServiceImpl implements ${modelName}Service {
         page = page == null?0:page;
 		size = size == null?10:size;
     	if (page>0){page--;}
-        PageRequest pageable = PageRequest.of(page, size);
-        if (sort !=null && sort.trim().equals("")) {
-            pageable= PageRequest.of(page,page,new Sort(Sort.Direction.DESC,sort));
+        PageRequest pageable = new  PageRequest(page, size);
+        if (sort !=null && "".equals(sort.trim())) {
+            pageable= new  PageRequest(page,page,new Sort(Sort.Direction.DESC,sort));
         }
-        Page<${modelName}> all = ${fieldName}Repository.findAll((Specification) (root,criteriaQuery,criteriaBuilder)-> {
+        Page<${modelName}> all = ${fieldName}Repository.findAll((root,criteriaQuery,criteriaBuilder)-> {
             List<Predicate> list = new ArrayList<>();
             if (${fieldName} != null) {
 <#list columnClassList as columnClass>
     <#if columnClass.columnType == "String">
-                if ((${fieldName}.get${columnClass.changeColumnName?cap_first}() != null) && (!${fieldName}.get${columnClass.changeColumnName?cap_first}().trim().equals(""))) {
+                if ((${fieldName}.get${columnClass.changeColumnName?cap_first}() != null) && !"".equals(${fieldName}.get${columnClass.changeColumnName?cap_first}().trim())) {
                     list.add(criteriaBuilder.like(root.get("${columnClass.changeColumnName}").as(${columnClass.columnType}.class), "%" + ${fieldName}.get${columnClass.changeColumnName?cap_first}() + "%"));
                 }
     <#else>
@@ -106,7 +105,7 @@ public class ${modelName}ServiceImpl implements ${modelName}Service {
             }
             return criteriaBuilder.and(list.toArray(new Predicate[list.size()]));
         }, pageable);
-        Map map = new HashMap();
+        Map<String, Object> map = new HashMap(16);
         map.put("total",all.getTotalElements());
         map.put("rows",all.getContent());
         return Result.ok(map);

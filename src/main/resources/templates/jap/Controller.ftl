@@ -21,7 +21,7 @@ import java.util.List;
 @Api(tags  =  "${fieldName}API")
 public class ${modelName}Controller {
 
-    @Autowired
+    @Resource
     private ${modelName}Service ${fieldName}Service;
 
     @PostMapping("insert")
@@ -65,12 +65,12 @@ public class ${modelName}Controller {
     }
 
     @PostMapping("pageQuery")
-    @ApiOperation(value = "条件分页查询",notes = "")
+    @ApiOperation(value = "条件分页查询")
     @ApiImplicitParam(name = "authorization", value = "authorization", required = true, dataType = "string", paramType = "header")
     public Result pageQuery(@ApiParam(hidden = true)@AuthorizationUser Integer userId,
                             @ApiParam(value = "第几页", required = true) @RequestParam(value = "page") Integer page,
                             @ApiParam(value = "多少条",required = true)@RequestParam(value = "size") Integer size,
-                            @ApiParam(value = "排序字段",required = false)@RequestParam(value = "sort") String sort,
+                            @ApiParam(value = "排序字段")@RequestParam(value = "sort",required = false) String sort,
                             @RequestBody(required = false) ${modelName} ${fieldName}) {
         return ${fieldName}Service.pageQuery(page, size, sort, ${fieldName});
     }

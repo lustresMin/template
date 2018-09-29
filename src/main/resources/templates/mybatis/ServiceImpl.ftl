@@ -28,7 +28,7 @@ import java.util.Map;
 @Service
 @Transactional(rollbackFor={RuntimeException.class, Exception.class})
 public class ${modelName}ServiceImpl implements ${modelName}Service {
-    private Logger logger = LoggerFactory.getLogger(${modelName}ServiceImpl.class);
+    private Logger logger = LoggerFactory.getLogger(getClass());
     @Autowired
     private ${modelName}Mapper ${fieldName}Mapper;
 
@@ -114,7 +114,7 @@ public class ${modelName}ServiceImpl implements ${modelName}Service {
             custom.andEqualTo(${modelName}::get${columnClass.changeColumnName?cap_first},${fieldName}.get${columnClass.changeColumnName?cap_first}());
         }
     <#elseif columnClass.columnType == "Integer">
-        if (${fieldName}.get${columnClass.changeColumnName?cap_first}() != null && !${fieldName}.get${columnClass.changeColumnName?cap_first}().equals("")){
+        if (${fieldName}.get${columnClass.changeColumnName?cap_first}() != null && !"".equals(${fieldName}.get${columnClass.changeColumnName?cap_first}())){
             custom.andEqualTo(${modelName}::get${columnClass.changeColumnName?cap_first},${fieldName}.get${columnClass.changeColumnName?cap_first}());
         }
     <#else>
@@ -124,7 +124,7 @@ public class ${modelName}ServiceImpl implements ${modelName}Service {
     </#if>
 </#list>
         Page<${modelName}> all = (Page<${modelName}>) ${fieldName}Mapper.selectByExample(new Example.Builder(${modelName}.class).where(custom));
-        Map map = new HashMap();
+        Map<String, Object> map = new HashMap(16);
         map.put("total",all.getTotal());
         map.put("rows",all.getResult());
         return ok(map);
