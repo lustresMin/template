@@ -81,8 +81,8 @@ public class ${modelName}ServiceImpl implements ${modelName}Service {
 
     @Override
     public Result pageQuery(Integer page, Integer size, String sort, ${modelName} ${fieldName}) {
-        page = page == null?0:page;
-		size = size == null?10:size;
+        page = page == null ? 0 : page;
+		size = size == null ? 10 : size;
     	if (page>0){page--;}
         PageRequest pageable = new  PageRequest(page, size);
         if (sort !=null && "".equals(sort.trim())) {
@@ -105,7 +105,7 @@ public class ${modelName}ServiceImpl implements ${modelName}Service {
             }
             return criteriaBuilder.and(list.toArray(new Predicate[list.size()]));
         }, pageable);
-        Map<String, Object> map = new HashMap(16);
+        Map<String, Object> map = new HashMap<>(16);
         map.put("total",all.getTotalElements());
         map.put("rows",all.getContent());
         return Result.ok(map);

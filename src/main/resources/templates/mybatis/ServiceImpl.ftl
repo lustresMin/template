@@ -104,13 +104,13 @@ public class ${modelName}ServiceImpl implements ${modelName}Service {
 
     @Override
     public Result pageQuery(Integer page, Integer size, String sort, ${modelName} ${fieldName}) {
-        page = null  == page?1:page;
-        size = null  == size?10:size;
+        page = null  == page ? 1 : page;
+        size = null  == size ? 10 : size;
         PageHelper.startPage(page, size);
         WeekendSqls<${modelName}> custom = WeekendSqls.custom();
 <#list columnClassList as columnClass>
     <#if columnClass.columnType == "String">
-        if (${fieldName}.get${columnClass.changeColumnName?cap_first}() != null && !${fieldName}.get${columnClass.changeColumnName?cap_first}().trim().equals("")){
+        if (${fieldName}.get${columnClass.changeColumnName?cap_first}() != null && !"".equals(${fieldName}.get${columnClass.changeColumnName?cap_first}().trim())){
             custom.andEqualTo(${modelName}::get${columnClass.changeColumnName?cap_first},${fieldName}.get${columnClass.changeColumnName?cap_first}());
         }
     <#elseif columnClass.columnType == "Integer">
@@ -124,7 +124,7 @@ public class ${modelName}ServiceImpl implements ${modelName}Service {
     </#if>
 </#list>
         Page<${modelName}> all = (Page<${modelName}>) ${fieldName}Mapper.selectByExample(new Example.Builder(${modelName}.class).where(custom));
-        Map<String, Object> map = new HashMap(16);
+        Map<String, Object> map = new HashMap<>(16);
         map.put("total",all.getTotal());
         map.put("rows",all.getResult());
         return ok(map);
