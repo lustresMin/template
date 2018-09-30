@@ -24,7 +24,7 @@ import java.util.List;
 @Api(tags  =  "${comment}Api")
 public class ${modelName}Controller {
 
-    @Autowired
+    @Resource
     private ${modelName}Service ${fieldName}Service;
 
     @PostMapping("insert")

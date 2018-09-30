@@ -29,7 +29,7 @@ import java.util.Map;
 @Transactional(rollbackFor={RuntimeException.class, Exception.class})
 public class ${modelName}ServiceImpl implements ${modelName}Service {
     private Logger logger = LoggerFactory.getLogger(getClass());
-    @Autowired
+    @Resource
     private ${modelName}Mapper ${fieldName}Mapper;
 
     @Override
