@@ -14,27 +14,31 @@ public interface ${modelName}Service {
     /**
 	 * 新增
 	 * @param ${fieldName} 对象
+	 * @param userId 用户系统标识
 	 * @return 前端返回格式
 	 */
-    Result insert(${modelName} ${fieldName});
+    Result insert(${modelName} ${fieldName},Integer userId);
     /**
 	 * 修改
 	 * @param ${fieldName} 对象
+	 * @param userId 用户系统标识
 	 * @return 前端返回格式
 	 */
-    Result update(${modelName} ${fieldName});
+    Result update(${modelName} ${fieldName},Integer userId);
     /**
 	 * 批量删除
 	 * @param ${fieldName}List 对象
+	 * @param userId 用户系统标识
 	 * @return 前端返回格式
 	 */
-    Result deleteInBatch(List<${modelName}> ${fieldName}List);
+    Result deleteInBatch(List<${modelName}> ${fieldName}List,Integer userId);
     /**
 	 * 根据主键删除
 	 * @param ${primaryKey.changeColumnName} 标识
+	 * @param userId 用户系统标识
 	 * @return 前端返回格式
 	 */
-    Result deleteGetById(${primaryKey.columnType} ${primaryKey.changeColumnName});
+    Result deleteGetById(${primaryKey.columnType} ${primaryKey.changeColumnName},Integer userId);
     /**
 	 * 根据主键查询
 	 * @param ${primaryKey.changeColumnName} 标识
