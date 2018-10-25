@@ -7,6 +7,6 @@ import ${packageName}.${entity}.${modelName};
  * @version 1.0
  * @author mc
  */
-public interface ${modelName}Mapper extends ${"tk.mybatis.mapper.common.Mapper"}<${modelName}.class> {
+public interface ${modelName}Mapper extends ${"tk.mybatis.mapper.common.Mapper"}<${modelName}> {
 
 }
