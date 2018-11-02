@@ -1,5 +1,6 @@
 package ${packageName}.repository;
 
+import ${packageName}.${entity}.${modelName};
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 

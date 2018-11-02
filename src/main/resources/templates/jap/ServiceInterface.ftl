@@ -1,5 +1,6 @@
 package ${packageName}.service;
 
+import ${packageName}.${entity}.${modelName};
 import org.springframework.data.domain.Pageable;
 import java.util.List;
 

@@ -13,6 +13,10 @@ import java.util.ArrayList;
 import java.util.List;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.*;
+import ${packageName}.${mapper}.${modelName}${mapper?cap_first};
+import ${packageName}.${service}.${modelName}${service?cap_first};
+import ${packageName}.uitl.Result;
+import ${packageName}.${entity}.${modelName};
 
 /**
  * @description ${comment}实体接口实现类
@@ -62,10 +66,11 @@ public class ${modelName}ServiceImpl implements ${modelName}Service {
         if (${primaryKey.changeColumnName} == null){
             return fail(Tips.PARAMETER_ERROR.msg);
         }
-        ${modelName} one = ${fieldName}Repository.getOne(id);
-        if(one != null){
-            ${fieldName}Repository.delete(id);
+        Optional<${modelName}> optional = ${fieldName}Repository.findById(id);
+        if(!optional.isPresent()){
+            return fail(Tips.MSG_NOT.msg);
         }
+        ${fieldName}Repository.deleteById(optional.get().getId());
         return ok();
     }
 
@@ -84,9 +89,9 @@ public class ${modelName}ServiceImpl implements ${modelName}Service {
         page = page == null ? 0 : page;
 		size = size == null ? 10 : size;
     	if (page>0){page--;}
-        PageRequest pageable = new  PageRequest(page, size);
+        PageRequest pageable = PageRequest.of(page, size);
         if (sort !=null && "".equals(sort.trim())) {
-            pageable= new  PageRequest(page,page,new Sort(Sort.Direction.DESC,sort));
+            pageable= PageRequest.of(page,page,new Sort(Sort.Direction.DESC,sort));
         }
         Page<${modelName}> all = ${fieldName}Repository.findAll((root,criteriaQuery,criteriaBuilder)-> {
             List<Predicate> list = new ArrayList<>();

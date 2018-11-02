@@ -1,5 +1,7 @@
 package ${packageName}.controller;
 
+import ${packageName}.${entity}.${modelName};
+import ${packageName}.${service}.${modelName}${service?cap_first};
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
