@@ -4,10 +4,10 @@ public enum Tips {
 	/**
 	 *
 	 */
-    FAIL("400","失败"),
-    SUCCESS("200","成功"),
+    FAIL(400,"失败"),
+    SUCCESS(200,"成功"),
 
-    DISABLED_TOEK("401","token过期或该账号已在其它地方登陆"),
+    DISABLED_TOEK(401,"token过期或该账号已在其它地方登陆"),
     USER_EMAIL_HAD("该邮箱已注册"),
     USER_PASSWORD_FALSE("用户名或密码错误"),
     USER_PASSWORD_F("旧密码错误"),
@@ -18,7 +18,7 @@ public enum Tips {
     ERROR("异常！,请联系管理员"),
     MEETING_SIGN_IN("错误，会议已进行签到"),
     ;
-    public String code;
+    public Integer code;
     public String msg;
 
 
@@ -29,7 +29,7 @@ public enum Tips {
         this.msg = msg;
     }
 
-    Tips(String code, String msg) {
+    Tips(Integer code, String msg) {
         /**
          * 状态码
          */

@@ -43,7 +43,7 @@ targetProject: D:/WorkSpace/template/src/main/java/
 # 包名
 packageName: com.liaoin.meeting
 # 指定数据库表名
-TABLE_NAME: t_learning_center,t_learning_center_comment,t_learning_center_type,t_meeting,t_meeting_comment,t_meeting_comment_type,t_meeting_sign_in,t_meeting_sign_in_message,t_meeting_type,t_organization,t_organization_type,t_permission,t_registration_agreement,t_roles,t_server_address,t_user_info
+TABLE_NAME: t_basic_information
 
 
 
