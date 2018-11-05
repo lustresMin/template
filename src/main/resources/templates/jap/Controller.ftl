@@ -1,11 +1,13 @@
 package ${packageName}.controller;
 
 import ${packageName}.${entity}.${modelName};
+import ${packageName}.uitl.Result;
+import ${packageName}.annotation.AuthorizationUser;
 import ${packageName}.${service}.${modelName}${service?cap_first};
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiImplicitParam;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
@@ -30,7 +32,8 @@ public class ${modelName}Controller {
     @ApiOperation(value = "新增")
     @ApiImplicitParam(name = "authorization", value = "authorization", required = true, dataType = "string", paramType = "header")
     public Result save(@ApiParam(hidden = true)@AuthorizationUser Integer userId,
-                       @RequestBody ${modelName} ${fieldName}) {
+                       @RequestBody ${modelName} ${fieldName},
+                       BindingResult errors) {
         return ${fieldName}Service.insert(${fieldName});
     }
 
@@ -38,7 +41,8 @@ public class ${modelName}Controller {
     @ApiOperation(value = "修改")
     @ApiImplicitParam(name = "authorization", value = "authorization", required = true, dataType = "string", paramType = "header")
     public Result update(@ApiParam(hidden = true)@AuthorizationUser Integer userId,
-                         @RequestBody ${modelName} ${fieldName}) {
+                         @RequestBody ${modelName} ${fieldName},
+                         BindingResult errors) {
         return ${fieldName}Service.update(${fieldName});
     }
 

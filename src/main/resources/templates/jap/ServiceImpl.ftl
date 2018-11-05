@@ -17,6 +17,8 @@ import ${packageName}.${mapper}.${modelName}${mapper?cap_first};
 import ${packageName}.${service}.${modelName}${service?cap_first};
 import ${packageName}.uitl.Result;
 import ${packageName}.${entity}.${modelName};
+import static ${packageName}.uitl.Result.fail;
+import static ${packageName}.uitl.Result.ok;
 
 /**
  * @description ${comment}实体接口实现类
