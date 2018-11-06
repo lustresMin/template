@@ -38,7 +38,7 @@ public class ${modelName}Controller {
         return ${fieldName}Service.insert(${fieldName});
     }
 
-    @PutMapping("update")
+    @PostMapping("update")
     @ApiOperation(value = "修改")
     @ApiImplicitParam(name = "authorization", value = "authorization", required = true, dataType = "string", paramType = "header")
     public Result update(@ApiParam(hidden = true)@AuthorizationUser Integer userId,
@@ -47,7 +47,7 @@ public class ${modelName}Controller {
         return ${fieldName}Service.update(${fieldName});
     }
 
-    @DeleteMapping("deleteInBatch")
+    @PostMapping("deleteInBatch")
     @ApiOperation(value = "批量删除")
     @ApiImplicitParam(name = "authorization", value = "authorization", required = true, dataType = "string", paramType = "header")
     public Result deleteInBatch(@ApiParam(hidden = true)@AuthorizationUser Integer userId,
@@ -55,7 +55,7 @@ public class ${modelName}Controller {
         return ${fieldName}Service.deleteInBatch(${fieldName}List);
     }
 
-    @DeleteMapping("getById")
+    @PostMapping("getById")
     @ApiOperation(value = "根据主键删除")
     @ApiImplicitParam(name = "authorization", value = "authorization", required = true, dataType = "string", paramType = "header")
     public Result deleteGetById(@ApiParam(hidden = true)@AuthorizationUser Integer userId,
