@@ -20,6 +20,7 @@ import java.util.List;
  * @version 1.0
  * @author mc
  */
+@CrossOrigin
 @RestController
 @RequestMapping("/${fieldName}/")
 @Api(tags  =  "${fieldName}API")
