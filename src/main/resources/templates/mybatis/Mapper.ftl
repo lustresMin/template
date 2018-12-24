@@ -3,10 +3,11 @@ package ${packageName}.${mapper};
 import ${packageName}.${entity}.${modelName};
 
 /**
- * @createDate ${.now?string("yyyy-MM-dd HH:mm:ss")}
- * @version 1.0
- * @author mc
- */
+  * @author mc
+  * Create date ${.now?string("yyyy-MM-dd HH:mm:ss")}
+  * Version 1.0
+  * Description
+  */
 public interface ${modelName}Mapper extends ${"tk.mybatis.mapper.common.Mapper"}<${modelName}> {
 
 }

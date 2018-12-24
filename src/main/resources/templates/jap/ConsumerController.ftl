@@ -9,11 +9,11 @@ import java.util.List;
 import com.liaoin.common.jackson.Result;
 
 /**
- * @description ${comment}实体接口实现类
- * @createDate ${.now?string("yyyy-MM-dd HH:mm:ss")}
- * @version 1.0
- * @author mc
- */
+  * @author mc
+  * Create date ${.now?string("yyyy-MM-dd HH:mm:ss")}
+  * Version 1.0
+  * Description ${comment}消费者接口控制层
+  */
 @RestController
 @RequestMapping("/consumer/${fieldName}/")
 @Api(tags  = "${fieldName}API")

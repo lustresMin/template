@@ -22,11 +22,11 @@ import static ${packageName}.uitl.Result.fail;
 import static ${packageName}.uitl.Result.ok;
 
 /**
- * @description ${comment}实体接口实现类
- * @createDate ${.now?string("yyyy-MM-dd HH:mm:ss")}
- * @version 1.0
- * @author mc
- */
+  * @author mc
+  * Create date ${.now?string("yyyy-MM-dd HH:mm:ss")}
+  * Version 1.0
+  * Description
+  */
 @Service
 @Transactional(rollbackFor={RuntimeException.class, Exception.class})
 public class ${modelName}ServiceImpl implements ${modelName}Service {

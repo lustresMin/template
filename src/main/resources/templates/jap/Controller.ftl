@@ -15,11 +15,11 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * @description ${comment}实体接口实现类
- * @createDate ${.now?string("yyyy-MM-dd HH:mm:ss")}
- * @version 1.0
- * @author mc
- */
+  * @author mc
+  * Create date ${.now?string("yyyy-MM-dd HH:mm:ss")}
+  * Version 1.0
+  * Description
+  */
 @CrossOrigin
 @RestController
 @RequestMapping("/${fieldName}/")

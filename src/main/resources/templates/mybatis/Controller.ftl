@@ -13,11 +13,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
 /**
- * @description ${comment}实体类
- * @createDate ${.now?string("yyyy-MM-dd HH:mm:ss")}
- * @version 1.0
- * @author mc
- */
+  * @author mc
+  * Create date ${.now?string("yyyy-MM-dd HH:mm:ss")}
+  * Version 1.0
+  * Description
+  */
 @CrossOrigin
 @RestController
 @RequestMapping("/${fieldName}/")

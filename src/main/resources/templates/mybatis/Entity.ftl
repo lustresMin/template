@@ -13,12 +13,11 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.io.Serializable;
 
 /**
- * @description ${comment}实体类
- * @tableName
- * @createDate ${.now?string("yyyy-MM-dd HH:mm:ss")}
- * @version 1.0
- * @author mc
- */
+  * @author mc
+  * Create date ${.now?string("yyyy-MM-dd HH:mm:ss")}
+  * Version 1.0
+  * Description
+  */
 @Data
 @Builder
 @NoArgsConstructor
