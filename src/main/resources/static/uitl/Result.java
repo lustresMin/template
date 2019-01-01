@@ -1,4 +1,4 @@
-package com.liaoin.meeting.uitl;
+package com.liaoin.dataclean.common;
 
 
 import com.fasterxml.jackson.databind.JsonNode;
@@ -57,36 +57,36 @@ public class Result implements Serializable {
 		return map;
 	}
 
-	public static com.liaoin.meeting.uitl.Result build(Integer state, String message, Object data) {
-		return new com.liaoin.meeting.uitl.Result(state, message, data);
+	public static Result build(Integer state, String message, Object data) {
+		return new Result(state, message, data);
 	}
 
-	public static com.liaoin.meeting.uitl.Result ok(Object data) {
-		return new com.liaoin.meeting.uitl.Result(data);
+	public static Result ok(Object data) {
+		return new Result(data);
 	}
 
-	public static com.liaoin.meeting.uitl.Result ok() {
-		return new com.liaoin.meeting.uitl.Result(new ArrayList<>());
+	public static Result ok() {
+		return new Result(new ArrayList<>());
 	}
 
 	public Result() {
 
 	}
 
-	public static com.liaoin.meeting.uitl.Result build(Integer state, String message) {
-		return new com.liaoin.meeting.uitl.Result(state, message, null);
+	public static Result build(Integer state, String message) {
+		return new Result(state, message, null);
 	}
 
-	public static com.liaoin.meeting.uitl.Result fail() {
-		return new com.liaoin.meeting.uitl.Result(com.liaoin.meeting.uitl.Tips.FAIL.code, com.liaoin.meeting.uitl.Tips.FAIL.msg);
+	public static Result fail() {
+		return new Result(Tips.FAIL.code, Tips.FAIL.msg);
 	}
 
-	public static com.liaoin.meeting.uitl.Result fail(String msg) {
-		return new com.liaoin.meeting.uitl.Result(com.liaoin.meeting.uitl.Tips.FAIL.code, msg);
+	public static Result fail(String msg) {
+		return new Result(Tips.FAIL.code, msg);
 	}
 
-	public static com.liaoin.meeting.uitl.Result fail(Integer code, String msg) {
-		return new com.liaoin.meeting.uitl.Result(code, msg);
+	public static Result fail(Integer code, String msg) {
+		return new Result(code, msg);
 	}
 
 	public Result(Integer state, String message, Object data) {
@@ -95,8 +95,8 @@ public class Result implements Serializable {
 		this.data = data;
 	}
 
-	public static com.liaoin.meeting.uitl.Result fail(Object data) {
-		return new com.liaoin.meeting.uitl.Result(com.liaoin.meeting.uitl.Tips.FAIL.code, com.liaoin.meeting.uitl.Tips.FAIL.msg, data);
+	public static Result fail(Object data) {
+		return new Result(Tips.FAIL.code, Tips.FAIL.msg, data);
 	}
 
 	public Result(Object data) {
@@ -135,10 +135,10 @@ public class Result implements Serializable {
 	 * @param jsonData json数据
 	 * @param clazz    FrontResult中的object类型
 	 */
-	public static com.liaoin.meeting.uitl.Result formatToPojo(String jsonData, Class<?> clazz) {
+	public static Result formatToPojo(String jsonData, Class<?> clazz) {
 		try {
 			if (clazz == null) {
-				return MAPPER.readValue(jsonData, com.liaoin.meeting.uitl.Result.class);
+				return MAPPER.readValue(jsonData, Result.class);
 			}
 			JsonNode jsonNode = MAPPER.readTree(jsonData);
 			JsonNode data = jsonNode.get("data");
@@ -157,9 +157,9 @@ public class Result implements Serializable {
 	/**
 	 * 没有object对象的转化
 	 */
-	public static com.liaoin.meeting.uitl.Result format(String json) {
+	public static Result format(String json) {
 		try {
-			return MAPPER.readValue(json, com.liaoin.meeting.uitl.Result.class);
+			return MAPPER.readValue(json, Result.class);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -172,7 +172,7 @@ public class Result implements Serializable {
 	 * @param jsonData json数据
 	 * @param clazz    集合中的类型
 	 */
-	public static com.liaoin.meeting.uitl.Result formatToList(String jsonData, Class<?> clazz) {
+	public static Result formatToList(String jsonData, Class<?> clazz) {
 		try {
 			JsonNode jsonNode = MAPPER.readTree(jsonData);
 			JsonNode data = jsonNode.get("data");
