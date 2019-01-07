@@ -15,10 +15,10 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.*;
 import ${packageName}.${mapper}.${modelName}${mapper?cap_first};
 import ${packageName}.${service}.${modelName}${service?cap_first};
-import ${packageName}.uitl.Result;
+import ${packageName}.common.jackson.Result;
 import ${packageName}.${entity}.${modelName};
-import static ${packageName}.uitl.Result.fail;
-import static ${packageName}.uitl.Result.ok;
+import static ${packageName}.common.jackson.Result.fail;
+import static ${packageName}.common.jackson.Result.ok;
 
 /**
   * @author mc
@@ -26,10 +26,10 @@ import static ${packageName}.uitl.Result.ok;
   * Version 1.0
   * Description
   */
+
 @Service
 @Transactional(rollbackFor={RuntimeException.class, Exception.class})
 public class ${modelName}ServiceImpl implements ${modelName}Service {
-    private Logger logger = LoggerFactory.getLogger(getClass());
     @Resource
     private ${modelName}Repository ${fieldName}Repository;
 

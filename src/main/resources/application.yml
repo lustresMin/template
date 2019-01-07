@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/dataclean?serverTimezone=GMT&characterEncoding=utf-8&useSSL=false
+    url: jdbc:mysql://localhost:3306/ticketing?serverTimezone=GMT&characterEncoding=utf-8&useSSL=false
     username: root
     password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -31,23 +31,23 @@ spring:
 data_resources: jpa
 
 # 生成源文件的绝对地址
-controller: com.liaoin.dataclean.controller
+controller: com.liaoin.ticketing.controller
 
-server: com.liaoin.dataclean.service
+server: com.liaoin.ticketing.service
 
-serverImpl: com.liaoin.dataclean.service.impl
+serverImpl: com.liaoin.ticketing.service.impl
 
-mappers: com.liaoin.dataclean
+mappers: com.liaoin.ticketing
 
-entity: com.liaoin.dataclean.entity
+entity: com.liaoin.ticketing.entity
 
 
 # 文件生成路径
 targetProject: D:/WorkSpace/template/src/main/java/
 # 包名
-packageName: com.liaoin.dataclean
+packageName: com.liaoin.ticketing
 # 指定数据库表名
-TABLE_NAME: f_region,f_building
+TABLE_NAME:
 
 
 
