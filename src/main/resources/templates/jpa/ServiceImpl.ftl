@@ -17,6 +17,7 @@ import ${packageName}.${mapper}.${modelName}${mapper?cap_first};
 import ${packageName}.${service}.${modelName}${service?cap_first};
 import ${packageName}.common.jackson.Result;
 import ${packageName}.${entity}.${modelName};
+
 import static ${packageName}.common.jackson.Result.fail;
 import static ${packageName}.common.jackson.Result.ok;
 
@@ -35,7 +36,8 @@ public class ${modelName}ServiceImpl implements ${modelName}Service {
 
     @Override
     public Result insert(${modelName} ${fieldName}) {
-        if (${fieldName} == null){
+
+        if (!Optional.ofNullable(${fieldName}).isPresent()){
             return fail(Tips.PARAMETER_ERROR.msg);
         }
         ${fieldName}.setCreateTime(new Date());
@@ -45,7 +47,7 @@ public class ${modelName}ServiceImpl implements ${modelName}Service {
 
     @Override
     public Result update(${modelName} ${fieldName}) {
-        if (${fieldName} == null){
+        if (!Optional.ofNullable(${fieldName}).isPresent()){
             return fail(Tips.PARAMETER_ERROR.msg);
         }
         ${fieldName}.setUpdateTime(new Date());
@@ -64,7 +66,7 @@ public class ${modelName}ServiceImpl implements ${modelName}Service {
 
     @Override
     public Result deleteGetById(${primaryKey.columnType} ${primaryKey.changeColumnName}){
-        if (${primaryKey.changeColumnName} == null){
+        if (!Optional.ofNullable(${primaryKey.changeColumnName}).isPresent()){
             return fail(Tips.PARAMETER_ERROR.msg);
         }
         Optional<${modelName}> optional = ${fieldName}Repository.findById(id);
@@ -78,7 +80,7 @@ public class ${modelName}ServiceImpl implements ${modelName}Service {
 
     @Override
     public Result findOne(${primaryKey.columnType} ${primaryKey.changeColumnName}) {
-        if (${primaryKey.changeColumnName} == null){
+        if (!Optional.ofNullable(${primaryKey.changeColumnName}).isPresent()){
         return fail(Tips.PARAMETER_ERROR.msg);
         }
         ${modelName} one = ${fieldName}Repository.getOne(${primaryKey.changeColumnName});
