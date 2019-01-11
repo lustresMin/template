@@ -55,10 +55,10 @@ public class ${modelName}Controller {
         return ${fieldName}Service.deleteGetById(id);
     }
 
-    @GetMapping("findOne")
+    @GetMapping("findById")
     @ApiOperation(value = "根据主键查询")
     public Result findOne(@ApiParam(value = "主键",required = true)@RequestParam(value = "id") ${primaryKey.columnType} ${primaryKey.changeColumnName}) {
-        return ${fieldName}Service.findOne(${primaryKey.changeColumnName});
+        return ${fieldName}Service.findById(${primaryKey.changeColumnName});
     }
 
     @PostMapping("pageQuery")

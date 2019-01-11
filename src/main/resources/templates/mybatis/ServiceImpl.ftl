@@ -84,12 +84,13 @@ public class ${modelName}ServiceImpl implements ${modelName}Service {
 
 
     @Override
-    public Result findOne(${primaryKey.columnType} ${primaryKey.changeColumnName}) {
+    public Result findById(${primaryKey.columnType} ${primaryKey.changeColumnName}) {
         if (${primaryKey.changeColumnName} == null){
             return fail(Tips.PARAMETER_ERROR.msg);
         }
-        ${modelName} one = ${fieldName}Mapper.selectByPrimaryKey(${primaryKey.changeColumnName});
-        return ok(one);
+		Optional<${modelName}> optional = fileRepository.findById(${primaryKey.changeColumnName});
+        return optional.map(Result::ok).orElseGet(() -> fail(Tips.MSG_NOT.msg));
+
     }
 
     @Override

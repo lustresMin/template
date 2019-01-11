@@ -44,7 +44,7 @@ public interface ${modelName}Service {
 	 * @param ${primaryKey.changeColumnName} 标识
 	 * @return 前端返回格式
 	 */
-    Result findOne(${primaryKey.columnType} ${primaryKey.changeColumnName});
+    Result findById(${primaryKey.columnType} ${primaryKey.changeColumnName});
     /**
 	 * 条件分页查询
 	 * @param page 当前页

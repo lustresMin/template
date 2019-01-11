@@ -59,7 +59,7 @@ public class ${modelName}Controller {
         return ${fieldName}Service.deleteGetById(${primaryKey.changeColumnName},userId);
     }
 
-    @GetMapping("findOne")
+    @GetMapping("findById")
     @ApiOperation(value = "根据主键查询")
     @ApiImplicitParam(name = "authorization", value = "authorization", required = true, dataType = "string", paramType = "header")
     public Result findOne(@ApiParam(value = "主键",required = true)@RequestParam(value = "${primaryKey.changeColumnName}") ${primaryKey.columnType} ${primaryKey.changeColumnName},

@@ -79,12 +79,12 @@ public class ${modelName}ServiceImpl implements ${modelName}Service {
 
 
     @Override
-    public Result findOne(${primaryKey.columnType} ${primaryKey.changeColumnName}) {
-        if (!Optional.ofNullable(${primaryKey.changeColumnName}).isPresent()){
-        return fail(Tips.PARAMETER_ERROR.msg);
+    public Result findById(${primaryKey.columnType} ${primaryKey.changeColumnName}) {
+        if (${primaryKey.changeColumnName} == null){
+            return fail(Tips.PARAMETER_ERROR.msg);
         }
-        ${modelName} one = ${fieldName}Repository.getOne(${primaryKey.changeColumnName});
-        return ok(one);
+		Optional<${modelName}> optional = fileRepository.findById(${primaryKey.changeColumnName});
+        return optional.map(Result::ok).orElseGet(() -> fail(Tips.MSG_NOT.msg));
     }
 
     @Override

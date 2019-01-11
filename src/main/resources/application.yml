@@ -47,7 +47,7 @@ targetProject: D:/WorkSpace/template/src/main/java/
 # 包名
 packageName: com.liaoin.ticketing
 # 指定数据库表名
-TABLE_NAME: t_oder
+TABLE_NAME: t_scenic_spot_oder,t_scenic_spot_oder_goods,t_shop_oder,t_shop_oder_goods
 
 
 
