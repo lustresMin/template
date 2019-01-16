@@ -83,7 +83,7 @@ public class ${modelName}ServiceImpl implements ${modelName}Service {
         if (${primaryKey.changeColumnName} == null){
             return fail(Tips.PARAMETER_ERROR.msg);
         }
-		Optional<${modelName}> optional = fileRepository.findById(${primaryKey.changeColumnName});
+		Optional<${modelName}> optional = ${fieldName}Repository.findById(${primaryKey.changeColumnName});
         return optional.map(Result::ok).orElseGet(() -> fail(Tips.MSG_NOT.msg));
     }
 
