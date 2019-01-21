@@ -9,6 +9,9 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
+import tk.mybatis.mapper.annotation.KeySql;
+import tk.mybatis.mapper.annotation.NameStyle;
+import tk.mybatis.mapper.code.Style;
 
 import java.io.Serializable;
 
@@ -23,6 +26,8 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @ApiModel("${comment}实体类")
+@NameStyle(Style.camelhump)
+@Table(name = "f_${modelName}")
 public class ${modelName} implements Serializable {
 
     public interface ${modelName}SimpleView {};

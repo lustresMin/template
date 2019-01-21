@@ -40,7 +40,10 @@ public class ${modelName}ServiceImpl implements ${modelName}Service {
         if (${fieldName} == null){
             return fail(Tips.PARAMETER_ERROR.msg);
         }
+        ${fieldName}.setCreateTime(new Date());
+        ${fieldName}.setCreateUserId(userId);
         ${fieldName}Mapper.insert(${fieldName});
+        logger.info("insert:"+userId,JsonUtils.objectToJson(${fieldName}));
         return ok();
     }
 
@@ -52,6 +55,7 @@ public class ${modelName}ServiceImpl implements ${modelName}Service {
         ${fieldName}.setUpdateTime(new Date());
         ${fieldName}.setUpdateUserId(userId);
         ${fieldName}Mapper.updateByPrimaryKeySelective(${fieldName});
+        logger.info("update:"+userId,JsonUtils.objectToJson(${fieldName}));
         return ok();
     }
 
@@ -73,13 +77,15 @@ public class ${modelName}ServiceImpl implements ${modelName}Service {
         if (${primaryKey.changeColumnName} == null){
             return fail(Tips.PARAMETER_ERROR.msg);
         }
-        ${modelName} one = ${fieldName}Mapper.selectByPrimaryKey(${primaryKey.changeColumnName});
-        if(one == null){
+        ${modelName} ${primaryKey.changeColumnName} = ${fieldName}Mapper.selectByPrimaryKey(${primaryKey.changeColumnName});
+        if(${primaryKey.changeColumnName} == null){
             return fail(Tips.MSG_NOT.msg);
         }
-        one.setDeleteTime(new Date());
-        one.setDeleteUserId(userId);
-        ${fieldName}Mapper.deleteByPrimaryKey(${primaryKey.changeColumnName});
+        ${primaryKey.changeColumnName}.setDeleteTime(new Date());
+        ${primaryKey.changeColumnName}.setDeleteUserId(userId);
+        ${primaryKey.changeColumnName}.setIsDelete(1);
+        ${fieldName}Mapper.updateByPrimaryKeySelective(${primaryKey.changeColumnName});
+        logger.info("delete:"+userId,JsonUtils.objectToJson(${fieldName}));
         return ok();
     }
 
