@@ -48,6 +48,7 @@ public class FreemarkUtil {
             columnClass.setChangeColumnName(changeColumnName);
             // 4.Java数据类型
             String typeName = columns.getString("TYPE_NAME");
+            columnClass.setColumnGannleType(typeName);
             columnClass.setColumnType(getJavaTypeSqlServer(typeName));
             // 3.数据库中的字段注释
             String remarks = columns.getString("REMARKS");

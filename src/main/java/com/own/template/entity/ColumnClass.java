@@ -19,6 +19,10 @@ public class ColumnClass {
      */
     private String columnType;
     /**
+     * 数据库字段类型
+     */
+    private String columnGannleType;
+    /**
      * 数据库字段首字母小写且去掉下划线字符串
      */
     private String changeColumnName;
