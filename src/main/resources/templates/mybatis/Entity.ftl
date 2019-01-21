@@ -36,12 +36,12 @@ public class ${modelName} implements Serializable {
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value="${column.columnComment}")
+    <#--@ApiModelProperty(value="${column.columnComment}")-->
     private ${column.columnType} ${column.changeColumnName};
 
     <#else>
 
-    @ApiModelProperty(value="${column.columnComment}")
+    <#--@ApiModelProperty(value="${column.columnComment}")-->
     private ${column.columnType} ${column.changeColumnName};
     </#if>
     </#list>

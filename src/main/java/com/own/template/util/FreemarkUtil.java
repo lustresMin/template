@@ -48,15 +48,16 @@ public class FreemarkUtil {
             columnClass.setChangeColumnName(changeColumnName);
             // 4.Java数据类型
             String typeName = columns.getString("TYPE_NAME");
-            columnClass.setColumnType(getJavaType(typeName));
+            columnClass.setColumnType(getJavaTypeSqlServer(typeName));
             // 3.数据库中的字段注释
             String remarks = columns.getString("REMARKS");
             columnClass.setColumnComment(remarks);
             // 5.更新主键的Java数据类型
             if (changeColumnName.equals(primaryKey.getChangeColumnName())) {
                 columnClass.setPrimaryKey(true);
-                primaryKey.setColumnType(getJavaType(typeName));
+                primaryKey.setColumnType(getJavaTypeSqlServer(typeName));
             } else {
+				columnClass.setColumnType(getJavaTypeSqlServer(typeName));
                 columnClass.setPrimaryKey(false);
             }
             // 6.将columnClass对象添加到集合中
@@ -83,15 +84,15 @@ public class FreemarkUtil {
         String s2 = str.substring(1);
         return s1 + s2;
     }
-
-    private static String getJavaType(String typeName) {
-        Map<String, String> map = new HashMap<>();
+	//mysql
+    private static String getJavaTypeMysql(String typeName) {
+        Map<String, String> map = new HashMap<>(16);
         map.put("VARCHAR", "String");
         map.put("TEXT", "String");
         map.put("INT", "Integer");
         map.put("BIGINT", "Long");
         map.put("DOUBLE", "Double");
-        map.put("DECIMAL", "BigDecimal");
+        map.put("decimal", "BigDecimal");
         map.put("DATE", "java.util.Date");
         map.put("DATETIME", "java.util.Date");
         map.put("LONGTEXT", "String");
@@ -101,6 +102,26 @@ public class FreemarkUtil {
 
         return map.get(typeName);
     }
+	//SqlServer
+	private static String getJavaTypeSqlServer(String typeName) {
+		Map<String, String> map = new HashMap<>(16);
+		map.put("nvarchar", "String");
+		map.put("varchar", "String");
+		map.put("TEXT", "String");
+		map.put("int identity", "Integer");
+		map.put("int", "Integer");
+		map.put("bigint", "Long");
+		map.put("DOUBLE", "Double");
+		map.put("decimal", "BigDecimal");
+		map.put("date", "java.util.Date");
+		map.put("DATETIME", "java.util.Date");
+		map.put("LONGTEXT", "String");
+		map.put("FLOAT", "Float");
+		map.put("BIT", "Boolean");
+		map.put("TINYBLOB", "java.time.LocalDateTime");
+
+		return map.get(typeName);
+	}
     private static String getModelName(String str) {
         StringBuilder sb = new StringBuilder();
         // 将字符串全部变为小写

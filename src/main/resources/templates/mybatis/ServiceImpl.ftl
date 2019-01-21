@@ -18,8 +18,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static ${packageName}.uitl.Result.fail;
-import static ${packageName}.uitl.Result.ok;
+
+import static ${packageName}.common.jackson.Result.fail;
+import static ${packageName}.common.jackson.Result.ok;
 
 /**
   * @author mc
@@ -74,7 +75,7 @@ public class ${modelName}ServiceImpl implements ${modelName}Service {
         }
         ${modelName} one = ${fieldName}Mapper.selectByPrimaryKey(${primaryKey.changeColumnName});
         if(one == null){
-            return fail(Tips.DATA_NOT.msg);
+            return fail(Tips.MSG_NOT.msg);
         }
         one.setDeleteTime(new Date());
         one.setDeleteUserId(userId);
@@ -88,8 +89,11 @@ public class ${modelName}ServiceImpl implements ${modelName}Service {
         if (${primaryKey.changeColumnName} == null){
             return fail(Tips.PARAMETER_ERROR.msg);
         }
-		Optional<${modelName}> optional = fileRepository.findById(${primaryKey.changeColumnName});
-        return optional.map(Result::ok).orElseGet(() -> fail(Tips.MSG_NOT.msg));
+		${modelName} ${fieldName} = ${fieldName}Mapper.selectByPrimaryKey(${primaryKey.changeColumnName});
+        if (${fieldName} == null){
+			return fail(Tips.MSG_NOT.msg);
+		}
+        return ok(${fieldName});
 
     }
 
@@ -102,7 +106,7 @@ public class ${modelName}ServiceImpl implements ${modelName}Service {
 <#list columnClassList as columnClass>
     <#if columnClass.columnType == "String">
         if (${fieldName}.get${columnClass.changeColumnName?cap_first}() != null && !"".equals(${fieldName}.get${columnClass.changeColumnName?cap_first}().trim())){
-            builder.where(WeekendSqls.<${modelName}>custom().andEqualTo(${modelName}::get${columnClass.changeColumnName?cap_first},${fieldName}.get${columnClass.changeColumnName?cap_first}()));
+            builder.where(WeekendSqls.<${modelName}>custom().andLike(${modelName}::get${columnClass.changeColumnName?cap_first},"%"+${fieldName}.get${columnClass.changeColumnName?cap_first}()+"%"));
         }
     <#elseif columnClass.columnType == "Integer">
         if (${fieldName}.get${columnClass.changeColumnName?cap_first}() != null){

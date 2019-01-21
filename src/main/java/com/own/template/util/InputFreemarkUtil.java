@@ -112,6 +112,17 @@ public class InputFreemarkUtil {
         generateFileByTemplate(templateName, diskPath,fileName, dataModel);
     }
 
+    public  void generateMapperXmlFile(Map<String, Object> dataModel,String diskPath) throws Exception {
+        // 生成模板的位置
+        String suffix = "Mapper.xml";
+        String modelName = (String) dataModel.get("modelName");
+        String fileName = modelName + suffix;
+        // 模板名称
+        String templateName = "mapperXml.ftl";
+        // 模型数据
+        generateFileByTemplate(templateName, diskPath,fileName, dataModel);
+    }
+
 
 
 
