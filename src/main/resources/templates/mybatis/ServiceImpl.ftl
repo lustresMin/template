@@ -77,14 +77,14 @@ public class ${modelName}ServiceImpl implements ${modelName}Service {
         if (${primaryKey.changeColumnName} == null){
             return fail(Tips.PARAMETER_ERROR.msg);
         }
-        ${modelName} ${primaryKey.changeColumnName} = ${fieldName}Mapper.selectByPrimaryKey(${primaryKey.changeColumnName});
-        if(${primaryKey.changeColumnName} == null){
+        ${modelName} ${fieldName} = ${fieldName}Mapper.selectByPrimaryKey(${primaryKey.changeColumnName});
+        if(${fieldName} == null){
             return fail(Tips.MSG_NOT.msg);
         }
-        ${primaryKey.changeColumnName}.setDeleteTime(new Date());
-        ${primaryKey.changeColumnName}.setDeleteUserId(userId);
-        ${primaryKey.changeColumnName}.setIsDelete(1);
-        ${fieldName}Mapper.updateByPrimaryKeySelective(${primaryKey.changeColumnName});
+        ${fieldName}.setDeleteTime(new Date());
+        ${fieldName}.setDeleteUserId(userId);
+        ${fieldName}.setIsDelete(1);
+        ${fieldName}Mapper.updateByPrimaryKeySelective(${fieldName});
         logger.info("delete:"+userId,JsonUtils.objectToJson(${fieldName}));
         return ok();
     }

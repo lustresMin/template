@@ -57,7 +57,7 @@ targetProject: D:/WorkSpace/template/src/main/java/
 # 包名
 packageName: com.liaoin.oil
 # 指定数据库表名
-TABLE_NAME: region
+TABLE_NAME: region,f_Menu,f_role,f_user_info
 
 
 
