@@ -37,21 +37,21 @@ public class ${modelName}Controller {
         return ${fieldName}Service.insert(${fieldName},userId);
     }
 
-    @PutMapping("update")
+    @PostMapping("update")
     @ApiOperation(value = "修改")
     public Result update(@ApiParam(value = "用户主键",required = true)@RequestParam(value = "${primaryKey.changeColumnName}") Integer userId,
                          @Valid @RequestBody ${modelName} ${fieldName},BindingResult errors) {
         return ${fieldName}Service.update(${fieldName},userId);
     }
 
-    @DeleteMapping("getById")
+    @PostMapping("getById")
     @ApiOperation(value = "根据主键删除")
     public Result deleteGetById(@ApiParam(value = "主键",required = true)@RequestParam(value = "${primaryKey.changeColumnName}") ${primaryKey.columnType} ${primaryKey.changeColumnName},
                                 @ApiParam(value = "用户主键",required = true)@RequestParam(value = "${primaryKey.changeColumnName}") Integer userId) {
         return ${fieldName}Service.deleteGetById(${primaryKey.changeColumnName},userId);
     }
 
-    @GetMapping("findById")
+    @PostMapping("findById")
     @ApiOperation(value = "根据主键查询")
     public Result findById(@ApiParam(value = "主键",required = true)@RequestParam(value = "${primaryKey.changeColumnName}") ${primaryKey.columnType} ${primaryKey.changeColumnName}) {
         return ${fieldName}Service.findById(${primaryKey.changeColumnName});
