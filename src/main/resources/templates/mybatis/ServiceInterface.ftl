@@ -1,6 +1,7 @@
 package ${packageName}.${service};
 
 import ${packageName}.${entity}.${modelName};
+import ${packageName}.common.jackson.Result;
 
 import java.util.List;
 

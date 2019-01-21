@@ -1,6 +1,6 @@
 package ${packageName}.controller;
 
-import ${packageName}.${entity}.${modelName}.common.jackson.Result;
+import ${packageName}.common.jackson.Result;
 import ${packageName}.${service}.${modelName}${service?cap_first};
 import javax.validation.Valid;
 import io.swagger.annotations.Api;

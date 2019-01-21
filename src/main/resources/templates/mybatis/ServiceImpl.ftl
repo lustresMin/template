@@ -2,7 +2,7 @@ package ${packageName}.service.impl;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import ${packageName}.uitl.Result;
+import ${packageName}.common.jackson.Result;
 import ${packageName}.${entity}.${modelName};
 import ${packageName}.${mapper}.${modelName}${mapper?cap_first};
 import ${packageName}.${service}.${modelName}${service?cap_first};

@@ -114,7 +114,7 @@ public class FreemarkUtil {
 		map.put("DOUBLE", "Double");
 		map.put("decimal", "BigDecimal");
 		map.put("date", "java.util.Date");
-		map.put("DATETIME", "java.util.Date");
+		map.put("datetime", "java.util.Date");
 		map.put("LONGTEXT", "String");
 		map.put("FLOAT", "Float");
 		map.put("BIT", "Boolean");
