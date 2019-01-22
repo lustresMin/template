@@ -47,7 +47,7 @@ server: com.liaoin.oil.service
 
 serverImpl: com.liaoin.oil.service.impl
 
-mappers: com.liaoin.oil
+mappers: com.liaoin.oil.local
 
 entity: com.liaoin.oil.entity
 
@@ -57,7 +57,7 @@ targetProject: D:/WorkSpace/template/src/main/java/
 # 包名
 packageName: com.liaoin.oil
 # 指定数据库表名
-TABLE_NAME: f_menu
+TABLE_NAME: dianFuBangDan,dianFuMa
 
 
 

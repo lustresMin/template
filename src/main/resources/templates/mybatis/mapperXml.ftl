@@ -2,10 +2,10 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="${packageName}.${mapper}.${modelName}Mapper">
+<mapper namespace="${packageName}.${mapper}.local.${modelName}Mapper">
 
     <insert id="insertTo" parameterType="${packageName}.${entity}.${modelName}">
-        insert into f_${fieldName}
+        insert into ${tableName}
         <trim prefix="(" suffix=")" suffixOverrides=",">
 <#if columnClassList ??>
     <#list columnClassList as column>
