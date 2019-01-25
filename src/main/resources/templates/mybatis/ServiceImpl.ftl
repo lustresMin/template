@@ -42,6 +42,7 @@ public class ${modelName}ServiceImpl implements ${modelName}Service {
         }
         ${fieldName}.setCreateTime(new Date());
         ${fieldName}.setCreateUserId(userId);
+        ${fieldName}.setIsDelete(0);
         ${fieldName}Mapper.insertTo(${fieldName});
         logger.info("insert:"+userId,JsonUtils.objectToJson(${fieldName}));
         return ok();
@@ -56,19 +57,6 @@ public class ${modelName}ServiceImpl implements ${modelName}Service {
         ${fieldName}.setUpdateUserId(userId);
         ${fieldName}Mapper.updateByPrimaryKeySelective(${fieldName});
         logger.info("update:"+userId,JsonUtils.objectToJson(${fieldName}));
-        return ok();
-    }
-
-    @Override
-    public Result deleteInBatch(List<${modelName}> ${fieldName}List,Integer userId) {
-        if (${fieldName}List.size() == 0){
-            return fail(Tips.PARAMETER_ERROR.msg);
-        }
-        for(${modelName} ${fieldName}:${fieldName}List){
-            ${fieldName}.setDeleteTime(new Date());
-            ${fieldName}.setDeleteUserId(userId);
-            ${fieldName}Mapper.deleteByPrimaryKey(${fieldName}.getId());
-        }
         return ok();
     }
 
@@ -109,8 +97,10 @@ public class ${modelName}ServiceImpl implements ${modelName}Service {
         size = null  == size ? 10 : size;
         PageHelper.startPage(page, size);
         Example.Builder builder = new Example.Builder(${modelName}.class);
+        builder.where(WeekendSqls.<${modelName}>custom().andEqualTo(${modelName}::getIsDelete, 0));
+        if(${fieldName} != null){
 <#list columnClassList as columnClass>
-    <#if columnClass.columnType == "String">
+    <#if columnClass.columnType == "String" >
         if (${fieldName}.get${columnClass.changeColumnName?cap_first}() != null && !"".equals(${fieldName}.get${columnClass.changeColumnName?cap_first}().trim())){
             builder.where(WeekendSqls.<${modelName}>custom().andLike(${modelName}::get${columnClass.changeColumnName?cap_first},"%"+${fieldName}.get${columnClass.changeColumnName?cap_first}()+"%"));
         }
@@ -124,6 +114,7 @@ public class ${modelName}ServiceImpl implements ${modelName}Service {
         }
     </#if>
 </#list>
+        }
         Page<${modelName}> all = (Page<${modelName}>) ${fieldName}Mapper.selectByExample(builder.build());
         Map<String, Object> map = new HashMap<>(16);
         map.put("total",all.getTotal());

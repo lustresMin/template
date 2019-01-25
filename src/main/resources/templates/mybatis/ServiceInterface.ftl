@@ -27,13 +27,6 @@ public interface ${modelName}Service {
 	 */
     Result update(${modelName} ${fieldName},Integer userId);
     /**
-	 * 批量删除
-	 * @param ${fieldName}List 对象
-	 * @param userId 用户系统标识
-	 * @return 前端返回格式
-	 */
-    Result deleteInBatch(List<${modelName}> ${fieldName}List,Integer userId);
-    /**
 	 * 根据主键删除
 	 * @param ${primaryKey.changeColumnName} 标识
 	 * @param userId 用户系统标识

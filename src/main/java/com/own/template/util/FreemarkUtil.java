@@ -108,12 +108,14 @@ public class FreemarkUtil {
 		Map<String, String> map = new HashMap<>(16);
 		map.put("nvarchar", "String");
 		map.put("varchar", "String");
-		map.put("TEXT", "String");
+		map.put("text", "String");
 		map.put("int identity", "Integer");
+		map.put("numeric() identity", "Long");
 		map.put("int", "Integer");
 		map.put("bigint", "Long");
 		map.put("DOUBLE", "Double");
 		map.put("decimal", "BigDecimal");
+		map.put("numeric", "BigDecimal");
 		map.put("date", "java.util.Date");
 		map.put("datetime", "java.util.Date");
 		map.put("LONGTEXT", "String");

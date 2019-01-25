@@ -32,15 +32,21 @@ public class ${modelName}Controller {
 
     @PostMapping("insert")
     @ApiOperation(value = "新增")
-    public Result insert(@ApiParam(value = "用户主键",required = true)@RequestParam(value = "${primaryKey.changeColumnName}")Integer userId,
+    public Result insert(@ApiParam(value = "用户主键")@RequestParam(value = "${primaryKey.changeColumnName}",required = false)Integer userId,
                          @Valid @RequestBody ${modelName} ${fieldName},BindingResult errors) {
+        if (errors.hasErrors()){
+			return Result.fail(errors.getAllErrors());
+		}
         return ${fieldName}Service.insert(${fieldName},userId);
     }
 
     @PostMapping("update")
     @ApiOperation(value = "修改")
-    public Result update(@ApiParam(value = "用户主键",required = true)@RequestParam(value = "${primaryKey.changeColumnName}") Integer userId,
+    public Result update(@ApiParam(value = "用户主键")@RequestParam(value = "${primaryKey.changeColumnName}",required = false)Integer userId,
                          @Valid @RequestBody ${modelName} ${fieldName},BindingResult errors) {
+        if (errors.hasErrors()){
+			return Result.fail(errors.getAllErrors());
+		}
         return ${fieldName}Service.update(${fieldName},userId);
     }
 
