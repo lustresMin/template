@@ -53,7 +53,7 @@ public class ${modelName}Controller {
     @PostMapping("getById")
     @ApiOperation(value = "根据主键删除")
     public Result deleteGetById(@ApiParam(value = "主键",required = true)@RequestParam(value = "${primaryKey.changeColumnName}") ${primaryKey.columnType} ${primaryKey.changeColumnName},
-                                @ApiParam(value = "用户主键",required = true)@RequestParam(value = "${primaryKey.changeColumnName}") Integer userId) {
+                                @ApiParam(value = "用户主键")@RequestParam(value = "${primaryKey.changeColumnName}",required = false) Integer userId) {
         return ${fieldName}Service.deleteGetById(${primaryKey.changeColumnName},userId);
     }
 
@@ -68,7 +68,7 @@ public class ${modelName}Controller {
     public Result pageQuery(@ApiParam(value = "第几页", required = true) @RequestParam(value = "page") Integer page,
                             @ApiParam(value = "多少条",required = true)@RequestParam(value = "size") Integer size,
                             @ApiParam(value = "排序字段")@RequestParam(value = "sort",required = false) String sort,
-                            @RequestBody(required = false) ${modelName} ${fieldName}) {
+                            ${modelName} ${fieldName}) {
         return ${fieldName}Service.pageQuery(page, size, sort, ${fieldName});
     }
 }
