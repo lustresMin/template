@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="${packageName}.${mapper}.local.${modelName}Mapper">
 
-    <insert id="insertTo" parameterType="${packageName}.${entity}.${modelName}">
+    <insert id="insertSelectiveCustom" parameterType="${packageName}.${entity}.${modelName}">
         insert into ${tableName}
         <trim prefix="(" suffix=")" suffixOverrides=",">
 <#if columnClassList ??>

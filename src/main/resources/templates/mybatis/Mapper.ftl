@@ -10,5 +10,5 @@ import ${packageName}.${entity}.${modelName};
   */
 public interface ${modelName}Mapper extends ${"tk.mybatis.mapper.common.Mapper"}<${modelName}> {
 
-    void insertTo(${modelName} ${fieldName});
+    int insertSelectiveCustom(${modelName} ${fieldName});
 }

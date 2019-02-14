@@ -43,7 +43,7 @@ public class ${modelName}ServiceImpl implements ${modelName}Service {
         ${fieldName}.setCreateTime(new Date());
         ${fieldName}.setCreateUserId(userId);
         ${fieldName}.setIsDelete(0);
-        ${fieldName}Mapper.insertTo(${fieldName});
+        ${fieldName}Mapper.insertSelectiveCustom(${fieldName});
         logger.info("insert:"+userId,JsonUtils.objectToJson(${fieldName}));
         return ok();
     }

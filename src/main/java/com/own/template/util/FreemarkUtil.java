@@ -121,6 +121,7 @@ public class FreemarkUtil {
 		map.put("LONGTEXT", "String");
 		map.put("FLOAT", "Float");
 		map.put("BIT", "Boolean");
+		map.put("bit", "Boolean");
 		map.put("TINYBLOB", "java.time.LocalDateTime");
 
 		return map.get(typeName);
