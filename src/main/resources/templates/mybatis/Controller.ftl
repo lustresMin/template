@@ -35,7 +35,7 @@ public class ${modelName}Controller {
 
     @PostMapping("insert")
     @ApiOperation(value = "新增")
-    public Result insert(@ApiParam(value = "用户主键")@RequestParam(value = "${primaryKey.changeColumnName}",required = false)Integer userId,
+    public Result insert(@ApiParam(value = "用户主键")@RequestParam(value = "userId",required = false)Integer userId,
                          @Valid @RequestBody ${modelName} ${fieldName},BindingResult errors) {
         if (errors.hasErrors()){
 			return Result.fail(errors.getAllErrors());
@@ -45,7 +45,7 @@ public class ${modelName}Controller {
 
     @PostMapping("update")
     @ApiOperation(value = "修改")
-    public Result update(@ApiParam(value = "用户主键")@RequestParam(value = "${primaryKey.changeColumnName}",required = false)Integer userId,
+    public Result update(@ApiParam(value = "用户主键")@RequestParam(value = "userId",required = false)Integer userId,
                          @Valid @RequestBody ${modelName} ${fieldName},BindingResult errors) {
         if (errors.hasErrors()){
 			return Result.fail(errors.getAllErrors());
@@ -56,7 +56,7 @@ public class ${modelName}Controller {
     @PostMapping("getById")
     @ApiOperation(value = "根据主键删除")
     public Result deleteGetById(@ApiParam(value = "主键",required = true)@RequestParam(value = "${primaryKey.changeColumnName}") ${primaryKey.columnType} ${primaryKey.changeColumnName},
-                                @ApiParam(value = "用户主键")@RequestParam(value = "${primaryKey.changeColumnName}",required = false) Integer userId) {
+                                @ApiParam(value = "用户主键")@RequestParam(value = "userId",required = false) Integer userId) {
         return ${fieldName}Service.deleteGetById(${primaryKey.changeColumnName},userId);
     }
 
