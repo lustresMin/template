@@ -123,6 +123,12 @@ public class FreemarkUtil {
 		map.put("BIT", "Boolean");
 		map.put("bit", "Boolean");
 		map.put("TINYBLOB", "java.time.LocalDateTime");
+		map.put("VARCHAR", "String");
+		map.put("TEXT", "String");
+		map.put("INT", "Integer");
+		map.put("BIGINT", "Long");
+		map.put("DATE", "java.util.Date");
+		map.put("DATETIME", "java.util.Date");
 
 		return map.get(typeName);
 	}
