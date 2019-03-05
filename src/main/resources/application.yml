@@ -69,7 +69,7 @@ targetProject: D:/WorkSpace/template/src/main/java/
 # 包名
 packageName: com.liaoin.bridge
 # 指定数据库表名
-TABLE_NAME: f_user_info
+TABLE_NAME: f_department,f_menu,f_region,f_role
 
 
 

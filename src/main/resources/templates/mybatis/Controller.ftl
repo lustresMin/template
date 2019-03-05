@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.validation.BindingResult;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import static ${packageName}.util.jackson.FrontResult.fail;
 
 
 import java.util.List;

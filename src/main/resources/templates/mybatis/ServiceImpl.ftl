@@ -2,7 +2,6 @@ package ${packageName}.service.impl;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import ${packageName}.common.jackson.Result;
 import ${packageName}.${entity}.${modelName};
 import ${packageName}.${mapper}.${modelName}${mapper?cap_first};
 import ${packageName}.${service}.${modelName}${service?cap_first};
@@ -44,7 +43,6 @@ public class ${modelName}ServiceImpl implements ${modelName}Service {
         ${fieldName}.setCreateTime(new Date());
         ${fieldName}.setIsDelete(0);
         ${fieldName}Mapper.insertSelectiveCustom(${fieldName});
-        log.info("insert:"+userId,JsonUtils.objectToJson(${fieldName}));
         return ok();
     }
 
@@ -57,7 +55,6 @@ public class ${modelName}ServiceImpl implements ${modelName}Service {
         ${fieldName}.setUpdateUserId(loginUserInfo.getId());
         ${fieldName}.setUpdateTime(new Date());
         ${fieldName}Mapper.updateByPrimaryKeySelective(${fieldName});
-        log.info("update:"+userId,JsonUtils.objectToJson(${fieldName}));
         return ok();
     }
 
@@ -75,7 +72,6 @@ public class ${modelName}ServiceImpl implements ${modelName}Service {
         ${fieldName}.setDeleteTime(new Date());
         ${fieldName}.setIsDelete(1);
         ${fieldName}Mapper.updateByPrimaryKeySelective(${fieldName});
-        log.info("delete:"+userId,JsonUtils.objectToJson(${fieldName}));
         return ok();
     }
 
