@@ -1,6 +1,5 @@
 package ${packageName}.controller;
 
-import ${packageName}.common.jackson.Result;
 import ${packageName}.${service}.${modelName}${service?cap_first};
 import javax.validation.Valid;
 import io.swagger.annotations.Api;
@@ -22,7 +21,7 @@ import javax.validation.Valid;
   * @author mc
   * Create date ${.now?string("yyyy-MM-dd HH:mm:ss")}
   * Version 1.0
-  * Description
+  * Description ${comment}控制层
   */
 @CrossOrigin
 @RestController
@@ -37,7 +36,7 @@ public class ${modelName}Controller {
     @ApiOperation(value = "新增")
     @ApiImplicitParam(name = "Authorization", value = "授权码请以(Bearer )开头", required = true, dataType = "string", paramType = "header")
     public Result insert(@ApiParam(hidden = true)@AuthorizationToken String accessToken,
-                         @Valid @RequestBody ${modelName} ${fieldName},BindingResult errors) {
+                         @Validated(${modelName}.${modelName}InsertPcSimpleView.class) ${modelName} ${fieldName},BindingResult errors) {
         if (errors.hasErrors()){
 			return Result.fail(errors.getAllErrors());
 		}
@@ -48,7 +47,7 @@ public class ${modelName}Controller {
     @ApiOperation(value = "修改")
     @ApiImplicitParam(name = "Authorization", value = "授权码请以(Bearer )开头", required = true, dataType = "string", paramType = "header")
     public Result update(@ApiParam(hidden = true)@AuthorizationToken String accessToken,
-                         @Valid @RequestBody ${modelName} ${fieldName},BindingResult errors) {
+                         @Validated(${modelName}.${modelName}UpdatePcSimpleView.class) ${modelName} ${fieldName},BindingResult errors) {
         if (errors.hasErrors()){
 			return Result.fail(errors.getAllErrors());
 		}

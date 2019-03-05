@@ -1,9 +1,9 @@
 spring:
   datasource:
-#    url: jdbc:mysql://localhost:3306/meeting?serverTimezone=GMT&characterEncoding=utf-8&useSSL=false
-#    username: root
-#    password: 123456
-#    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/bridge?serverTimezone=GMT&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
 #  jpa:
 #    show-sql: true
 #    hibernate:
@@ -17,10 +17,10 @@ spring:
 
 
 
-    url: jdbc:sqlserver://123.206.53.64:1433;DatabaseName=oil
-    username: oil
-    password: yuetu1903
-    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+#    url: jdbc:sqlserver://123.206.53.64:1433;DatabaseName=oil
+#    username: oil
+#    password: yuetu1903
+#    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
 
 #    url: jdbc:sqlserver://192.168.2.131:1433;DatabaseName=oil
 #    username: sa
@@ -44,15 +44,15 @@ spring:
 data_resources: mybatis
 
 # 生成源文件的绝对地址
-controller: com.liaoin.oil.entity.yunli.controller
+controller: com.liaoin.bridge.controller
 
-server: com.liaoin.oil.entity.yunli.service
+server: com.liaoin.bridge.service
 
-serverImpl: com.liaoin.oil.entity.yunli.service.impl
+serverImpl: com.liaoin.bridge.service.impl
 
-mappers: com.liaoin.oil.entity.yunli.dao
+mappers: com.liaoin.bridge.dao
 
-entity: com.liaoin.oil.entity.yunli
+entity: com.liaoin.bridge.entity
 #controller: com.liaoin.smp.entity.controller
 #
 #server: com.liaoin.smp.entity.service
@@ -67,9 +67,9 @@ entity: com.liaoin.oil.entity.yunli
 # 文件生成路径
 targetProject: D:/WorkSpace/template/src/main/java/
 # 包名
-packageName: com.liaoin.smp.entity
+packageName: com.liaoin.bridge
 # 指定数据库表名
-TABLE_NAME: m_enterprise_nameauth
+TABLE_NAME: f_user_info
 
 
 

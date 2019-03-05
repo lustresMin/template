@@ -1,7 +1,6 @@
 package ${packageName}.${service};
 
 import ${packageName}.${entity}.${modelName};
-import ${packageName}.common.jackson.Result;
 
 import java.util.List;
 
@@ -9,7 +8,7 @@ import java.util.List;
   * @author mc
   * Create date ${.now?string("yyyy-MM-dd HH:mm:ss")}
   * Version 1.0
-  * Description
+  * Description ${comment}接口
   */
 public interface ${modelName}Service {
     /**

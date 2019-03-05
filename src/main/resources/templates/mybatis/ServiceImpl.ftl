@@ -19,15 +19,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
-import static ${packageName}.common.jackson.Result.fail;
-import static ${packageName}.common.jackson.Result.ok;
-
 /**
   * @author mc
   * Create date ${.now?string("yyyy-MM-dd HH:mm:ss")}
   * Version 1.0
-  * Description
+  * Description ${comment}实现类
   */
 @Slf4j
 @Service
@@ -35,17 +31,20 @@ import static ${packageName}.common.jackson.Result.ok;
 public class ${modelName}ServiceImpl implements ${modelName}Service {
     @Resource
     private ${modelName}Mapper ${fieldName}Mapper;
+    @Resource
+	private BeanConfig beanConfig;
 
     @Override
     public Result insert(String accessToken,${modelName} ${fieldName}) {
         if (${fieldName} == null){
             return fail(Tips.PARAMETER_ERROR.msg);
         }
+        UserInfo loginUserInfo = beanConfig.getAccessToken(accessToken);
+        ${fieldName}.setCreateUserId(loginUserInfo.getId());
         ${fieldName}.setCreateTime(new Date());
-        ${fieldName}.setCreateUserId(userId);
         ${fieldName}.setIsDelete(0);
         ${fieldName}Mapper.insertSelectiveCustom(${fieldName});
-        logger.info("insert:"+userId,JsonUtils.objectToJson(${fieldName}));
+        log.info("insert:"+userId,JsonUtils.objectToJson(${fieldName}));
         return ok();
     }
 
@@ -54,10 +53,11 @@ public class ${modelName}ServiceImpl implements ${modelName}Service {
         if (${fieldName} == null){
             return fail(Tips.PARAMETER_ERROR.msg);
         }
+        UserInfo loginUserInfo = beanConfig.getAccessToken(accessToken);
+        ${fieldName}.setUpdateUserId(loginUserInfo.getId());
         ${fieldName}.setUpdateTime(new Date());
-        ${fieldName}.setUpdateUserId(userId);
         ${fieldName}Mapper.updateByPrimaryKeySelective(${fieldName});
-        logger.info("update:"+userId,JsonUtils.objectToJson(${fieldName}));
+        log.info("update:"+userId,JsonUtils.objectToJson(${fieldName}));
         return ok();
     }
 
@@ -70,11 +70,12 @@ public class ${modelName}ServiceImpl implements ${modelName}Service {
         if(${fieldName} == null){
             return fail(Tips.MSG_NOT.msg);
         }
+        UserInfo loginUserInfo = beanConfig.getAccessToken(accessToken);
+        ${fieldName}.setDeleteUserId(loginUserInfo.getId());
         ${fieldName}.setDeleteTime(new Date());
-        ${fieldName}.setDeleteUserId(userId);
         ${fieldName}.setIsDelete(1);
         ${fieldName}Mapper.updateByPrimaryKeySelective(${fieldName});
-        logger.info("delete:"+userId,JsonUtils.objectToJson(${fieldName}));
+        log.info("delete:"+userId,JsonUtils.objectToJson(${fieldName}));
         return ok();
     }
 
