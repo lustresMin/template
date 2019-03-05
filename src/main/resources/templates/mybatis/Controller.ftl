@@ -35,43 +35,50 @@ public class ${modelName}Controller {
 
     @PostMapping("insert")
     @ApiOperation(value = "新增")
-    public Result insert(@ApiParam(value = "用户主键")@RequestParam(value = "userId",required = false)Integer userId,
+    @ApiImplicitParam(name = "Authorization", value = "授权码请以(Bearer )开头", required = true, dataType = "string", paramType = "header")
+    public Result insert(@ApiParam(hidden = true)@AuthorizationToken String accessToken,
                          @Valid @RequestBody ${modelName} ${fieldName},BindingResult errors) {
         if (errors.hasErrors()){
 			return Result.fail(errors.getAllErrors());
 		}
-        return ${fieldName}Service.insert(${fieldName},userId);
+        return ${fieldName}Service.insert(accessToken,${fieldName});
     }
 
     @PostMapping("update")
     @ApiOperation(value = "修改")
-    public Result update(@ApiParam(value = "用户主键")@RequestParam(value = "userId",required = false)Integer userId,
+    @ApiImplicitParam(name = "Authorization", value = "授权码请以(Bearer )开头", required = true, dataType = "string", paramType = "header")
+    public Result update(@ApiParam(hidden = true)@AuthorizationToken String accessToken,
                          @Valid @RequestBody ${modelName} ${fieldName},BindingResult errors) {
         if (errors.hasErrors()){
 			return Result.fail(errors.getAllErrors());
 		}
-        return ${fieldName}Service.update(${fieldName},userId);
+        return ${fieldName}Service.update(accessToken,${fieldName});
     }
 
     @PostMapping("getById")
     @ApiOperation(value = "根据主键删除")
-    public Result deleteGetById(@ApiParam(value = "主键",required = true)@RequestParam(value = "${primaryKey.changeColumnName}") ${primaryKey.columnType} ${primaryKey.changeColumnName},
-                                @ApiParam(value = "用户主键")@RequestParam(value = "userId",required = false) Integer userId) {
-        return ${fieldName}Service.deleteGetById(${primaryKey.changeColumnName},userId);
+    @ApiImplicitParam(name = "Authorization", value = "授权码请以(Bearer )开头", required = true, dataType = "string", paramType = "header")
+    public Result deleteGetById(@ApiParam(hidden = true)@AuthorizationToken String accessToken,
+                                @ApiParam(value = "主键",required = true)@RequestParam(value = "${primaryKey.changeColumnName}") ${primaryKey.columnType} ${primaryKey.changeColumnName}) {
+        return ${fieldName}Service.deleteGetById(accessToken,${primaryKey.changeColumnName});
     }
 
     @PostMapping("findById")
     @ApiOperation(value = "根据主键查询")
-    public Result findById(@ApiParam(value = "主键",required = true)@RequestParam(value = "${primaryKey.changeColumnName}") ${primaryKey.columnType} ${primaryKey.changeColumnName}) {
-        return ${fieldName}Service.findById(${primaryKey.changeColumnName});
+    @ApiImplicitParam(name = "Authorization", value = "授权码请以(Bearer )开头", required = true, dataType = "string", paramType = "header")
+    public Result findById(@ApiParam(hidden = true)@AuthorizationToken String accessToken,
+                           @ApiParam(value = "主键",required = true)@RequestParam(value = "${primaryKey.changeColumnName}") ${primaryKey.columnType} ${primaryKey.changeColumnName}) {
+        return ${fieldName}Service.findById(accessToken,${primaryKey.changeColumnName});
     }
 
     @PostMapping("pageQuery")
     @ApiOperation(value = "条件分页查询")
-    public Result pageQuery(@ApiParam(value = "第几页", required = true) @RequestParam(value = "page") Integer page,
+    @ApiImplicitParam(name = "Authorization", value = "授权码请以(Bearer )开头", required = true, dataType = "string", paramType = "header")
+    public Result pageQuery(@ApiParam(hidden = true)@AuthorizationToken String accessToken,
+                            @ApiParam(value = "第几页", required = true) @RequestParam(value = "page") Integer page,
                             @ApiParam(value = "多少条",required = true)@RequestParam(value = "size") Integer size,
                             @ApiParam(value = "排序字段")@RequestParam(value = "sort",required = false) String sort,
                             ${modelName} ${fieldName}) {
-        return ${fieldName}Service.pageQuery(page, size, sort, ${fieldName});
+        return ${fieldName}Service.pageQuery(accessToken,page, size, sort, ${fieldName});
     }
 }

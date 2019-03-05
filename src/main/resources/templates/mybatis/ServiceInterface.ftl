@@ -18,27 +18,27 @@ public interface ${modelName}Service {
 	 * @param userId 用户系统标识
 	 * @return 前端返回格式
 	 */
-    Result insert(${modelName} ${fieldName},Integer userId);
+    Result insert(String accessToken,${modelName} ${fieldName});
     /**
 	 * 修改
 	 * @param ${fieldName} 对象
 	 * @param userId 用户系统标识
 	 * @return 前端返回格式
 	 */
-    Result update(${modelName} ${fieldName},Integer userId);
+    Result update(String accessToken,${modelName} ${fieldName});
     /**
 	 * 根据主键删除
 	 * @param ${primaryKey.changeColumnName} 标识
 	 * @param userId 用户系统标识
 	 * @return 前端返回格式
 	 */
-    Result deleteGetById(${primaryKey.columnType} ${primaryKey.changeColumnName},Integer userId);
+    Result deleteGetById(String accessToken,${primaryKey.columnType} ${primaryKey.changeColumnName});
     /**
 	 * 根据主键查询
 	 * @param ${primaryKey.changeColumnName} 标识
 	 * @return 前端返回格式
 	 */
-    Result findById(${primaryKey.columnType} ${primaryKey.changeColumnName});
+    Result findById(String accessToken,${primaryKey.columnType} ${primaryKey.changeColumnName});
     /**
 	 * 条件分页查询
 	 * @param page 当前页
@@ -47,5 +47,5 @@ public interface ${modelName}Service {
 	 * @param ${fieldName} 查询条件
 	 * @return 前端返回格式
 	 */
-    Result pageQuery(Integer page, Integer size, String sort, ${modelName} ${fieldName});
+    Result pageQuery(String accessToken,Integer page, Integer size, String sort, ${modelName} ${fieldName});
 }

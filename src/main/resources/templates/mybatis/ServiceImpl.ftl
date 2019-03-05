@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
 import tk.mybatis.mapper.weekend.WeekendSqls;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -28,15 +29,15 @@ import static ${packageName}.common.jackson.Result.ok;
   * Version 1.0
   * Description
   */
+@Slf4j
 @Service
 @Transactional(rollbackFor={RuntimeException.class, Exception.class})
 public class ${modelName}ServiceImpl implements ${modelName}Service {
-    private Logger logger = LoggerFactory.getLogger(getClass());
     @Resource
     private ${modelName}Mapper ${fieldName}Mapper;
 
     @Override
-    public Result insert(${modelName} ${fieldName},Integer userId) {
+    public Result insert(String accessToken,${modelName} ${fieldName}) {
         if (${fieldName} == null){
             return fail(Tips.PARAMETER_ERROR.msg);
         }
@@ -49,7 +50,7 @@ public class ${modelName}ServiceImpl implements ${modelName}Service {
     }
 
     @Override
-    public Result update(${modelName} ${fieldName},Integer userId) {
+    public Result update(String accessToken,${modelName} ${fieldName}) {
         if (${fieldName} == null){
             return fail(Tips.PARAMETER_ERROR.msg);
         }
@@ -61,7 +62,7 @@ public class ${modelName}ServiceImpl implements ${modelName}Service {
     }
 
     @Override
-    public Result deleteGetById(${primaryKey.columnType} ${primaryKey.changeColumnName},Integer userId){
+    public Result deleteGetById(String accessToken,${primaryKey.columnType} ${primaryKey.changeColumnName}){
         if (${primaryKey.changeColumnName} == null){
             return fail(Tips.PARAMETER_ERROR.msg);
         }
@@ -79,7 +80,7 @@ public class ${modelName}ServiceImpl implements ${modelName}Service {
 
 
     @Override
-    public Result findById(${primaryKey.columnType} ${primaryKey.changeColumnName}) {
+    public Result findById(String accessToken,${primaryKey.columnType} ${primaryKey.changeColumnName}) {
         if (${primaryKey.changeColumnName} == null){
             return fail(Tips.PARAMETER_ERROR.msg);
         }
@@ -92,7 +93,7 @@ public class ${modelName}ServiceImpl implements ${modelName}Service {
     }
 
     @Override
-    public Result pageQuery(Integer page, Integer size, String sort, ${modelName} ${fieldName}) {
+    public Result pageQuery(String accessToken,Integer page, Integer size, String sort, ${modelName} ${fieldName}) {
         page = null  == page ? 1 : page;
         size = null  == size ? 10 : size;
         PageHelper.startPage(page, size);
