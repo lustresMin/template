@@ -1,6 +1,7 @@
 package ${packageName}.${mapper};
 
 import ${packageName}.${entity}.${modelName};
+import org.apache.ibatis.annotations.Mapper;
 
 /**
   * @author mc
@@ -8,6 +9,7 @@ import ${packageName}.${entity}.${modelName};
   * Version 1.0
   * Description ${comment}持久层
   */
+@Mapper
 public interface ${modelName}Mapper extends ${"tk.mybatis.mapper.common.Mapper"}<${modelName}> {
 
     int insertSelectiveCustom(${modelName} ${fieldName});
