@@ -12,11 +12,19 @@ import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
 import tk.mybatis.mapper.weekend.WeekendSqls;
 import lombok.extern.slf4j.Slf4j;
+import com.github.surpassm.common.jackson.Result;
+import com.github.surpassm.common.jackson.Tips;
+import com.github.surpassm.config.BeanConfig;
+import com.github.surpassm.tool.util.ValidateUtil;
 
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static com.github.surpassm.common.jackson.Result.fail;
+import static com.github.surpassm.common.jackson.Result.ok;
+
 
 /**
   * @author mc
