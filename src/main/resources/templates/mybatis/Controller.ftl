@@ -8,6 +8,9 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.validation.BindingResult;
 import org.springframework.beans.factory.annotation.Autowired;
+import com.github.surpassm.common.constant.Constant;
+import com.github.surpassm.common.jackson.Result;
+import com.github.surpassm.config.annotation.AuthorizationToken;
 
 
 
@@ -33,6 +36,9 @@ public class ${modelName}Controller {
 
     @PostMapping("insert")
     @ApiOperation(value = "新增")
+    @ApiResponses({
+            @ApiResponse(code=Constant.SUCCESS_CODE,message=Constant.SUCCESS_MSG,response=${modelName}.class),
+            @ApiResponse(code=Constant.FAIL_CODE,message=Constant.FAIL_MSG,response=Result.class)})
     @ApiImplicitParam(name = "Authorization", value = "授权码请以(Bearer )开头", required = true, dataType = "string", paramType = "header")
     public Result insert(@ApiParam(hidden = true)@AuthorizationToken String accessToken,
                          @Validated(${modelName}.${modelName}InsertPcSimpleView.class) ${modelName} ${fieldName},BindingResult errors) {
@@ -44,6 +50,9 @@ public class ${modelName}Controller {
 
     @PostMapping("update")
     @ApiOperation(value = "修改")
+    @ApiResponses({
+            @ApiResponse(code=Constant.SUCCESS_CODE,message=Constant.SUCCESS_MSG,response=${modelName}.class),
+            @ApiResponse(code=Constant.FAIL_CODE,message=Constant.FAIL_MSG,response=Result.class)})
     @ApiImplicitParam(name = "Authorization", value = "授权码请以(Bearer )开头", required = true, dataType = "string", paramType = "header")
     public Result update(@ApiParam(hidden = true)@AuthorizationToken String accessToken,
                          @Validated(${modelName}.${modelName}UpdatePcSimpleView.class) ${modelName} ${fieldName},BindingResult errors) {
@@ -55,6 +64,9 @@ public class ${modelName}Controller {
 
     @PostMapping("getById")
     @ApiOperation(value = "根据主键删除")
+    @ApiResponses({
+            @ApiResponse(code=Constant.SUCCESS_CODE,message=Constant.SUCCESS_MSG,response=Result.class),
+            @ApiResponse(code=Constant.FAIL_CODE,message=Constant.FAIL_MSG,response=Result.class)})
     @ApiImplicitParam(name = "Authorization", value = "授权码请以(Bearer )开头", required = true, dataType = "string", paramType = "header")
     public Result deleteGetById(@ApiParam(hidden = true)@AuthorizationToken String accessToken,
                                 @ApiParam(value = "主键",required = true)@RequestParam(value = "${primaryKey.changeColumnName}") ${primaryKey.columnType} ${primaryKey.changeColumnName}) {
@@ -63,6 +75,9 @@ public class ${modelName}Controller {
 
     @PostMapping("findById")
     @ApiOperation(value = "根据主键查询")
+    @ApiResponses({
+            @ApiResponse(code=Constant.SUCCESS_CODE,message=Constant.SUCCESS_MSG,response=${modelName}.class),
+            @ApiResponse(code=Constant.FAIL_CODE,message=Constant.FAIL_MSG,response=Result.class)})
     @ApiImplicitParam(name = "Authorization", value = "授权码请以(Bearer )开头", required = true, dataType = "string", paramType = "header")
     public Result findById(@ApiParam(hidden = true)@AuthorizationToken String accessToken,
                            @ApiParam(value = "主键",required = true)@RequestParam(value = "${primaryKey.changeColumnName}") ${primaryKey.columnType} ${primaryKey.changeColumnName}) {
@@ -71,6 +86,7 @@ public class ${modelName}Controller {
 
     @PostMapping("pageQuery")
     @ApiOperation(value = "条件分页查询")
+    @ApiResponses({@ApiResponse(code=Constant.SUCCESS_CODE,message=Constant.SUCCESS_MSG,response=${modelName}.class)})
     @ApiImplicitParam(name = "Authorization", value = "授权码请以(Bearer )开头", required = true, dataType = "string", paramType = "header")
     public Result pageQuery(@ApiParam(hidden = true)@AuthorizationToken String accessToken,
                             @ApiParam(value = "第几页", required = true) @RequestParam(value = "page") Integer page,
