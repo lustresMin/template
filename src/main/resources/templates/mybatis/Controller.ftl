@@ -2,9 +2,8 @@ package ${packageName}.controller;
 
 import ${packageName}.${service}.${modelName}${service?cap_first};
 import javax.validation.Valid;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiParam;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.*;
+import ${packageName}.entity.Bridge;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.validation.BindingResult;
 import org.springframework.beans.factory.annotation.Autowired;
