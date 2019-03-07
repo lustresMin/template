@@ -36,7 +36,7 @@ public class ${modelName}Controller {
     @PostMapping("insert")
     @ApiOperation(value = "新增")
     @ApiResponses({
-            @ApiResponse(code=Constant.SUCCESS_CODE,message=Constant.SUCCESS_MSG,response=${modelName}.class),
+            @ApiResponse(code=Constant.SUCCESS_CODE,message=Constant.SUCCESS_MSG),
             @ApiResponse(code=Constant.FAIL_CODE,message=Constant.FAIL_MSG,response=Result.class)})
     @ApiImplicitParam(name = "Authorization", value = "授权码请以(Bearer )开头", required = true, dataType = "string", paramType = "header")
     public Result insert(@ApiParam(hidden = true)@AuthorizationToken String accessToken,
@@ -50,7 +50,7 @@ public class ${modelName}Controller {
     @PostMapping("update")
     @ApiOperation(value = "修改")
     @ApiResponses({
-            @ApiResponse(code=Constant.SUCCESS_CODE,message=Constant.SUCCESS_MSG,response=${modelName}.class),
+            @ApiResponse(code=Constant.SUCCESS_CODE,message=Constant.SUCCESS_MSG),
             @ApiResponse(code=Constant.FAIL_CODE,message=Constant.FAIL_MSG,response=Result.class)})
     @ApiImplicitParam(name = "Authorization", value = "授权码请以(Bearer )开头", required = true, dataType = "string", paramType = "header")
     public Result update(@ApiParam(hidden = true)@AuthorizationToken String accessToken,
@@ -64,7 +64,7 @@ public class ${modelName}Controller {
     @PostMapping("getById")
     @ApiOperation(value = "根据主键删除")
     @ApiResponses({
-            @ApiResponse(code=Constant.SUCCESS_CODE,message=Constant.SUCCESS_MSG,response=Result.class),
+            @ApiResponse(code=Constant.SUCCESS_CODE,message=Constant.SUCCESS_MSG),
             @ApiResponse(code=Constant.FAIL_CODE,message=Constant.FAIL_MSG,response=Result.class)})
     @ApiImplicitParam(name = "Authorization", value = "授权码请以(Bearer )开头", required = true, dataType = "string", paramType = "header")
     public Result deleteGetById(@ApiParam(hidden = true)@AuthorizationToken String accessToken,
