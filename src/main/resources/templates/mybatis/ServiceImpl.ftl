@@ -46,7 +46,7 @@ public class ${modelName}ServiceImpl implements ${modelName}Service {
         if (${fieldName} == null){
             return fail(Tips.PARAMETER_ERROR.msg);
         }
-        UserInfo loginUserInfo = beanConfig.getAccessToken(accessToken,UserInfo.class);
+        UserInfo loginUserInfo = beanConfig.getAccessToken(accessToken);
         ${fieldName}.setCreateUserId(loginUserInfo.getId());
         ${fieldName}.setCreateTime(new Date());
         ${fieldName}.setIsDelete(0);
@@ -59,7 +59,7 @@ public class ${modelName}ServiceImpl implements ${modelName}Service {
         if (${fieldName} == null){
             return fail(Tips.PARAMETER_ERROR.msg);
         }
-        UserInfo loginUserInfo = beanConfig.getAccessToken(accessToken,UserInfo.class);
+        UserInfo loginUserInfo = beanConfig.getAccessToken(accessToken);
         ${fieldName}.setUpdateUserId(loginUserInfo.getId());
         ${fieldName}.setUpdateTime(new Date());
         ${fieldName}Mapper.updateByPrimaryKeySelective(${fieldName});
@@ -75,7 +75,7 @@ public class ${modelName}ServiceImpl implements ${modelName}Service {
         if(${fieldName} == null){
             return fail(Tips.MSG_NOT.msg);
         }
-        UserInfo loginUserInfo = beanConfig.getAccessToken(accessToken,UserInfo.class);
+        UserInfo loginUserInfo = beanConfig.getAccessToken(accessToken);
         ${fieldName}.setDeleteUserId(loginUserInfo.getId());
         ${fieldName}.setDeleteTime(new Date());
         ${fieldName}.setIsDelete(1);
