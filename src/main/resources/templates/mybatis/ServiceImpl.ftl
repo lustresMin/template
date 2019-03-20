@@ -48,7 +48,7 @@ public class ${modelName}ServiceImpl implements ${modelName}Service {
         }
         UserInfo loginUserInfo = beanConfig.getAccessToken(accessToken);
         ${fieldName}.setCreateUserId(loginUserInfo.getId());
-        ${fieldName}.setCreateTime(new Date());
+        ${fieldName}.setCreateTime(LocalDateTime.now());
         ${fieldName}.setIsDelete(0);
         ${fieldName}Mapper.insertSelectiveCustom(${fieldName});
         return ok();
@@ -61,7 +61,7 @@ public class ${modelName}ServiceImpl implements ${modelName}Service {
         }
         UserInfo loginUserInfo = beanConfig.getAccessToken(accessToken);
         ${fieldName}.setUpdateUserId(loginUserInfo.getId());
-        ${fieldName}.setUpdateTime(new Date());
+        ${fieldName}.setUpdateTime(LocalDateTime.now());
         ${fieldName}Mapper.updateByPrimaryKeySelective(${fieldName});
         return ok();
     }
@@ -77,7 +77,7 @@ public class ${modelName}ServiceImpl implements ${modelName}Service {
         }
         UserInfo loginUserInfo = beanConfig.getAccessToken(accessToken);
         ${fieldName}.setDeleteUserId(loginUserInfo.getId());
-        ${fieldName}.setDeleteTime(new Date());
+        ${fieldName}.setDeleteTime(LocalDateTime.now());
         ${fieldName}.setIsDelete(1);
         ${fieldName}Mapper.updateByPrimaryKeySelective(${fieldName});
         return ok();
