@@ -10,7 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.github.surpassm.common.constant.Constant;
 import com.github.surpassm.common.jackson.Result;
 import com.github.surpassm.config.annotation.AuthorizationToken;
-
+import com.github.surpassm.common.pojo.InsertPcSimpleView;
+import com.github.surpassm.common.pojo.UpdatePcSimpleView;
 
 
 import java.util.List;
@@ -41,7 +42,7 @@ public class ${modelName}Controller {
             @ApiResponse(code=Constant.FAIL_CODE,message=Constant.FAIL_MSG,response=Result.class)})
     @ApiImplicitParam(name = "Authorization", value = "授权码请以(Bearer )开头", required = true, dataType = "string", paramType = "header")
     public Result insert(@ApiParam(hidden = true)@AuthorizationToken String accessToken,
-                         @Validated(${modelName}.${modelName}InsertPcSimpleView.class) ${modelName} ${fieldName},BindingResult errors) {
+                         @Validated(InsertPcSimpleView.class) ${modelName} ${fieldName},BindingResult errors) {
         if (errors.hasErrors()){
 			return Result.fail(errors.getAllErrors());
 		}
@@ -56,7 +57,7 @@ public class ${modelName}Controller {
             @ApiResponse(code=Constant.FAIL_CODE,message=Constant.FAIL_MSG,response=Result.class)})
     @ApiImplicitParam(name = "Authorization", value = "授权码请以(Bearer )开头", required = true, dataType = "string", paramType = "header")
     public Result update(@ApiParam(hidden = true)@AuthorizationToken String accessToken,
-                         @Validated(${modelName}.${modelName}UpdatePcSimpleView.class) ${modelName} ${fieldName},BindingResult errors) {
+                         @Validated(UpdatePcSimpleView.class) ${modelName} ${fieldName},BindingResult errors) {
         if (errors.hasErrors()){
 			return Result.fail(errors.getAllErrors());
 		}

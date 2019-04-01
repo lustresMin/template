@@ -50,7 +50,7 @@ public class ${modelName}ServiceImpl implements ${modelName}Service {
         ${fieldName}.setCreateUserId(loginUserInfo.getId());
         ${fieldName}.setCreateTime(LocalDateTime.now());
         ${fieldName}.setIsDelete(0);
-        ${fieldName}Mapper.insertSelectiveCustom(${fieldName});
+        ${fieldName}Mapper.insert(${fieldName});
         return ok();
     }
 

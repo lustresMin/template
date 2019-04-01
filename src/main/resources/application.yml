@@ -69,7 +69,7 @@ targetProject: D:/WorkSpace/template/src/main/java/
 # 包名
 packageName: com.example.demo.user
 # 指定数据库表名
-TABLE_NAME: m_group_menu,m_group_role,m_role_menu,m_user_group,m_user_menu,m_user_role
+TABLE_NAME: f_file_manage
 
 
 
