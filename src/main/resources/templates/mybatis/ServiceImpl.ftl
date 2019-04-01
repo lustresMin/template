@@ -1,10 +1,10 @@
-package ${packageName}.service.impl;
+package ${serverImpl};
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import ${packageName}.${entity}.${modelName};
-import ${packageName}.${mapper}.${modelName}${mapper?cap_first};
-import ${packageName}.${service}.${modelName}${service?cap_first};
+import ${entity}.${modelName};
+import ${mappers}.${modelName}${mapper?cap_first};
+import ${server}.${modelName}${service?cap_first};
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;

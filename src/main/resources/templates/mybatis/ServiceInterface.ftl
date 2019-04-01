@@ -1,6 +1,6 @@
 package ${packageName}.${service};
 
-import ${packageName}.${entity}.${modelName};
+import ${entity}.${modelName};
 import com.github.surpassm.common.jackson.Result;
 
 import java.util.List;

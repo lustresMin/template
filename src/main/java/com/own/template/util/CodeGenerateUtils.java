@@ -28,6 +28,8 @@ public class CodeGenerateUtils {
     private String entity;
     @Value("${data_resources}")
     private String data_resources;
+    @Value("${packageName}")
+    private String packageName;
 
 
     @Autowired
@@ -41,7 +43,6 @@ public class CodeGenerateUtils {
     	if (table != null && !"".equals(table)){
 			split = table.split(",");
 		}
-        String packageName=controller.substring(0,controller.length()-11);
         Connection connection = databaseLinkUtil.getConnection();
         List<String> tableNames = DatabaseLinkUtil.getTableNames(connection);
         for (String tableName : tableNames) {
@@ -59,6 +60,11 @@ public class CodeGenerateUtils {
 
     public void abstractDate(Connection connection,String tableName,String packageName) throws Exception{
 		Map<String, Object> stringObjectMap = FreemarkUtil.generateDataModel(connection, tableName, packageName);
+		stringObjectMap.put("mappers",mappers);
+		stringObjectMap.put("serverImpl",serverImpl);
+		stringObjectMap.put("server",server);
+		stringObjectMap.put("controller",controller);
+		stringObjectMap.put("entity",entity);
 		// 生成Controller文件
 		inputFreemarkUtil.generateControllerFile(stringObjectMap, targetProject + controller.replace(".", "/"));
 		// 生成service层接口文件
@@ -68,6 +74,7 @@ public class CodeGenerateUtils {
 
 		if (data_resources.equals("mybatis")) {
 			// 生成DAO  Mapper 层接口文件
+
 			inputFreemarkUtil.generateMapperFile(stringObjectMap, targetProject + mappers.replace(".", "/"));
 		}
 		if (data_resources.equals("jpa")) {
@@ -77,6 +84,7 @@ public class CodeGenerateUtils {
 		}
 		if (data_resources.equals("mybatis")) {
 			//生成POJO
+
 			inputFreemarkUtil.generateModelFile(stringObjectMap, targetProject + entity.replace(".", "/"));
 			inputFreemarkUtil.generateMapperXmlFile(stringObjectMap, targetProject + entity.replace(".", "/"));
 		}

@@ -1,9 +1,9 @@
-package ${packageName}.controller;
+package ${controller};
 
-import ${packageName}.${service}.${modelName}${service?cap_first};
+import ${server}.${modelName}${service?cap_first};
 import javax.validation.Valid;
 import io.swagger.annotations.*;
-import ${packageName}.entity.Bridge;
+import ${entity}.${modelName};
 import org.springframework.web.bind.annotation.*;
 import org.springframework.validation.BindingResult;
 import org.springframework.beans.factory.annotation.Autowired;

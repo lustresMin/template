@@ -1,6 +1,6 @@
-package ${packageName}.${mapper};
+package ${mappers};
 
-import ${packageName}.${entity}.${modelName};
+import ${entity}.${modelName};
 
 /**
   * @author mc
