@@ -101,7 +101,11 @@ public class ${modelName}ServiceImpl implements ${modelName}Service {
     public Result pageQuery(String accessToken,Integer page, Integer size, String sort, ${modelName} ${fieldName}) {
         page = null  == page ? 1 : page;
         size = null  == size ? 10 : size;
-        PageHelper.startPage(page, size);
+        if (sort != null && !"".equals(sort.trim())){
+			PageHelper.startPage(page, size,sort);
+		}else {
+			PageHelper.startPage(page, size);
+		}
         Example.Builder builder = new Example.Builder(${modelName}.class);
         builder.where(WeekendSqls.<${modelName}>custom().andEqualTo(${modelName}::getIsDelete, 0));
         if(${fieldName} != null){

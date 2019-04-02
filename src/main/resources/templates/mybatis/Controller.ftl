@@ -94,9 +94,9 @@ public class ${modelName}Controller {
                    @ApiResponse(code=Constant.FAIL_SESSION_CODE,message=Constant.FAIL_SESSION_MSG)})
     @ApiImplicitParam(name = "Authorization", value = "授权码请以(Bearer )开头", required = true, dataType = "string", paramType = "header")
     public Result pageQuery(@ApiParam(hidden = true)@AuthorizationToken String accessToken,
-                            @ApiParam(value = "第几页", required = true) @RequestParam(value = "page") Integer page,
-                            @ApiParam(value = "多少条",required = true)@RequestParam(value = "size") Integer size,
-                            @ApiParam(value = "排序字段")@RequestParam(value = "sort",required = false) String sort,
+                            @ApiParam(value = "第几页", required = true,example = "1") @RequestParam(value = "page") Integer page,
+                            @ApiParam(value = "多少条",required = true,example = "10")@RequestParam(value = "size") Integer size,
+                            @ApiParam(value = "排序字段",example = "create_time desc")@RequestParam(value = "sort",required = false) String sort,
                             ${modelName} ${fieldName}) {
         return ${fieldName}Service.pageQuery(accessToken,page, size, sort, ${fieldName});
     }
