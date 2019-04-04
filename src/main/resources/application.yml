@@ -44,15 +44,15 @@ spring:
 data_resources: mybatis
 
 # 生成源文件的绝对地址
-controller: com.liaoin.bridge.controller.risk
+controller: com.liaoin.bridge.controller.command
 
-server: com.liaoin.bridge.service.risk
+server: com.liaoin.bridge.service.command
 
-serverImpl: com.liaoin.bridge.service.risk.impl
+serverImpl: com.liaoin.bridge.service.command.impl
 
-mappers: com.liaoin.bridge.mapper.risk
+mappers: com.liaoin.bridge.mapper.command
 
-entity: com.liaoin.bridge.entity.risk
+entity: com.liaoin.bridge.entity.command
 #controller: com.liaoin.smp.entity.controller
 #
 #server: com.liaoin.smp.entity.service
@@ -69,7 +69,7 @@ targetProject: D:/WorkSpace/template/src/main/java/
 # 包名
 packageName: com.liaoin.bridge
 # 指定数据库表名
-TABLE_NAME: f_risk_level,f_massing_risk_assess
+TABLE_NAME: y_emergency_event,y_emergency_event_file,y_emergency_event_source,y_event_level,y_event_type
 
 
 

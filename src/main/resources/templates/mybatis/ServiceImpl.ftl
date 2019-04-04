@@ -14,7 +14,7 @@ import tk.mybatis.mapper.weekend.WeekendSqls;
 import lombok.extern.slf4j.Slf4j;
 import com.github.surpassm.common.jackson.Result;
 import com.github.surpassm.common.jackson.Tips;
-import com.github.surpassm.config.BeanConfig;
+import ${packageName}.security.BeanConfig;
 import com.github.surpassm.tool.util.ValidateUtil;
 
 import java.time.LocalDateTime;
@@ -104,7 +104,7 @@ public class ${modelName}ServiceImpl implements ${modelName}Service {
         if (sort != null && !"".equals(sort.trim())){
 			PageHelper.startPage(page, size,sort);
 		}else {
-			PageHelper.startPage(page, size);
+			PageHelper.startPage(page, size,"create_time desc");
 		}
         Example.Builder builder = new Example.Builder(${modelName}.class);
         builder.where(WeekendSqls.<${modelName}>custom().andEqualTo(${modelName}::getIsDelete, 0));
