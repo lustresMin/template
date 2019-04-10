@@ -1,29 +1,34 @@
 package ${packageName}.controller;
 
-import ${packageName}.${entity}.${modelName};
-import ${packageName}.common.jackson.Result;
-import ${packageName}.annotation.AuthorizationUser;
-import ${packageName}.${service}.${modelName}${service?cap_first};
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiParam;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiImplicitParam;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
+import ${server}.${modelName}${service?cap_first};
+import javax.validation.Valid;
+import io.swagger.annotations.*;
+import ${entity}.${modelName};
 import org.springframework.web.bind.annotation.*;
-import javax.annotation.Resource;
+import org.springframework.validation.BindingResult;
+import org.springframework.beans.factory.annotation.Autowired;
+import com.github.surpassm.common.constant.Constant;
+import com.github.surpassm.common.jackson.Result;
+import com.github.surpassm.config.annotation.AuthorizationToken;
+import com.github.surpassm.common.service.InsertPcSimpleView;
+import com.github.surpassm.common.service.UpdatePcSimpleView;
+
+
 import java.util.List;
+
+import javax.annotation.Resource;
+import javax.validation.Valid;
 
 /**
   * @author mc
   * Create date ${.now?string("yyyy-MM-dd HH:mm:ss")}
   * Version 1.0
-  * Description
+  * Description ${comment}控制层
   */
 @CrossOrigin
 @RestController
 @RequestMapping("/${fieldName}/")
-@Api(tags  =  "${fieldName}API")
+@Api(tags  =  "${comment}API")
 public class ${modelName}Controller {
 
     @Resource
@@ -31,42 +36,68 @@ public class ${modelName}Controller {
 
     @PostMapping("insert")
     @ApiOperation(value = "新增")
-    public Result save(@RequestBody ${modelName} ${fieldName},
-                       BindingResult errors) {
-        return ${fieldName}Service.insert(${fieldName});
+    @ApiResponses({
+            @ApiResponse(code=Constant.SUCCESS_CODE,message=Constant.SUCCESS_MSG),
+            @ApiResponse(code=Constant.FAIL_SESSION_CODE,message=Constant.FAIL_SESSION_MSG),
+            @ApiResponse(code=Constant.FAIL_CODE,message=Constant.FAIL_MSG,response=Result.class)})
+    @ApiImplicitParam(name = "Authorization", value = "授权码请以(Bearer )开头", required = true, dataType = "string", paramType = "header")
+    public Result save(@ApiParam(hidden = true)@AuthorizationToken String accessToken,
+                       @Validated(InsertPcSimpleView.class) ${modelName} ${fieldName},BindingResult errors) {
+        if (errors.hasErrors()){
+			return Result.fail(errors.getAllErrors());
+		}
+        return ${fieldName}Service.insert(accessToken,${fieldName});
     }
 
     @PostMapping("update")
     @ApiOperation(value = "修改")
-    public Result update(@RequestBody ${modelName} ${fieldName},
-                         BindingResult errors) {
-        return ${fieldName}Service.update(${fieldName});
-    }
-
-    @PostMapping("deleteInBatch")
-    @ApiOperation(value = "批量删除")
-    public Result deleteInBatch(@RequestBody List<${modelName}> ${fieldName}List) {
-        return ${fieldName}Service.deleteInBatch(${fieldName}List);
+    @ApiResponses({
+            @ApiResponse(code=Constant.SUCCESS_CODE,message=Constant.SUCCESS_MSG),
+            @ApiResponse(code=Constant.FAIL_SESSION_CODE,message=Constant.FAIL_SESSION_MSG),
+            @ApiResponse(code=Constant.FAIL_CODE,message=Constant.FAIL_MSG,response=Result.class)})
+    @ApiImplicitParam(name = "Authorization", value = "授权码请以(Bearer )开头", required = true, dataType = "string", paramType = "header")
+    public Result update(@ApiParam(hidden = true)@AuthorizationToken String accessToken,
+                         @Validated(UpdatePcSimpleView.class) ${modelName} ${fieldName},BindingResult errors) {
+        if (errors.hasErrors()){
+			return Result.fail(errors.getAllErrors());
+		}
+        return ${fieldName}Service.update(accessToken,${fieldName});
     }
 
     @PostMapping("getById")
     @ApiOperation(value = "根据主键删除")
-    public Result deleteGetById(@ApiParam(value = "主键",required = true)@RequestParam(value = "id") ${primaryKey.columnType} ${primaryKey.changeColumnName}) {
-        return ${fieldName}Service.deleteGetById(id);
+    @ApiResponses({
+            @ApiResponse(code=Constant.SUCCESS_CODE,message=Constant.SUCCESS_MSG),
+            @ApiResponse(code=Constant.FAIL_SESSION_CODE,message=Constant.FAIL_SESSION_MSG),
+            @ApiResponse(code=Constant.FAIL_CODE,message=Constant.FAIL_MSG,response=Result.class)})
+    @ApiImplicitParam(name = "Authorization", value = "授权码请以(Bearer )开头", required = true, dataType = "string", paramType = "header")
+    public Result deleteGetById(@ApiParam(hidden = true)@AuthorizationToken String accessToken,
+                                @ApiParam(value = "主键",required = true)@RequestParam(value = "${primaryKey.changeColumnName}") ${primaryKey.columnType} ${primaryKey.changeColumnName}) {
+        return ${fieldName}Service.deleteGetById(accessToken,${primaryKey.changeColumnName});
     }
 
-    @GetMapping("findById")
+    @PostMapping("findById")
     @ApiOperation(value = "根据主键查询")
-    public Result findOne(@ApiParam(value = "主键",required = true)@RequestParam(value = "id") ${primaryKey.columnType} ${primaryKey.changeColumnName}) {
-        return ${fieldName}Service.findById(${primaryKey.changeColumnName});
+    @ApiResponses({
+            @ApiResponse(code=Constant.FAIL_SESSION_CODE,message=Constant.FAIL_SESSION_MSG),
+            @ApiResponse(code=Constant.SUCCESS_CODE,message=Constant.SUCCESS_MSG,response=${modelName}.class),
+            @ApiResponse(code=Constant.FAIL_CODE,message=Constant.FAIL_MSG,response=Result.class)})
+    @ApiImplicitParam(name = "Authorization", value = "授权码请以(Bearer )开头", required = true, dataType = "string", paramType = "header")
+    public Result findById(@ApiParam(hidden = true)@AuthorizationToken String accessToken,
+                           @ApiParam(value = "主键",required = true)@RequestParam(value = "${primaryKey.changeColumnName}") ${primaryKey.columnType} ${primaryKey.changeColumnName}) {
+        return ${fieldName}Service.findById(accessToken,${primaryKey.changeColumnName});
     }
 
     @PostMapping("pageQuery")
     @ApiOperation(value = "条件分页查询")
-    public Result pageQuery(@ApiParam(value = "第几页", required = true) @RequestParam(value = "page") Integer page,
-                            @ApiParam(value = "多少条",required = true)@RequestParam(value = "size") Integer size,
-                            @ApiParam(value = "排序字段")@RequestParam(value = "sort",required = false) String sort,
-                            @RequestBody(required = false) ${modelName} ${fieldName}) {
-        return ${fieldName}Service.pageQuery(page, size, sort, ${fieldName});
+    @ApiResponses({@ApiResponse(code=Constant.SUCCESS_CODE,message=Constant.SUCCESS_MSG,response=${modelName}.class),
+                   @ApiResponse(code=Constant.FAIL_SESSION_CODE,message=Constant.FAIL_SESSION_MSG)})
+    @ApiImplicitParam(name = "Authorization", value = "授权码请以(Bearer )开头", required = true, dataType = "string", paramType = "header")
+    public Result pageQuery(@ApiParam(hidden = true)@AuthorizationToken String accessToken,
+                            @ApiParam(value = "第几页", required = true,example = "1") @RequestParam(value = "page") Integer page,
+                            @ApiParam(value = "多少条",required = true,example = "10")@RequestParam(value = "size") Integer size,
+                            @ApiParam(value = "排序字段",example = "create_time desc")@RequestParam(value = "sort",required = false) String sort,
+                            ${modelName} ${fieldName}) {
+        return ${fieldName}Service.pageQuery(accessToken,page, size, sort, ${fieldName});
     }
 }

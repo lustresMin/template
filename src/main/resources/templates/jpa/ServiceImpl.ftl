@@ -13,82 +13,87 @@ import java.util.ArrayList;
 import java.util.List;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.*;
-import ${packageName}.${mapper}.${modelName}${mapper?cap_first};
-import ${packageName}.${service}.${modelName}${service?cap_first};
-import ${packageName}.common.jackson.Result;
-import ${packageName}.${entity}.${modelName};
+import com.github.surpassm.common.jackson.Result;
+import java.time.LocalDateTime;
 
-import static ${packageName}.common.jackson.Result.fail;
-import static ${packageName}.common.jackson.Result.ok;
+import ${entity}.${modelName};
+import ${mappers}.${modelName}${mapper?cap_first};
+import ${server}.${modelName}${service?cap_first};
+
+import static com.github.surpassm.common.jackson.Result.*;
 
 /**
   * @author mc
   * Create date ${.now?string("yyyy-MM-dd HH:mm:ss")}
   * Version 1.0
-  * Description
+  * Description ${comment}实现类
   */
-
+@Slf4j
 @Service
 @Transactional(rollbackFor={RuntimeException.class, Exception.class})
 public class ${modelName}ServiceImpl implements ${modelName}Service {
     @Resource
     private ${modelName}Repository ${fieldName}Repository;
+    @Resource
+	private BeanConfig beanConfig;
 
     @Override
-    public Result insert(${modelName} ${fieldName}) {
+    public Result insert(String accessToken, ${modelName} ${fieldName}) {
 
         if (!Optional.ofNullable(${fieldName}).isPresent()){
             return fail(Tips.PARAMETER_ERROR.msg);
         }
-        ${fieldName}.setCreateTime(new Date());
+        UserInfo loginUser = beanConfig.getAccessToken(accessToken);
+        ${fieldName}.setCreateTime(LocalDateTime.now());
+        ${fieldName}.setCreateUserId(loginUser.getId());
+        ${fieldName}.setIsDelete(0);
         ${fieldName}Repository.save(${fieldName});
         return ok();
     }
 
     @Override
-    public Result update(${modelName} ${fieldName}) {
+    public Result update(String accessToken, ${modelName} ${fieldName}) {
         if (!Optional.ofNullable(${fieldName}).isPresent()){
             return fail(Tips.PARAMETER_ERROR.msg);
         }
-        ${fieldName}.setUpdateTime(new Date());
+        UserInfo loginUser = beanConfig.getAccessToken(accessToken);
+        ${fieldName}.setUpdateTime(LocalDateTime.now());
+        ${fieldName}.setUpdateUserId(loginUser.getId());
         ${fieldName}Repository.save(${fieldName});
         return ok();
     }
 
-    @Override
-    public Result deleteInBatch(List<${modelName}> ${fieldName}List) {
-        if (${fieldName}List.size() == 0){
-            return fail(Tips.PARAMETER_ERROR.msg);
-        }
-        ${fieldName}Repository.deleteInBatch(${fieldName}List);
-        return ok();
-    }
 
     @Override
-    public Result deleteGetById(${primaryKey.columnType} ${primaryKey.changeColumnName}){
+    public Result deleteGetById(String accessToken, ${primaryKey.columnType} ${primaryKey.changeColumnName}){
         if (!Optional.ofNullable(${primaryKey.changeColumnName}).isPresent()){
             return fail(Tips.PARAMETER_ERROR.msg);
         }
+        UserInfo loginUser = beanConfig.getAccessToken(accessToken);
         Optional<${modelName}> optional = ${fieldName}Repository.findById(id);
         if(!optional.isPresent()){
             return fail(Tips.MSG_NOT.msg);
         }
-        ${fieldName}Repository.deleteById(optional.get().getId());
+        ${modelName} ${fieldName} = optional.get();
+        ${fieldName}.setIsDelete(1);
+        ${fieldName}.setDeleteTime(LocalDateTime.now());
+        ${fieldName}.setDeleteUserId(loginUser.getId());
         return ok();
     }
 
 
     @Override
-    public Result findById(${primaryKey.columnType} ${primaryKey.changeColumnName}) {
+    public Result findById(String accessToken, ${primaryKey.columnType} ${primaryKey.changeColumnName}) {
         if (${primaryKey.changeColumnName} == null){
             return fail(Tips.PARAMETER_ERROR.msg);
         }
+        UserInfo loginUser = beanConfig.getAccessToken(accessToken);
 		Optional<${modelName}> optional = ${fieldName}Repository.findById(${primaryKey.changeColumnName});
         return optional.map(Result::ok).orElseGet(() -> fail(Tips.MSG_NOT.msg));
     }
 
     @Override
-    public Result pageQuery(Integer page, Integer size, String sort, ${modelName} ${fieldName}) {
+    public Result pageQuery(String accessToken, Integer page, Integer size, String sort, ${modelName} ${fieldName}) {
         page = page == null ? 0 : page;
 		size = size == null ? 10 : size;
     	if (page>0){page--;}

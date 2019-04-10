@@ -1,15 +1,15 @@
-package ${packageName}.service;
+package ${packageName}.${service};
 
-import ${packageName}.${entity}.${modelName};
-import ${packageName}.common.jackson.Result;
-import org.springframework.data.domain.Pageable;
+import ${entity}.${modelName};
+import com.github.surpassm.common.jackson.Result;
+
 import java.util.List;
 
 /**
   * @author mc
   * Create date ${.now?string("yyyy-MM-dd HH:mm:ss")}
   * Version 1.0
-  * Description
+  * Description ${comment}接口
   */
 public interface ${modelName}Service {
     /**
@@ -17,31 +17,25 @@ public interface ${modelName}Service {
 	 * @param ${fieldName} 对象
 	 * @return 前端返回格式
 	 */
-    Result insert(${modelName} ${fieldName});
+    Result insert(String accessToken,${modelName} ${fieldName});
     /**
 	 * 修改
 	 * @param ${fieldName} 对象
 	 * @return 前端返回格式
 	 */
-    Result update(${modelName} ${fieldName});
-    /**
-	 * 批量删除
-	 * @param ${fieldName}List 对象
-	 * @return 前端返回格式
-	 */
-    Result deleteInBatch(List<${modelName}> ${fieldName}List);
+    Result update(String accessToken,${modelName} ${fieldName});
     /**
 	 * 根据主键删除
 	 * @param ${primaryKey.changeColumnName} 标识
 	 * @return 前端返回格式
 	 */
-    Result deleteGetById(${primaryKey.columnType} ${primaryKey.changeColumnName});
+    Result deleteGetById(String accessToken,${primaryKey.columnType} ${primaryKey.changeColumnName});
     /**
 	 * 根据主键查询
 	 * @param ${primaryKey.changeColumnName} 标识
 	 * @return 前端返回格式
 	 */
-    Result findById(${primaryKey.columnType} ${primaryKey.changeColumnName});
+    Result findById(String accessToken,${primaryKey.columnType} ${primaryKey.changeColumnName});
     /**
 	 * 条件分页查询
 	 * @param page 当前页
@@ -50,5 +44,5 @@ public interface ${modelName}Service {
 	 * @param ${fieldName} 查询条件
 	 * @return 前端返回格式
 	 */
-    Result pageQuery(Integer page, Integer size, String sort, ${modelName} ${fieldName});
+    Result pageQuery(String accessToken,Integer page, Integer size, String sort, ${modelName} ${fieldName});
 }
