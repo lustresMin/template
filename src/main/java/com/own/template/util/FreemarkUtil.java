@@ -49,7 +49,9 @@ public class FreemarkUtil {
             // 4.Java数据类型
             String typeName = columns.getString("TYPE_NAME");
             columnClass.setColumnGannleType(typeName);
-            columnClass.setColumnType(getJavaTypeSqlServer(typeName));
+			String javaTypeSqlServer = getJavaTypeSqlServer(typeName);
+			System.out.println(javaTypeSqlServer);
+			columnClass.setColumnType(getJavaTypeSqlServer(typeName));
             // 3.数据库中的字段注释
             String remarks = columns.getString("REMARKS");
             columnClass.setColumnComment(remarks);
@@ -130,6 +132,7 @@ public class FreemarkUtil {
 		map.put("BIGINT", "Long");
 		map.put("DATE", "java.util.Date");
 		map.put("DATETIME", "java.util.Date");
+		map.put("float", "Float");
 
 		return map.get(typeName);
 	}
