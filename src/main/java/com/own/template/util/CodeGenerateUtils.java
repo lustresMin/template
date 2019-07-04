@@ -30,6 +30,8 @@ public class CodeGenerateUtils {
     private String data_resources;
     @Value("${packageName}")
     private String packageName;
+    @Value("${version}")
+    private String version;
 
 
     @Autowired
@@ -65,6 +67,7 @@ public class CodeGenerateUtils {
 		stringObjectMap.put("server",server);
 		stringObjectMap.put("controller",controller);
 		stringObjectMap.put("entity",entity);
+		stringObjectMap.put("version",version);
 		// 生成Controller文件
 		inputFreemarkUtil.generateControllerFile(stringObjectMap, targetProject + controller.replace(".", "/"));
 		// 生成service层接口文件

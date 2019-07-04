@@ -30,6 +30,8 @@ import java.io.Serializable;
 @Table(name = "f_${modelName}")
 public class ${modelName} implements Serializable {
 
+    public interface ${modelName}SimpleView {};
+	public interface ${modelName}DetailView extends ${modelName}SimpleView {};
 
     @Id
     @KeySql(useGeneratedKeys = true)

@@ -1,8 +1,7 @@
 package ${packageName}.${service};
 
 import ${entity}.${modelName};
-import com.liaoin.smart.commons.jackson.Result;
-import com.github.pagehelper.Page;
+import com.github.surpassm.common.jackson.Result;
 
 import java.util.List;
 
@@ -18,7 +17,7 @@ public interface ${modelName}Service {
 	 * @param ${fieldName} 对象
 	 * @return 前端返回格式
 	 */
-    Result<${modelName}> insert(String accessToken,${modelName} ${fieldName});
+    Result insert(String accessToken,${modelName} ${fieldName});
     /**
 	 * 修改
 	 * @param ${fieldName} 对象
@@ -36,7 +35,7 @@ public interface ${modelName}Service {
 	 * @param ${primaryKey.changeColumnName} 标识
 	 * @return 前端返回格式
 	 */
-    Result<${modelName}> findById(String accessToken,${primaryKey.columnType} ${primaryKey.changeColumnName});
+    Result findById(String accessToken,${primaryKey.columnType} ${primaryKey.changeColumnName});
     /**
 	 * 条件分页查询
 	 * @param page 当前页
@@ -45,5 +44,5 @@ public interface ${modelName}Service {
 	 * @param ${fieldName} 查询条件
 	 * @return 前端返回格式
 	 */
-    Result<Page<${modelName}>> pageQuery(String accessToken,Integer page, Integer size, String sort, ${modelName} ${fieldName});
+    Result pageQuery(String accessToken,Integer page, Integer size, String sort, ${modelName} ${fieldName});
 }
