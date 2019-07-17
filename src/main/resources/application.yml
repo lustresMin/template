@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/system?serverTimezone=GMT&characterEncoding=utf-8&useSSL=false
+    url: jdbc:mysql://localhost:3306/welink?serverTimezone=GMT&characterEncoding=utf-8&useSSL=false
     username: root
     password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -44,15 +44,15 @@ spring:
 data_resources: mybatis
 
 # 生成源文件的绝对地址
-controller: com.liaoin.smart.system.provider.controller
+controller: com.liaoin.smart.welink.provider.controller
 
-server: com.liaoin.smart.system.provider.service
+server: com.liaoin.smart.welink.provider.service
 
-serverImpl: com.liaoin.smart.system.provider.service.impl
+serverImpl: com.liaoin.smart.welink.provider.service.impl
 
-mappers: com.liaoin.smart.system.provider.mapper
+mappers: com.liaoin.smart.welink.provider.mapper
 
-entity: com.liaoin.smart.bean.system
+entity: com.liaoin.smart.bean.welink
 #controller: com.liaoin.smp.entity.controller
 #
 #server: com.liaoin.smp.entity.service
@@ -71,7 +71,7 @@ targetProject: D:/WorkSpace/template/src/main/java/
 # 包名
 packageName: com.liaoin.smart.system.provider
 # 指定数据库表名
-TABLE_NAME: t_housing_estate_building,t_housing_estate_building_house
+TABLE_NAME: t_equipment_child
 
 
 

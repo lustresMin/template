@@ -14,6 +14,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 /**
   * @author mc
@@ -57,14 +58,14 @@ public class ${modelName}Controller {
     @PostMapping("${version}/getById")
     @ApiOperation(value = "根据主键删除")
     public Result deleteGetById(@RequestParam(value = "accessToken") String accessToken,
-                                @ApiParam(value = "主键",required = true)@RequestParam(value = "${primaryKey.changeColumnName}") ${primaryKey.columnType} ${primaryKey.changeColumnName}) {
+                                @ApiParam(value = "主键",required = true)@RequestParam(value = "${primaryKey.changeColumnName}")@NotNull ${primaryKey.columnType} ${primaryKey.changeColumnName}) {
         return ${fieldName}Service.deleteGetById(accessToken,${primaryKey.changeColumnName});
     }
 
     @PostMapping("${version}/findById")
     @ApiOperation(value = "根据主键查询")
     public Result<${modelName}> findById(@RequestParam(value = "accessToken") String accessToken,
-                                         @ApiParam(value = "主键",required = true)@RequestParam(value = "${primaryKey.changeColumnName}") ${primaryKey.columnType} ${primaryKey.changeColumnName}) {
+                                         @ApiParam(value = "主键",required = true)@RequestParam(value = "${primaryKey.changeColumnName}")@NotNull ${primaryKey.columnType} ${primaryKey.changeColumnName}) {
         return ${fieldName}Service.findById(accessToken,${primaryKey.changeColumnName});
     }
 

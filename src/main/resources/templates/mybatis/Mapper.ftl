@@ -8,7 +8,7 @@ import ${entity}.${modelName};
   * Version 1.0
   * Description ${comment}持久层
   */
-public interface ${modelName}Mapper extends ${"tk.mybatis.mapper.common.Mapper"}<${modelName}> {
+public interface ${modelName}Mapper extends ${"tk.mybatis.mapper.common.Mapper"}<${modelName}>,tk.mybatis.mapper.common.MySqlMapper<${modelName}> {
 
 
 }
