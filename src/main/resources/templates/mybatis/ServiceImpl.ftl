@@ -85,6 +85,9 @@ public class ${modelName}ServiceImpl implements ${modelName}Service {
     public Result<Page<${modelName}>> pageQuery(String accessToken,Integer page, Integer size, String sort, ${modelName} ${fieldName}) {
         page = null  == page ? 1 : page;
         size = null  == size ? 10 : size;
+        if (size > 101){
+			return fail("num must not be greater than 100");
+		}
         if (sort != null && !"".equals(sort.trim())){
 			PageHelper.startPage(page, size,sort);
 		}else {
