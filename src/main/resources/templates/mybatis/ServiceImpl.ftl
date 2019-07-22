@@ -1,5 +1,6 @@
 package ${serverImpl};
 
+import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
 import com.github.pagehelper.PageHelper;
 import ${entity}.${modelName};
@@ -22,6 +23,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.liaoin.smart.commons.jackson.Result.fail;
+import static com.liaoin.smart.commons.jackson.Result.ok;
 
 
 /**
