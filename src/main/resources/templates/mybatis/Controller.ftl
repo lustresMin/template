@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.validation.BindingResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.liaoin.smart.commons.jackson.Result;
-import com.github.pagehelper.Page;
+import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
@@ -71,7 +71,7 @@ public class ${modelName}Controller {
 
     @PostMapping("${version}/pageQuery")
     @ApiOperation(value = "条件分页查询")
-    public Result<Page<${modelName}>> pageQuery(@RequestParam(value = "accessToken") String accessToken,
+    public Result<PageInfo<${modelName}>> pageQuery(@RequestParam(value = "accessToken") String accessToken,
                                                 @ApiParam(value = "第几页", required = true,example = "1") @RequestParam(value = "page") Integer page,
                                                 @ApiParam(value = "多少条",required = true,example = "10")@RequestParam(value = "size") Integer size,
                                                 @ApiParam(value = "排序字段",example = "create_time desc")@RequestParam(value = "sort",required = false) String sort,

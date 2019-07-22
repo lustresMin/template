@@ -2,7 +2,7 @@ package ${packageName}.${service};
 
 import ${entity}.${modelName};
 import com.liaoin.smart.commons.jackson.Result;
-import com.github.pagehelper.Page;
+import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
@@ -45,5 +45,5 @@ public interface ${modelName}Service {
 	 * @param ${fieldName} 查询条件
 	 * @return 前端返回格式
 	 */
-    Result<Page<${modelName}>> pageQuery(String accessToken,Integer page, Integer size, String sort, ${modelName} ${fieldName});
+    Result<PageInfo<${modelName}>> pageQuery(String accessToken,Integer page, Integer size, String sort, ${modelName} ${fieldName});
 }

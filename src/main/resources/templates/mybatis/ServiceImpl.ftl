@@ -1,6 +1,6 @@
 package ${serverImpl};
 
-import com.github.pagehelper.Page;
+import com.github.pagehelper.PageInfo;
 import com.github.pagehelper.PageHelper;
 import ${entity}.${modelName};
 import ${mappers}.${modelName}${mapper?cap_first};
@@ -15,6 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 import com.liaoin.smart.commons.jackson.Result;
 import ${packageName}.security.BeanConfig;
 import com.github.surpassm.tool.util.ValidateUtil;
+
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -82,7 +83,7 @@ public class ${modelName}ServiceImpl implements ${modelName}Service {
     }
 
     @Override
-    public Result<Page<${modelName}>> pageQuery(String accessToken,Integer page, Integer size, String sort, ${modelName} ${fieldName}) {
+    public Result<PageInfo<${modelName}>> pageQuery(String accessToken,Integer page, Integer size, String sort, ${modelName} ${fieldName}) {
         page = null  == page ? 1 : page;
         size = null  == size ? 10 : size;
         if (size > 101){
@@ -112,7 +113,7 @@ public class ${modelName}ServiceImpl implements ${modelName}Service {
 </#list>
         }
         Page<${modelName}> all = (Page<${modelName}>) ${fieldName}Mapper.selectByExample(builder.build());
-        return ok(all);
+        return ok(all.toPageInfo());
     }
 }
 
