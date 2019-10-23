@@ -35,7 +35,7 @@ public class ${modelName}Controller {
     @Resource
     private ${modelName}Service ${fieldName}Service;
 
-    @PostMapping("insert")
+    @PostMapping("${version}/insert")
     @ApiOperation(value = "新增")
     @ApiResponses({
             @ApiResponse(code=Constant.SUCCESS_CODE,message=Constant.SUCCESS_MSG),
@@ -51,7 +51,7 @@ public class ${modelName}Controller {
         return ${fieldName}Service.insert(accessToken,${fieldName});
     }
 
-    @PostMapping("update")
+    @PostMapping("${version}/update")
     @ApiOperation(value = "修改")
     @ApiResponses({
             @ApiResponse(code=Constant.SUCCESS_CODE,message=Constant.SUCCESS_MSG),
@@ -67,7 +67,7 @@ public class ${modelName}Controller {
         return ${fieldName}Service.update(accessToken,${fieldName});
     }
 
-    @PostMapping("getById")
+    @PostMapping("${version}/getById")
     @ApiOperation(value = "根据主键删除")
     @ApiResponses({
             @ApiResponse(code=Constant.SUCCESS_CODE,message=Constant.SUCCESS_MSG),
@@ -78,7 +78,7 @@ public class ${modelName}Controller {
         return ${fieldName}Service.deleteGetById(accessToken,${primaryKey.changeColumnName});
     }
 
-    @PostMapping("findById")
+    @PostMapping("${version}/findById")
     @ApiOperation(value = "根据主键查询")
     @ApiResponses({
             @ApiResponse(code=Constant.FAIL_SESSION_CODE,message=Constant.FAIL_SESSION_MSG),
@@ -89,7 +89,7 @@ public class ${modelName}Controller {
         return ${fieldName}Service.findById(accessToken,${primaryKey.changeColumnName});
     }
 
-    @PostMapping("pageQuery")
+    @PostMapping("${version}/pageQuery")
     @ApiOperation(value = "条件分页查询")
     @ApiResponses({@ApiResponse(code=Constant.SUCCESS_CODE,message=Constant.SUCCESS_MSG,response=${modelName}.class),
                    @ApiResponse(code=Constant.FAIL_SESSION_CODE,message=Constant.FAIL_SESSION_MSG)})
