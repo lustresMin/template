@@ -10,9 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.github.surpassm.common.constant.Constant;
 import com.github.surpassm.common.jackson.Result;
 import com.github.surpassm.config.annotation.AuthorizationToken;
-import com.github.surpassm.common.pojo.InsertPcSimpleView;
-import com.github.surpassm.common.pojo.UpdatePcSimpleView;
+import com.github.surpassm.common.service.InsertView;
+import com.github.surpassm.common.service.UpdateView;
 
+import static com.github.surpassm.common.jackson.Result.fail;
 
 import java.util.List;
 
@@ -42,7 +43,7 @@ public class ${modelName}Controller {
             @ApiResponse(code=Constant.FAIL_CODE,message=Constant.FAIL_MSG,response=Result.class)})
     @ApiImplicitParam(name = "Authorization", value = "授权码请以(Bearer )开头", required = true, dataType = "string", paramType = "header")
     public Result insert(@ApiParam(hidden = true)@AuthorizationToken String accessToken,
-                         @Validated(InsertPcSimpleView.class) ${modelName} ${fieldName},BindingResult errors) {
+                         @Validated(InsertView.class) ${modelName} ${fieldName},BindingResult errors) {
         if (errors.hasErrors()){
 			StringBuilder builder = new StringBuilder();
 			errors.getAllErrors().forEach(i -> builder.append(i.getDefaultMessage()).append(","));
@@ -59,7 +60,7 @@ public class ${modelName}Controller {
             @ApiResponse(code=Constant.FAIL_CODE,message=Constant.FAIL_MSG,response=Result.class)})
     @ApiImplicitParam(name = "Authorization", value = "授权码请以(Bearer )开头", required = true, dataType = "string", paramType = "header")
     public Result update(@ApiParam(hidden = true)@AuthorizationToken String accessToken,
-                         @Validated(UpdatePcSimpleView.class) ${modelName} ${fieldName},BindingResult errors) {
+                         @Validated(UpdateView.class) ${modelName} ${fieldName},BindingResult errors) {
         if (errors.hasErrors()){
 			StringBuilder builder = new StringBuilder();
 			errors.getAllErrors().forEach(i -> builder.append(i.getDefaultMessage()).append(","));
