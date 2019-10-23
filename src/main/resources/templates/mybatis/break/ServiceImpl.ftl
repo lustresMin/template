@@ -13,9 +13,10 @@ import tk.mybatis.mapper.entity.Example;
 import tk.mybatis.mapper.weekend.WeekendSqls;
 import lombok.extern.slf4j.Slf4j;
 import com.github.surpassm.common.jackson.Result;
-import com.github.surpassm.common.jackson.Tips;
+import com.github.surpassm.common.jackson.ResultCode;
 import ${packageName}.security.BeanConfig;
 import com.github.surpassm.tool.util.ValidateUtil;
+import javax.annotation.Resource;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -44,12 +45,9 @@ public class ${modelName}ServiceImpl implements ${modelName}Service {
     @Override
     public Result insert(String accessToken,${modelName} ${fieldName}) {
         if (${fieldName} == null){
-            return fail(Tips.PARAMETER_ERROR.msg);
+            return fail(ResultCode.PARAM_IS_BLANK.getMsg());
         }
-        UserInfo loginUserInfo = beanConfig.getAccessToken(accessToken);
-        ${fieldName}.setCreateUserId(loginUserInfo.getId());
-        ${fieldName}.setCreateTime(LocalDateTime.now());
-        ${fieldName}.setIsDelete(0);
+        beanConfig.getAccessToken(accessToken);
         ${fieldName}Mapper.insert(${fieldName});
         return ok();
     }
@@ -57,11 +55,9 @@ public class ${modelName}ServiceImpl implements ${modelName}Service {
     @Override
     public Result update(String accessToken,${modelName} ${fieldName}) {
         if (${fieldName} == null){
-            return fail(Tips.PARAMETER_ERROR.msg);
+            return fail(ResultCode.PARAM_IS_BLANK.getMsg());
         }
-        UserInfo loginUserInfo = beanConfig.getAccessToken(accessToken);
-        ${fieldName}.setUpdateUserId(loginUserInfo.getId());
-        ${fieldName}.setUpdateTime(LocalDateTime.now());
+        beanConfig.getAccessToken(accessToken);
         ${fieldName}Mapper.updateByPrimaryKeySelective(${fieldName});
         return ok();
     }
@@ -69,16 +65,13 @@ public class ${modelName}ServiceImpl implements ${modelName}Service {
     @Override
     public Result deleteGetById(String accessToken,${primaryKey.columnType} ${primaryKey.changeColumnName}){
         if (${primaryKey.changeColumnName} == null){
-            return fail(Tips.PARAMETER_ERROR.msg);
+            return fail(ResultCode.PARAM_IS_BLANK.getMsg());
         }
         ${modelName} ${fieldName} = ${fieldName}Mapper.selectByPrimaryKey(${primaryKey.changeColumnName});
         if(${fieldName} == null){
-            return fail(Tips.MSG_NOT.msg);
+            return fail(ResultCode.PARAM_IS_BLANK.getMsg());
         }
-        UserInfo loginUserInfo = beanConfig.getAccessToken(accessToken);
-        ${fieldName}.setDeleteUserId(loginUserInfo.getId());
-        ${fieldName}.setDeleteTime(LocalDateTime.now());
-        ${fieldName}.setIsDelete(1);
+        beanConfig.getAccessToken(accessToken);
         ${fieldName}Mapper.updateByPrimaryKeySelective(${fieldName});
         return ok();
     }
@@ -87,11 +80,11 @@ public class ${modelName}ServiceImpl implements ${modelName}Service {
     @Override
     public Result findById(String accessToken,${primaryKey.columnType} ${primaryKey.changeColumnName}) {
         if (${primaryKey.changeColumnName} == null){
-            return fail(Tips.PARAMETER_ERROR.msg);
+            return fail(ResultCode.PARAM_IS_BLANK.getMsg());
         }
 		${modelName} ${fieldName} = ${fieldName}Mapper.selectByPrimaryKey(${primaryKey.changeColumnName});
         if (${fieldName} == null){
-			return fail(Tips.MSG_NOT.msg);
+			return fail(ResultCode.PARAM_IS_BLANK.getMsg());
 		}
         return ok(${fieldName});
 
@@ -126,10 +119,7 @@ public class ${modelName}ServiceImpl implements ${modelName}Service {
 </#list>
         }
         Page<${modelName}> all = (Page<${modelName}>) ${fieldName}Mapper.selectByExample(builder.build());
-        Map<String, Object> map = new HashMap<>(16);
-        map.put("total",all.getTotal());
-        map.put("rows",all.getResult());
-        return ok(map);
+        return ok(all.toPageInfo());
     }
 }
 
