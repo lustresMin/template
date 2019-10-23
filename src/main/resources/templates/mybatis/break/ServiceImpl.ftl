@@ -69,7 +69,7 @@ public class ${modelName}ServiceImpl implements ${modelName}Service {
         }
         ${modelName} ${fieldName} = ${fieldName}Mapper.selectByPrimaryKey(${primaryKey.changeColumnName});
         if(${fieldName} == null){
-            return fail(ResultCode.PARAM_IS_BLANK.getMsg());
+            return fail(ResultCode.RESULE_DATA_NONE.getMsg());
         }
         beanConfig.getAccessToken(accessToken);
         ${fieldName}Mapper.updateByPrimaryKeySelective(${fieldName});
@@ -84,7 +84,7 @@ public class ${modelName}ServiceImpl implements ${modelName}Service {
         }
 		${modelName} ${fieldName} = ${fieldName}Mapper.selectByPrimaryKey(${primaryKey.changeColumnName});
         if (${fieldName} == null){
-			return fail(ResultCode.PARAM_IS_BLANK.getMsg());
+			return fail(ResultCode.RESULE_DATA_NONE.getMsg());
 		}
         return ok(${fieldName});
 
