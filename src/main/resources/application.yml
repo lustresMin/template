@@ -46,9 +46,9 @@ data_resources: mybatis
 # 生成源文件的绝对地址
 controller: com.cqysskj.laboratory.controller.common
 
-server: com.cqysskj.laboratory.common.service
+server: com.cqysskj.laboratory.service.common
 
-serverImpl: com.cqysskj.laboratory.common.service.impl
+serverImpl: com.cqysskj.laboratory.service.common.impl
 
 mappers: com.cqysskj.laboratory.mapper.common
 
@@ -71,7 +71,7 @@ targetProject: D:/workespace/template/src/main/java/
 # 包名
 packageName: com.cqysskj.laboratory
 # 指定数据库表名
-TABLE_NAME: f_laboratory
+TABLE_NAME: f_supplier,f_supplier_type
 
 
 

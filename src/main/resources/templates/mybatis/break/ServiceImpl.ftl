@@ -47,7 +47,7 @@ public class ${modelName}ServiceImpl implements ${modelName}Service {
         if (${fieldName} == null){
             return fail(ResultCode.PARAM_IS_BLANK.getMsg());
         }
-        beanConfig.getAccessToken(accessToken);
+        UserInfo loginUser = beanConfig.getAccessToken(accessToken);
         ${fieldName}Mapper.insert(${fieldName});
         return ok();
     }
@@ -57,7 +57,7 @@ public class ${modelName}ServiceImpl implements ${modelName}Service {
         if (${fieldName} == null){
             return fail(ResultCode.PARAM_IS_BLANK.getMsg());
         }
-        beanConfig.getAccessToken(accessToken);
+        UserInfo loginUser = beanConfig.getAccessToken(accessToken);
         ${fieldName}Mapper.updateByPrimaryKeySelective(${fieldName});
         return ok();
     }
@@ -71,7 +71,7 @@ public class ${modelName}ServiceImpl implements ${modelName}Service {
         if(${fieldName} == null){
             return fail(ResultCode.RESULE_DATA_NONE.getMsg());
         }
-        beanConfig.getAccessToken(accessToken);
+        UserInfo loginUser = beanConfig.getAccessToken(accessToken);
         ${fieldName}Mapper.updateByPrimaryKeySelective(${fieldName});
         return ok();
     }
