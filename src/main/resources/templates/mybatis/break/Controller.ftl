@@ -12,6 +12,7 @@ import com.github.surpassm.common.jackson.Result;
 import com.github.surpassm.config.annotation.AuthorizationToken;
 import com.github.surpassm.common.service.InsertView;
 import com.github.surpassm.common.service.UpdateView;
+import org.springframework.validation.annotation.Validated;
 
 import static com.github.surpassm.common.jackson.Result.fail;
 

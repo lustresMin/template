@@ -44,15 +44,15 @@ spring:
 data_resources: mybatis
 
 # 生成源文件的绝对地址
-controller: com.cqysskj.laboratory.controller.sample
+controller: com.cqysskj.laboratory.controller.common
 
-server: com.cqysskj.laboratory.sample.service
+server: com.cqysskj.laboratory.common.service
 
-serverImpl: com.cqysskj.laboratory.sample.service.impl
+serverImpl: com.cqysskj.laboratory.common.service.impl
 
-mappers: com.cqysskj.laboratory.mapper.sample
+mappers: com.cqysskj.laboratory.mapper.common
 
-entity: com.cqysskj.laboratory.entity.sample
+entity: com.cqysskj.laboratory.entity.common
 #controller: com.liaoin.smp.entity.controller
 #
 #server: com.liaoin.smp.entity.service
@@ -71,7 +71,7 @@ targetProject: D:/workespace/template/src/main/java/
 # 包名
 packageName: com.cqysskj.laboratory
 # 指定数据库表名
-TABLE_NAME: f_sample,f_sample_retention,f_sample_retention_save,f_sample_type
+TABLE_NAME: f_laboratory
 
 
 
