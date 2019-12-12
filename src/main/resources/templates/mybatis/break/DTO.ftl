@@ -1,10 +1,13 @@
-package ${packageName}.${entity};
+package ${dto};
 
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 import org.springframework.beans.BeanUtils;
+import ${entity}.entity.user.${modelName};
+
+
 
 /**
 * @author mc
@@ -16,6 +19,18 @@ import org.springframework.beans.BeanUtils;
 @Setter
 @ApiModel(value = "${comment}")
 public class ${modelName}Dto implements Serializable {
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     public ${modelName} convertTo(){
@@ -33,11 +48,11 @@ public class ${modelName}Dto implements Serializable {
         public ${modelName} doForward(${modelName}Dto dto) {
             ${modelName} ${fieldName} = new ${modelName}();
             BeanUtils.copyProperties(dto,${fieldName});
-            return department;
+            return ${fieldName};
         }
         @Override
-        public DepartmentDto doBackward(${modelName} ${fieldName}) {
-            ${modelName} dto = new ${modelName}();
+        public ${modelName}Dto doBackward(${modelName} ${fieldName}) {
+            ${modelName}Dto dto = new ${modelName}Dto();
             BeanUtils.copyProperties(${fieldName}, dto);
             return dto;
         }

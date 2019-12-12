@@ -53,6 +53,7 @@ serverImpl: com.liaoin.demo.service.user.impl
 mappers: com.liaoin.demo.mapper.user
 
 entity: com.liaoin.demo.entity.user
+dto: com.liaoin.demo.domain
 #controller: com.liaoin.smp.entity.controller
 #
 #server: com.liaoin.smp.entity.service

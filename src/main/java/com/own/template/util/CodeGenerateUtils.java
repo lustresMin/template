@@ -32,6 +32,8 @@ public class CodeGenerateUtils {
     private String packageName;
     @Value("${version}")
     private String version;
+    @Value("${dto}")
+    private String dto;
 
 
     @Autowired
@@ -90,6 +92,7 @@ public class CodeGenerateUtils {
 
 			inputFreemarkUtil.generateModelFile(stringObjectMap, targetProject + entity.replace(".", "/"));
 			inputFreemarkUtil.generateMapperXmlFile(stringObjectMap, targetProject + entity.replace(".", "/"));
+			inputFreemarkUtil.generateModelDtoFile(stringObjectMap, targetProject + dto.replace(".", "/"));
 		}
 	}
 
