@@ -12,20 +12,16 @@ import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
 import tk.mybatis.mapper.weekend.WeekendSqls;
 import lombok.extern.slf4j.Slf4j;
-import com.github.surpassm.common.jackson.Result;
-import com.github.surpassm.common.jackson.ResultCode;
-import ${packageName}.security.BeanConfig;
-import com.github.surpassm.tool.util.ValidateUtil;
 import javax.annotation.Resource;
-
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import ${entity}.common.Result;
+import ${entity}.common.ResultCode;
 
-import static com.github.surpassm.common.jackson.Result.fail;
-import static com.github.surpassm.common.jackson.Result.ok;
-
+import static ${entity}.common.Result.fail;
+import static ${entity}.common.Result.ok;
 
 /**
   * @author mc
@@ -39,59 +35,31 @@ import static com.github.surpassm.common.jackson.Result.ok;
 public class ${modelName}ServiceImpl implements ${modelName}Service {
     @Resource
     private ${modelName}Mapper ${fieldName}Mapper;
-    @Resource
-	private BeanConfig beanConfig;
 
     @Override
-    public Result insert(String accessToken,${modelName} ${fieldName}) {
-        if (${fieldName} == null){
-            return fail(ResultCode.PARAM_IS_BLANK.getMsg());
-        }
-        UserInfo loginUser = beanConfig.getAccessToken(accessToken);
-        ${fieldName}Mapper.insert(${fieldName});
+    public Result insert(Long userId,${modelName}Dto ${fieldName}Dto) {
         return ok();
     }
 
     @Override
-    public Result update(String accessToken,${modelName} ${fieldName}) {
-        if (${fieldName} == null){
-            return fail(ResultCode.PARAM_IS_BLANK.getMsg());
-        }
-        UserInfo loginUser = beanConfig.getAccessToken(accessToken);
-        ${fieldName}Mapper.updateByPrimaryKeySelective(${fieldName});
+    public Result update(Long userId,${modelName}Dto ${fieldName}Dto) {
         return ok();
     }
 
     @Override
-    public Result deleteGetById(String accessToken,${primaryKey.columnType} ${primaryKey.changeColumnName}){
-        if (${primaryKey.changeColumnName} == null){
-            return fail(ResultCode.PARAM_IS_BLANK.getMsg());
-        }
-        ${modelName} ${fieldName} = ${fieldName}Mapper.selectByPrimaryKey(${primaryKey.changeColumnName});
-        if(${fieldName} == null){
-            return fail(ResultCode.RESULE_DATA_NONE.getMsg());
-        }
-        UserInfo loginUser = beanConfig.getAccessToken(accessToken);
-        ${fieldName}Mapper.updateByPrimaryKeySelective(${fieldName});
+    public Result deleteGetById(Long userId,${primaryKey.columnType} ${primaryKey.changeColumnName}){
         return ok();
     }
 
 
     @Override
-    public Result findById(String accessToken,${primaryKey.columnType} ${primaryKey.changeColumnName}) {
-        if (${primaryKey.changeColumnName} == null){
-            return fail(ResultCode.PARAM_IS_BLANK.getMsg());
-        }
-		${modelName} ${fieldName} = ${fieldName}Mapper.selectByPrimaryKey(${primaryKey.changeColumnName});
-        if (${fieldName} == null){
-			return fail(ResultCode.RESULE_DATA_NONE.getMsg());
-		}
-        return ok(${fieldName});
+    public Result findById(Long userId,${primaryKey.columnType} ${primaryKey.changeColumnName}) {
+        return ok();
 
     }
 
     @Override
-    public Result pageQuery(String accessToken,Integer page, Integer size, String sort, ${modelName} ${fieldName}) {
+    public Result pageQuery(Long userId,Integer page, Integer size, String sort, ${modelName}Dto ${fieldName}Dto) {
         page = null  == page ? 1 : page;
         size = null  == size ? 10 : size;
         if (size > 101){
@@ -100,29 +68,12 @@ public class ${modelName}ServiceImpl implements ${modelName}Service {
         if (sort != null && !"".equals(sort.trim())){
 			PageHelper.startPage(page, size,sort);
 		}else {
-			PageHelper.startPage(page, size,"create_time desc");
+			PageHelper.startPage(page, size);
 		}
         Example.Builder builder = new Example.Builder(${modelName}.class);
         builder.where(WeekendSqls.<${modelName}>custom().andEqualTo(${modelName}::getIsDelete, 0));
-        if(${fieldName} != null){
-<#list columnClassList as columnClass>
-    <#if columnClass.columnType == "String" >
-        if (${fieldName}.get${columnClass.changeColumnName?cap_first}() != null && !"".equals(${fieldName}.get${columnClass.changeColumnName?cap_first}().trim())){
-            builder.where(WeekendSqls.<${modelName}>custom().andLike(${modelName}::get${columnClass.changeColumnName?cap_first},"%"+${fieldName}.get${columnClass.changeColumnName?cap_first}()+"%"));
-        }
-    <#elseif columnClass.columnType == "Integer">
-        if (${fieldName}.get${columnClass.changeColumnName?cap_first}() != null){
-            builder.where(WeekendSqls.<${modelName}>custom().andEqualTo(${modelName}::get${columnClass.changeColumnName?cap_first},${fieldName}.get${columnClass.changeColumnName?cap_first}()));
-        }
-    <#else>
-        if (${fieldName}.get${columnClass.changeColumnName?cap_first}() != null){
-            builder.where(WeekendSqls.<${modelName}>custom().andEqualTo(${modelName}::get${columnClass.changeColumnName?cap_first},${fieldName}.get${columnClass.changeColumnName?cap_first}()));
-        }
-    </#if>
-</#list>
-        }
         Page<${modelName}> all = (Page<${modelName}>) ${fieldName}Mapper.selectByExample(builder.build());
-        return ok(all.toPageInfo());
+        return ok(all.getTotal(),all.getResult());
     }
 }
 
