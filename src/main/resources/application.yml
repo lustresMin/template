@@ -29,7 +29,7 @@ spring:
 
 #指定模板的路径
   freemarker:
-    template-loader-path: classpath:/templates/mybatis/break
+    template-loader-path: classpath:/templates/mybatis/interface
 
 #spring.freemarker.allow-request-override=false
 #spring.freemarker.cache=true
@@ -72,7 +72,9 @@ targetProject: D:/workespace/template/src/main/java/
 # 包名
 packageName: com.liaoin.demo
 # 指定数据库表名
-TABLE_NAME: t_group,t_menu,t_operations,t_page_element,t_power,t_region_areas,t_region_cities,t_region_provinces,t_role,t_user_info
+TABLE_NAME:
+
+
 
 
 mapper:

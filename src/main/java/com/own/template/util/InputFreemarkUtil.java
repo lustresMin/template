@@ -42,9 +42,18 @@ public class InputFreemarkUtil {
         // 生成模板的位置
         String suffix = ".java";
         String modelName = (String) dataModel.get("modelName");
-        String fileName = modelName + "Dto" + suffix;
+        String fileName = modelName + "DTO" + suffix;
         // 模板名称
         String templateName = "DTO.ftl";
+        generateFileByTemplate(templateName, diskPath, fileName, dataModel);
+    }
+    public void generateModelVoFile(Map<String, Object> dataModel, String diskPath) throws Exception {
+        // 生成模板的位置
+        String suffix = ".java";
+        String modelName = (String) dataModel.get("modelName");
+        String fileName = modelName + "VO" + suffix;
+        // 模板名称
+        String templateName = "VO.ftl";
         generateFileByTemplate(templateName, diskPath, fileName, dataModel);
     }
 

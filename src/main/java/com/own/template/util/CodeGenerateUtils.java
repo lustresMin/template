@@ -89,10 +89,10 @@ public class CodeGenerateUtils {
 		}
 		if (data_resources.equals("mybatis")) {
 			//生成POJO
-
 			inputFreemarkUtil.generateModelFile(stringObjectMap, targetProject + entity.replace(".", "/"));
 			inputFreemarkUtil.generateMapperXmlFile(stringObjectMap, targetProject + entity.replace(".", "/"));
 			inputFreemarkUtil.generateModelDtoFile(stringObjectMap, targetProject + dto.replace(".", "/"));
+			inputFreemarkUtil.generateModelVoFile(stringObjectMap, targetProject + dto.replace(".", "/"));
 		}
 	}
 
