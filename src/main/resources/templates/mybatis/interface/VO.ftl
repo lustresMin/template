@@ -1,11 +1,11 @@
-package ${dto};
+package ${domain};
 
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 import org.springframework.beans.BeanUtils;
-import ${entity}.entity.user.${modelName};
+import ${entity}.${modelName};
 
 
 

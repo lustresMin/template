@@ -17,11 +17,7 @@ import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import ${entity}.common.Result;
-import ${entity}.common.ResultCode;
 
-import static ${entity}.common.Result.fail;
-import static ${entity}.common.Result.ok;
 
 /**
   * @author mc
@@ -62,7 +58,7 @@ public class ${modelName}ServiceImpl implements ${modelName}Service {
 
     @Override
     public Optional<${modelName}> findById(${primaryKey.columnType} ${primaryKey.changeColumnName}) {
-        return Optional.ofNullable(${fieldName}Mapper.selectByPrimaryKey(${primaryKey.changeColumnName})
+        return Optional.ofNullable(${fieldName}Mapper.selectByPrimaryKey(${primaryKey.changeColumnName});
 
     }
 
@@ -80,7 +76,7 @@ public class ${modelName}ServiceImpl implements ${modelName}Service {
 		}
         Example.Builder builder = new Example.Builder(${modelName}.class);
         builder.where(WeekendSqls.<${modelName}>custom().andEqualTo(${modelName}::getIsDelete, 0));
-        if(${fieldName}VO != null)}
+        if(${fieldName}VO != null){
         }
         Page<${modelName}> all = (Page<${modelName}>) ${fieldName}Mapper.selectByExample(builder.build());
         return ok(all.getTotal(),all.getResult());

@@ -1,11 +1,11 @@
-package ${dto};
+package ${domain};
 
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 import org.springframework.beans.BeanUtils;
-import ${entity}.entity.user.${modelName};
+import ${entity}.${modelName};
 
 
 
@@ -18,7 +18,7 @@ import ${entity}.entity.user.${modelName};
 @Getter
 @Setter
 @ApiModel(value = "${comment}")
-public class ${modelName}Dto implements Serializable {
+public class ${modelName}DTO implements Serializable {
 
 
 
@@ -38,21 +38,21 @@ public class ${modelName}Dto implements Serializable {
         return impl.doForward(this);
     }
 
-    public ${modelName}Dto convertFor(${modelName} ${fieldName}){
+    public ${modelName}DTO convertFor(${modelName} ${fieldName}){
         ConvertImpl impl = new ConvertImpl();
         return impl.doBackward(${fieldName});
     }
 
-    private static class ConvertImpl implements Convert<${modelName}Dto, ${modelName}> {
+    private static class ConvertImpl implements Convert<${modelName}DTO , ${modelName}> {
         @Override
-        public ${modelName} doForward(${modelName}Dto dto) {
+        public ${modelName} doForward(${modelName}DTO dto) {
             ${modelName} ${fieldName} = new ${modelName}();
             BeanUtils.copyProperties(dto,${fieldName});
             return ${fieldName};
         }
         @Override
-        public ${modelName}Dto doBackward(${modelName} ${fieldName}) {
-            ${modelName}Dto dto = new ${modelName}Dto();
+        public ${modelName}DTO doBackward(${modelName} ${fieldName}) {
+            ${modelName}DTO dto = new ${modelName}DTO();
             BeanUtils.copyProperties(${fieldName}, dto);
             return dto;
         }

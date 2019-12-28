@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/test?serverTimezone=GMT&characterEncoding=utf-8&useSSL=false
+    url: jdbc:mysql://127.0.0.1:3306/adi?serverTimezone=GMT&characterEncoding=utf-8&useSSL=false
     username: root
     password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -44,16 +44,16 @@ spring:
 data_resources: mybatis
 
 # 生成源文件的绝对地址
-controller: com.liaoin.demo.controller.user
+controller: com.ysy.adi.controller.banner
 
-server: com.liaoin.demo.service.user
+server: com.ysy.adi.service.banner
 
-serverImpl: com.liaoin.demo.service.user.impl
+serverImpl: com.ysy.adi.service.banner.impl
 
-mappers: com.liaoin.demo.mapper.user
+mappers: com.ysy.adi.mapper.banner
 
-entity: com.liaoin.demo.entity.user
-dto: com.liaoin.demo.domain
+entity: com.ysy.adi.entity.banner
+domain: com.ysy.adi.domain.banner
 #controller: com.liaoin.smp.entity.controller
 #
 #server: com.liaoin.smp.entity.service
@@ -70,9 +70,9 @@ version: v1
 # 文件生成路径
 targetProject: D:/workespace/template/src/main/java/
 # 包名
-packageName: com.liaoin.demo
+packageName: com.ysy.adi
 # 指定数据库表名
-TABLE_NAME:
+TABLE_NAME: f_banner
 
 
 

@@ -32,8 +32,8 @@ public class CodeGenerateUtils {
     private String packageName;
     @Value("${version}")
     private String version;
-    @Value("${dto}")
-    private String dto;
+    @Value("${domain}")
+    private String domain;
 
 
     @Autowired
@@ -70,6 +70,7 @@ public class CodeGenerateUtils {
 		stringObjectMap.put("controller",controller);
 		stringObjectMap.put("entity",entity);
 		stringObjectMap.put("version",version);
+		stringObjectMap.put("domain",domain);
 		// 生成Controller文件
 		inputFreemarkUtil.generateControllerFile(stringObjectMap, targetProject + controller.replace(".", "/"));
 		// 生成service层接口文件
@@ -91,8 +92,8 @@ public class CodeGenerateUtils {
 			//生成POJO
 			inputFreemarkUtil.generateModelFile(stringObjectMap, targetProject + entity.replace(".", "/"));
 			inputFreemarkUtil.generateMapperXmlFile(stringObjectMap, targetProject + entity.replace(".", "/"));
-			inputFreemarkUtil.generateModelDtoFile(stringObjectMap, targetProject + dto.replace(".", "/"));
-			inputFreemarkUtil.generateModelVoFile(stringObjectMap, targetProject + dto.replace(".", "/"));
+			inputFreemarkUtil.generateModelDtoFile(stringObjectMap, targetProject + domain.replace(".", "/"));
+			inputFreemarkUtil.generateModelVoFile(stringObjectMap, targetProject + domain.replace(".", "/"));
 		}
 	}
 
