@@ -58,7 +58,7 @@ public class ${modelName}ServiceImpl implements ${modelName}Service {
 
     @Override
     public Optional<${modelName}> findById(${primaryKey.columnType} ${primaryKey.changeColumnName}) {
-        return Optional.ofNullable(${fieldName}Mapper.selectByPrimaryKey(${primaryKey.changeColumnName});
+        return Optional.ofNullable(${fieldName}Mapper.selectByPrimaryKey(${primaryKey.changeColumnName}));
 
     }
 
