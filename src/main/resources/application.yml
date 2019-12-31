@@ -72,7 +72,7 @@ targetProject: D:/workespace/template/src/main/java/
 # 包名
 packageName: com.ysy.adi
 # 指定数据库表名
-TABLE_NAME: f_banner
+TABLE_NAME: f_classify
 
 
 
