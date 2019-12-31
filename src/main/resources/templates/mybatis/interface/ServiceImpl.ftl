@@ -47,7 +47,7 @@ public class ${modelName}ServiceImpl implements ${modelName}Service {
     public void deleteById(${primaryKey.columnType} ${primaryKey.changeColumnName}){
         Optional<${modelName}> byId = this.findById(id);
         if (!byId.isPresent()) {
-            throw new CustomException(ResultCode.ERROR.getCode(), ResultCode.RESULE_DATA_NONE.getMsg());
+            throw new CustomException(ResultCode.ERROR.getCode(), ResultCode.RESULT_DATA_NONE.getMsg());
         }
         ${modelName} ${fieldName} = byId.get();
         ${fieldName}.setIsDelete(1);
@@ -80,6 +80,16 @@ public class ${modelName}ServiceImpl implements ${modelName}Service {
         }
         Page<${modelName}> all = (Page<${modelName}>) ${fieldName}Mapper.selectByExample(builder.build());
         return ok(all.getTotal(),all.getResult());
+    }
+
+    @Override
+    public ${modelName} insertVO(${modelName}VO vo) {
+        return null;
+    }
+
+    @Override
+    public ${modelName} updateVO(${modelName}VO vo) {
+        return null;
     }
 }
 

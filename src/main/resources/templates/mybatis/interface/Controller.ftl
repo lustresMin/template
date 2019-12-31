@@ -14,7 +14,7 @@ import ${entity}.common.ResultCode;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
-
+import javax.validation.constraints.NotNull;
 
 
 /**
@@ -65,7 +65,7 @@ public class ${modelName}Controller {
     @ApiOperation(value = "根据主键删除")
     public Object deleteGetById(@ApiParam(hidden = true)@Login Long userId,
                                 @ApiParam(value = "主键",required = true)@RequestParam(value = "${primaryKey.changeColumnName}")@NotNull @Min(1) ${primaryKey.columnType} ${primaryKey.changeColumnName}) {
-        ${fieldName}Service.deleteGetById(${primaryKey.changeColumnName});
+        ${fieldName}Service.deleteById(${primaryKey.changeColumnName});
         return "";
     }
 
