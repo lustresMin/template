@@ -59,4 +59,21 @@ public interface ${modelName}Service {
 	 * @return 前端返回格式
 	 */
     Result pageQuery(Integer page, Integer size, String sort, ${modelName}VO vo);
+
+
+	/**
+	* 新增
+	*
+	* @param vo vo
+	* @return Banner
+	*/
+	${modelName} insertVO(${modelName}VO vo);
+
+	/**
+	* 修改
+	*
+	* @param vo vo
+	* @return Banner
+	*/
+	${modelName} updateVO(${modelName}VO vo);
 }

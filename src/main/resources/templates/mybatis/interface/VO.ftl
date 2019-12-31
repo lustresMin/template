@@ -48,7 +48,7 @@ public class ${modelName}VO implements Serializable {
             public ${modelName}VO doBackward(${modelName} ${fieldName}) {
                 ${modelName}VO vo = new ${modelName}VO();
                 BeanUtils.copyProperties(${fieldName}, vo);
-                return dto;
+                return vo;
         }
     }
 

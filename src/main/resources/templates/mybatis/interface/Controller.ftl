@@ -44,7 +44,7 @@ public class ${modelName}Controller {
 			errors.getAllErrors().forEach(i -> builder.append(i.getDefaultMessage()).append(","));
             throw new CustomException(builder.toString());
 		}
-        return ${fieldName}Service.insert(vo);
+        return ${fieldName}Service.insertVO(vo);
     }
 
     @Login
@@ -57,7 +57,7 @@ public class ${modelName}Controller {
 			errors.getAllErrors().forEach(i -> builder.append(i.getDefaultMessage()).append(","));
             throw new CustomException(builder.toString());
 		}
-        return ${fieldName}Service.update(vo);
+        return ${fieldName}Service.updateVO(vo);
     }
 
     @Login
@@ -65,7 +65,8 @@ public class ${modelName}Controller {
     @ApiOperation(value = "根据主键删除")
     public Object deleteGetById(@ApiParam(hidden = true)@Login Long userId,
                                 @ApiParam(value = "主键",required = true)@RequestParam(value = "${primaryKey.changeColumnName}")@NotNull @Min(1) ${primaryKey.columnType} ${primaryKey.changeColumnName}) {
-        return ${fieldName}Service.deleteGetById(${primaryKey.changeColumnName});
+        ${fieldName}Service.deleteGetById(${primaryKey.changeColumnName});
+        return "";
     }
 
     @Login
