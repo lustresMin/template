@@ -38,7 +38,7 @@ public class ${modelName}Controller {
     @PostMapping("${version}/insert")
     @ApiOperation(value = "新增")
     public Object insert(@ApiParam(hidden = true)@Login Long userId,
-                         @Valid ${modelName}VO vo,BindingResult errors) {
+                         @Valid @RequestBody ${modelName}VO vo,BindingResult errors) {
         if (errors.hasErrors()){
 			StringBuilder builder = new StringBuilder();
 			errors.getAllErrors().forEach(i -> builder.append(i.getDefaultMessage()).append(","));
@@ -51,7 +51,7 @@ public class ${modelName}Controller {
     @PostMapping("${version}/update")
     @ApiOperation(value = "修改")
     public Object update(@ApiParam(hidden = true)@Login Long userId,
-                         @Valid ${modelName}VO vo,BindingResult errors) {
+                         @Valid @RequestBody ${modelName}VO vo,BindingResult errors) {
         if (errors.hasErrors()){
 			StringBuilder builder = new StringBuilder();
 			errors.getAllErrors().forEach(i -> builder.append(i.getDefaultMessage()).append(","));
@@ -84,7 +84,7 @@ public class ${modelName}Controller {
                             @ApiParam(value = "第几页", required = true,example = "1") @RequestParam(value = "page") @NotNull @Min(0) Integer page,
                             @ApiParam(value = "多少条", required = true,example = "10")@RequestParam(value = "size") @NotNull @Min(1) Integer size,
                             @ApiParam(value = "排序字段")@RequestParam(value = "sort",required = false) String sort,
-                            ${modelName}VO vo) {
+                            @RequestBody ${modelName}VO vo) {
         return ${fieldName}Service.pageQuery(page, size, sort, vo);
     }
 }
