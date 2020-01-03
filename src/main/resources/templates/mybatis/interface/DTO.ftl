@@ -40,7 +40,7 @@ public class ${modelName}DTO implements Serializable {
 
     public ${modelName}DTO convertFor(${modelName} ${fieldName}){
         ConvertImpl impl = new ConvertImpl();
-        return impl.doBackward(${fieldName});
+        return impl.doBackward(${fieldName},this);
     }
 
     private static class ConvertImpl implements Convert<${modelName}DTO , ${modelName}> {
@@ -53,6 +53,10 @@ public class ${modelName}DTO implements Serializable {
         @Override
         public ${modelName}DTO doBackward(${modelName} ${fieldName}) {
             ${modelName}DTO dto = new ${modelName}DTO();
+            BeanUtils.copyProperties(${fieldName}, dto);
+            return dto;
+        }
+        public ${modelName}DTO doBackward(${modelName} ${fieldName},${modelName}DTO dto) {
             BeanUtils.copyProperties(${fieldName}, dto);
             return dto;
         }

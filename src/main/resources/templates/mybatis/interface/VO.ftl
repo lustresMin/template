@@ -34,7 +34,7 @@ public class ${modelName}VO implements Serializable {
 
     public ${modelName}VO convertFor(${modelName} ${fieldName}){
         ConvertImpl impl = new ConvertImpl();
-        return impl.doBackward(${fieldName});
+        return impl.doBackward(${fieldName},this);
     }
 
     private static class ConvertImpl implements Convert<${modelName}VO, ${modelName}> {
@@ -45,8 +45,12 @@ public class ${modelName}VO implements Serializable {
             return ${fieldName};
         }
         @Override
-            public ${modelName}VO doBackward(${modelName} ${fieldName}) {
+        public ${modelName}VO doBackward(${modelName} ${fieldName}) {
                 ${modelName}VO vo = new ${modelName}VO();
+                BeanUtils.copyProperties(${fieldName}, vo);
+                return vo;
+        }
+        public ${modelName}VO doBackward(${modelName} ${fieldName},${modelName}VO vo) {
                 BeanUtils.copyProperties(${fieldName}, vo);
                 return vo;
         }
