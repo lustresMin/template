@@ -44,16 +44,16 @@ spring:
 data_resources: mybatis
 
 # 生成源文件的绝对地址
-controller: com.ysy.adi.controller.banner
+controller: com.ysy.adi.controller.pc
 
-server: com.ysy.adi.service.banner
+server: com.ysy.adi.service.under
 
-serverImpl: com.ysy.adi.service.banner.impl
+serverImpl: com.ysy.adi.service.under.impl
 
-mappers: com.ysy.adi.mapper.banner
+mappers: com.ysy.adi.mapper.under
 
-entity: com.ysy.adi.entity.banner
-domain: com.ysy.adi.domain.banner
+entity: com.ysy.adi.entity.under
+domain: com.ysy.adi.domain.under
 #controller: com.liaoin.smp.entity.controller
 #
 #server: com.liaoin.smp.entity.service
@@ -72,7 +72,7 @@ targetProject: D:/workespace/template/src/main/java/
 # 包名
 packageName: com.ysy.adi
 # 指定数据库表名
-TABLE_NAME: f_classify
+TABLE_NAME: f_meeting,f_meeting_collect,f_meeting_comment,f_meeting_enroll,t_region_cities,t_region_provinces
 
 
 
