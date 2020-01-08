@@ -66,7 +66,7 @@ public class ${modelName}Controller {
     public Object deleteGetById(@ApiParam(hidden = true)@Login Long userId,
                                 @ApiParam(value = "主键",required = true)@RequestParam(value = "${primaryKey.changeColumnName}")@NotNull @Min(1) ${primaryKey.columnType} ${primaryKey.changeColumnName}) {
         ${fieldName}Service.deleteById(${primaryKey.changeColumnName});
-        return "";
+        return null;
     }
 
     @Login
