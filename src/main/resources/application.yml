@@ -72,7 +72,7 @@ targetProject: D:/workespace/template/src/main/java/
 # 包名
 packageName: com.ysy.adi
 # 指定数据库表名
-TABLE_NAME: f_meeting,f_meeting_collect,f_meeting_comment,f_meeting_enroll,t_region_cities,t_region_provinces
+TABLE_NAME: f_meeting_agenda
 
 
 

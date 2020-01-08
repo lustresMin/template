@@ -42,7 +42,7 @@ public class ${modelName}Controller {
         if (errors.hasErrors()){
 			StringBuilder builder = new StringBuilder();
 			errors.getAllErrors().forEach(i -> builder.append(i.getDefaultMessage()).append(","));
-            throw new CustomException(builder.toString());
+            throw new CustomException(201,builder.toString());
 		}
         return ${fieldName}Service.insertVO(vo);
     }
@@ -55,7 +55,7 @@ public class ${modelName}Controller {
         if (errors.hasErrors()){
 			StringBuilder builder = new StringBuilder();
 			errors.getAllErrors().forEach(i -> builder.append(i.getDefaultMessage()).append(","));
-            throw new CustomException(builder.toString());
+            throw new CustomException(201,builder.toString());
 		}
         return ${fieldName}Service.updateVO(vo);
     }
