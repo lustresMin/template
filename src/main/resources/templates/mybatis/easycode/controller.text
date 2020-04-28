@@ -1,0 +1,107 @@
+##导入宏定义
+$!define
+##定义初始变量
+#set($tableName = $tool.append($tableInfo.name, "Controller"))
+##定义服务名
+#set($serviceName = $!tool.append($!tool.firstLowerCase($!tableInfo.name), "Service"))
+##定义实体对象名
+#set($entityName = $!tool.firstLowerCase($!tableInfo.name))
+
+##设置表后缀（宏定义）
+#setTableSuffix("Controller")
+
+##拿到主键
+#if(!$tableInfo.pkColumn.isEmpty())
+    #set($pk = $tableInfo.pkColumn.get(0))
+#end
+##保存文件（宏定义）
+#save("/controller", "Controller.java")
+##包路径（宏定义）
+#setPackageSuffix("controller")
+
+
+
+import $!{tableInfo.savePackageName}.annotation.Login;
+import $!{tableInfo.savePackageName}.annotation.ResponseResult;
+import $!{tableInfo.savePackageName}.exception.CustomException;
+import $!{tableInfo.savePackageName}.entity.$!tableInfo.name;
+import $!{tableInfo.savePackageName}.service.$!{tableInfo.name}Service;
+import $!{tableInfo.savePackageName}.util.ValidateUtil;
+
+import io.swagger.annotations.*;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+
+import java.util.List;
+import javax.annotation.Resource;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+
+/**
+  * @author $!author
+  * Create $!time.currTime()
+  * Version 1.0
+  * Description $!{tableInfo.comment}($!{tableInfo.name})表控制层
+  */
+
+@CrossOrigin
+@RestController
+@RequestMapping("/$!tool.firstLowerCase($!tableInfo.name)/")
+public class $!{tableName} {
+
+    @Resource
+    private $!{tableInfo.name}Service $!{serviceName};
+
+
+    @Login
+    @ResponseResult
+    @PostMapping("v1/insert")
+    public Object insert(@ApiParam(hidden = true)@Login Long userId,
+                         @Valid @RequestBody $!{tableInfo.name}Vo vo,BindingResult errors) {
+        ValidateUtil.check(errors);
+        return $!{serviceName}.insertVO(vo);
+    }
+
+    @Login
+    @ResponseResult
+    @PostMapping("v1/delete")
+    @ApiOperation(value = "根据主键删除")
+    public Object delete(@ApiParam(hidden = true)@Login Long userId,
+                         @ApiParam(value = "$!pk.comment",required = true)@RequestParam(value = "$!pk.name")@NotNull @Min(1) $!pk.shortType $!pk.name) {
+        $!{serviceName}.delete($!pk.name);
+        return ok();
+    }
+
+    @Login
+    @ResponseResult
+    @PostMapping("v1/update")
+    @ApiOperation(value = "修改")
+    public Object update(@ApiParam(hidden = true)@Login Long userId,
+                         @Valid @RequestBody $!{tableInfo.name}VO vo,BindingResult errors) {
+        ValidateUtil.check(errors);
+        return $!{serviceName}.updateVO(vo);
+    }
+
+    @Login
+    @ResponseResult
+    @PostMapping("v1/selectOne")
+    @ApiOperation(value = "根据主键查询")
+    public Object selectOne(@ApiParam(hidden = true)@Login Long userId,
+                            @ApiParam(value = "$!pk.comment",required = true)@RequestParam(value = "$!pk.name") @NotNull @Min(1) $!pk.shortType $!pk.name) {
+        return $!{serviceName}.selectOne($!pk.name);
+    }
+
+    @Login
+    @ResponseResult
+    @PostMapping("v1/pageQuery")
+    @ApiOperation(value = "条件分页查询")
+    public Object pageQuery(@ApiParam(hidden = true)@Login Long userId,
+                            @ApiParam(value = "第几页", required = true,example = "1") @RequestParam(value = "page") @NotNull @Min(0) Integer page,
+                            @ApiParam(value = "多少条", required = true,example = "10")@RequestParam(value = "size") @NotNull @Min(1) Integer size,
+                            @ApiParam(value = "排序字段")@RequestParam(value = "sort",required = false) String sort,
+                            @RequestBody $!{tableInfo.name}VO vo) {
+        return $!{serviceName}.pageQuery(page, size, sort, vo);
+    }
+
+}

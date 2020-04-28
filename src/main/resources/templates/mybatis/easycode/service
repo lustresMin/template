@@ -1,0 +1,90 @@
+##定义初始变量
+#set($tableName = $tool.append($tableInfo.name, "Service"))
+##设置回调
+$!callback.setFileName($tool.append($tableName, ".java"))
+$!callback.setSavePath($tool.append($tableInfo.savePath, "/service"))
+
+##拿到主键
+#if(!$tableInfo.pkColumn.isEmpty())
+    #set($pk = $tableInfo.pkColumn.get(0))
+#end
+
+#if($tableInfo.savePackageName)package $!{tableInfo.savePackageName}.#{end}service;
+
+import $!{tableInfo.savePackageName}.entity.$!{tableInfo.name};
+import java.util.List;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import java.util.Optional;
+/**
+ * @author $!author
+ * Version 1.0
+ * Create date $!time.currTime()
+ * Description $!{tableInfo.comment}($!{tableInfo.name})表服务接口
+ */
+public interface $!{tableName} {
+
+
+    /**
+	 * 新增
+	 *
+	 * @param $!{tableInfo.name} 对象
+	 * @return 前端返回格式
+	 */
+	$!{tableInfo.name} insert($!{tableInfo.name} $!tool.firstLowerCase($!tableInfo.name));
+
+    /**
+	 * 修改
+	 *
+	 * @param $!{tableInfo.name} 对象
+	 * @return 前端返回格式
+	 */
+    void update($!{tableInfo.name} $!tool.firstLowerCase($!tableInfo.name));
+
+    /**
+	 * 根据主键删除
+	 *
+	 * @param $!pk.name 标识
+	 * @return 前端返回格式
+	 */
+	void delete(@NotNull @Min(1) $!pk.shortType $!pk.name);
+
+    /**
+	 * 根据主键查询
+	 *
+	 * @param $!pk.name 标识
+	 * @return 前端返回格式
+	 */
+	Optional<$!{tableInfo.name}> selectOne(@NotNull @Min(1) $!pk.shortType $!pk.name);
+
+    /**
+	 * 条件分页查询
+	 *
+	 * @param page 当前页
+	 * @param size 显示多少条
+	 * @param sort 排序字段
+	 * @param vo 查询条件
+	 * @return 前端返回格式
+	 */
+    Result pageQuery(Integer page, Integer size, String sort, $!{tableInfo.name}VO vo);
+
+
+	/**
+	* 新增
+	*
+	* @param vo vo
+	* @return Banner
+	*/
+	$!{tableInfo.name} insertVO($!{tableInfo.name}VO vo);
+
+	/**
+	* 修改
+	*
+	* @param vo vo
+	* @return Banner
+	*/
+	$!{tableInfo.name} updateVO($!{tableInfo.name}VO vo);
+
+
+
+}
