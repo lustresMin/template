@@ -35,6 +35,7 @@ public class ${modelName}Controller {
 
 
     @Login
+    @ResponseResult
     @PostMapping("${version}/insert")
     @ApiOperation(value = "新增")
     public Object insert(@ApiParam(hidden = true)@Login Long userId,
@@ -48,6 +49,7 @@ public class ${modelName}Controller {
     }
 
     @Login
+    @ResponseResult
     @PostMapping("${version}/update")
     @ApiOperation(value = "修改")
     public Object update(@ApiParam(hidden = true)@Login Long userId,
@@ -61,15 +63,17 @@ public class ${modelName}Controller {
     }
 
     @Login
+    @ResponseResult
     @PostMapping("${version}/getById")
     @ApiOperation(value = "根据主键删除")
     public Object deleteGetById(@ApiParam(hidden = true)@Login Long userId,
                                 @ApiParam(value = "主键",required = true)@RequestParam(value = "${primaryKey.changeColumnName}")@NotNull @Min(1) ${primaryKey.columnType} ${primaryKey.changeColumnName}) {
         ${fieldName}Service.deleteById(${primaryKey.changeColumnName});
-        return null;
+        return ok();
     }
 
     @Login
+    @ResponseResult
     @PostMapping("${version}/findById")
     @ApiOperation(value = "根据主键查询")
     public Object findById(@ApiParam(hidden = true)@Login Long userId,
@@ -78,6 +82,7 @@ public class ${modelName}Controller {
     }
 
     @Login
+    @ResponseResult
     @PostMapping("${version}/pageQuery")
     @ApiOperation(value = "条件分页查询")
     public Object pageQuery(@ApiParam(hidden = true)@Login Long userId,
