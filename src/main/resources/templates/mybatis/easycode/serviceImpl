@@ -9,8 +9,6 @@ $!callback.setSavePath($tool.append($tableInfo.savePath, "/service/impl"))
     #set($pk = $tableInfo.pkColumn.get(0))
 #end
 ##定义服务名
-#set($serviceName = $!tool.append($!tool.firstLowerCase($!tableInfo.name), "Service"))
-
 #set($beanName = $!tool.firstLowerCase($!tableInfo.name))
 
 
@@ -44,7 +42,7 @@ import java.util.Map;
   */
 @Slf4j
 @Service
-public class $!{tableName} implements $!tool.firstLowerCase($!{serviceName}) {
+public class $!{tableName} implements $!{tableInfo.name}Service {
 
     @Resource
     private $!{tableInfo.name}Mapper $!{beanName}Mapper;
@@ -62,7 +60,7 @@ public class $!{tableName} implements $!tool.firstLowerCase($!{serviceName}) {
 
     @Override
     public void delete($!pk.shortType $!pk.name){
-        Optional<$!{tableInfo.name}> byId = this.findById($!pk.name);
+        Optional<$!{tableInfo.name}> byId = this.selectOne($!pk.name);
         if (!byId.isPresent()) {
             throw new CustomException(ResultCode.ERROR.getCode(), ResultCode.RESULT_DATA_NONE.getMsg());
         }
@@ -75,7 +73,7 @@ public class $!{tableName} implements $!tool.firstLowerCase($!{serviceName}) {
 
     @Override
     public Optional<$!{tableInfo.name}> selectOne($!pk.shortType $!pk.name) {
-        return Optional.ofNullable($!{beanName}Mapper.selectByPrimaryKey($!pk.name);
+        return Optional.ofNullable($!{beanName}Mapper.selectByPrimaryKey($!pk.name));
 
     }
 
