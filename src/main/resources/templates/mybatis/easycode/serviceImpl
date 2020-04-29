@@ -44,7 +44,7 @@ import java.util.Map;
   */
 @Slf4j
 @Service
-public class $!{tableName} implements $!{serviceName} {
+public class $!{tableName} implements $!tool.firstLowerCase($!{serviceName}) {
 
     @Resource
     private $!{tableInfo.name}Mapper $!{beanName}Mapper;
@@ -61,7 +61,7 @@ public class $!{tableName} implements $!{serviceName} {
     }
 
     @Override
-    public void deleteById($!pk.shortType $!pk.name){
+    public void delete($!pk.shortType $!pk.name){
         Optional<$!{tableInfo.name}> byId = this.findById($!pk.name);
         if (!byId.isPresent()) {
             throw new CustomException(ResultCode.ERROR.getCode(), ResultCode.RESULT_DATA_NONE.getMsg());
@@ -74,7 +74,7 @@ public class $!{tableName} implements $!{serviceName} {
 
 
     @Override
-    public Optional<$!{tableInfo.name}> findById($!pk.shortType $!pk.name) {
+    public Optional<$!{tableInfo.name}> selectOne($!pk.shortType $!pk.name) {
         return Optional.ofNullable($!{beanName}Mapper.selectByPrimaryKey($!pk.name);
 
     }
