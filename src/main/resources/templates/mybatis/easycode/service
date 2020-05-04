@@ -10,7 +10,7 @@ $!callback.setSavePath($tool.append($tableInfo.savePath, "/service"))
 #end
 
 #if($tableInfo.savePackageName)package $!{tableInfo.savePackageName}.#{end}service;
-import #if($tableInfo.savePackageName) $!{tableInfo.savePackageName}.#{end}.common.Result;
+import #if($tableInfo.savePackageName) $!{tableInfo.savePackageName}.#{end}common.Result;
 
 import $!{tableInfo.savePackageName}.entity.$!{tableInfo.name};
 import java.util.List;

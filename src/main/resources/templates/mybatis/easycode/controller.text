@@ -20,7 +20,7 @@ $!define
 #setPackageSuffix("controller")
 
 
-import #if($tableInfo.savePackageName) $!{tableInfo.savePackageName}.#{end}.common.Result;
+import #if($tableInfo.savePackageName) $!{tableInfo.savePackageName}.#{end}common.Result;
 
 import $!{tableInfo.savePackageName}.annotation.Login;
 import $!{tableInfo.savePackageName}.annotation.ResponseResult;
