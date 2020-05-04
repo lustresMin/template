@@ -34,6 +34,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static #if($tableInfo.savePackageName) $!{tableInfo.savePackageName}.#{end}common.Result.fail;
+import static #if($tableInfo.savePackageName) $!{tableInfo.savePackageName}.#{end}common.Result.ok;
+
+
 /**
   * @author mc
   * Create date $!time.currTime()
@@ -42,6 +46,7 @@ import java.util.Map;
   */
 @Slf4j
 @Service
+@Transactional(rollbackFor={RuntimeException.class, Exception.class})
 public class $!{tableName} implements $!{tableInfo.name}Service {
 
     @Resource
