@@ -48,6 +48,7 @@ import javax.validation.constraints.NotNull;
 @CrossOrigin
 @RestController
 @RequestMapping("/$!tool.firstLowerCase($!tableInfo.name)/")
+@Api(tags = $!{tableInfo.comment}Api)
 public class $!{tableName} {
 
     @Resource
@@ -57,8 +58,9 @@ public class $!{tableName} {
     @Login
     @ResponseResult
     @PostMapping("v1/insert")
+    @ApiOperation(value = "新增")
     public Object insert(@ApiParam(hidden = true)@Login Long userId,
-                         @Valid @RequestBody $!{tableInfo.name}Vo vo,BindingResult errors) {
+                         @Valid @RequestBody $!{tableInfo.name}VO vo,BindingResult errors) {
         ValidateUtil.check(errors);
         return $!{serviceName}.insertVO(vo);
     }
