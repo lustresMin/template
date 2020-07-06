@@ -1,21 +1,19 @@
 ##引入宏定义
 $!define
-
-#if($tableInfo.savePackageName)package $!{tableInfo.savePackageName}.#{end}domain;
-
 #set($tableName = $tool.append($tableInfo.name, "VO"))
 $!callback.setFileName($tool.append($tableName, ".java"))
 $!callback.setSavePath($tool.append($tableInfo.savePath, "/domain"))
+#if($tableInfo.savePackageName)package $!{tableInfo.savePackageName}#{end};
 
 ##使用全局变量实现默认包导入
 $!autoImport
-import java.io.Serializable;
-import com.ysy.camp.find.annotation.Convert;
-import com.ysy.camp.find.entity.Channel;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.beans.BeanUtils;
+import java.io.Serializable;
 
 ##使用宏定义实现类注释信息
 /**

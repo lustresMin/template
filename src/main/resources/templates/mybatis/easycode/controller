@@ -20,7 +20,6 @@ $!define
 #setPackageSuffix("controller")
 
 
-import #if($tableInfo.savePackageName) $!{tableInfo.savePackageName}.#{end}common.Result;
 
 import $!{tableInfo.savePackageName}.annotation.Login;
 import $!{tableInfo.savePackageName}.annotation.ResponseResult;
@@ -49,7 +48,7 @@ import javax.validation.constraints.NotNull;
 @CrossOrigin
 @RestController
 @RequestMapping("/$!tool.firstLowerCase($!tableInfo.name)/")
-@Api(tags = $!{tableInfo.comment}Api)
+@Api(tags = "$!{tableInfo.comment}Api")
 public class $!{tableName} {
 
     @Resource
