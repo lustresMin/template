@@ -17,6 +17,7 @@ $!callback.setSavePath($tool.append($tableInfo.savePath, "/service/impl"))
 import $!{tableInfo.savePackageName}.entity.$!{tableInfo.name};
 import $!{tableInfo.savePackageName}.mapper.$!{tableInfo.name}Mapper;
 import $!{tableInfo.savePackageName}.service.$!{tableInfo.name}Service;
+import #if($tableInfo.savePackageName) $!{tableInfo.savePackageName}.#{end}common.Result;
 
 import org.springframework.transaction.annotation.Transactional;
 import com.github.pagehelper.Page;
@@ -33,6 +34,10 @@ import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static #if($tableInfo.savePackageName) $!{tableInfo.savePackageName}.#{end}common.Result.fail;
+import static #if($tableInfo.savePackageName) $!{tableInfo.savePackageName}.#{end}common.Result.ok;
+
 
 /**
   * @author mc

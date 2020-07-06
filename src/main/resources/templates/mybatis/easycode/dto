@@ -1,14 +1,21 @@
 ##引入宏定义
-        $!define
+$!define
 
-        #set($tableName = $tool.append($tableInfo.name, "DTO"))
-        $!callback.setFileName($tool.append($tableName, ".java"))
-        $!callback.setSavePath($tool.append($tableInfo.savePath, "/domain"))
-        #if($tableInfo.savePackageName)package $!{tableInfo.savePackageName}.#{end};
+#if($tableInfo.savePackageName)package $!{tableInfo.savePackageName}.#{end}domain;
 
-        ##使用全局变量实现默认包导入
-        $!autoImport
+#set($tableName = $tool.append($tableInfo.name, "DTO"))
+$!callback.setFileName($tool.append($tableName, ".java"))
+$!callback.setSavePath($tool.append($tableInfo.savePath, "/domain"))
+
+##使用全局变量实现默认包导入
+$!autoImport
 import java.io.Serializable;
+import com.ysy.camp.find.annotation.Convert;
+import com.ysy.camp.find.entity.Channel;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.*;
+import org.springframework.beans.BeanUtils;
 
 ##使用宏定义实现类注释信息
 /**
@@ -21,44 +28,44 @@ import java.io.Serializable;
 @Setter
 @ApiModel(value = "$!{tableInfo.comment}数据返回类")
 public class $!{tableName} implements Serializable {
-private static final long serialVersionUID = $!tool.serial();
-        #foreach($column in $tableInfo.fullColumn)
+    private static final long serialVersionUID = $!tool.serial();
+#foreach($column in $tableInfo.fullColumn)
 
-@ApiModelProperty(value = "#if(${column.comment}) ${column.comment} #end")
-private $!{tool.getClsNameByFullName($column.type)} $!{column.name};
-        #end
+    @ApiModelProperty(value = "#if(${column.comment}) ${column.comment} #end")
+    private $!{tool.getClsNameByFullName($column.type)} $!{column.name};
+#end
 
 
 
-public $!{tableInfo.name} convertTo(){
+    public $!{tableInfo.name} convertTo(){
         ConvertImpl impl = new ConvertImpl();
         return impl.doForward(this);
-        }
+    }
 
-public $!{tableName} convertFor($!{tableInfo.name} $!tool.firstLowerCase($!{tableInfo.name})){
+    public $!{tableName} convertFor($!{tableInfo.name} $!tool.firstLowerCase($!{tableInfo.name})){
         ConvertImpl impl = new ConvertImpl();
         return impl.doBackward($!tool.firstLowerCase($!{tableInfo.name}),this);
-        }
+    }
 
-private static class ConvertImpl implements Convert<$!{tableName} , $!{tableInfo.name}> {
-@Override
-public $!{tableInfo.name} doForward($!{tableName} dto) {
-        $!{tableInfo.name} $!tool.firstLowerCase($!{tableInfo.name}) = new $!{tableInfo.name}();
-        BeanUtils.copyProperties(dto,$!tool.firstLowerCase($!{tableInfo.name}));
-        return $!tool.firstLowerCase($!{tableInfo.name});
+    private static class ConvertImpl implements Convert<$!{tableName} , $!{tableInfo.name}> {
+        @Override
+        public $!{tableInfo.name} doForward($!{tableName} dto) {
+            $!{tableInfo.name} $!tool.firstLowerCase($!{tableInfo.name}) = new $!{tableInfo.name}();
+            BeanUtils.copyProperties(dto,$!tool.firstLowerCase($!{tableInfo.name}));
+            return $!tool.firstLowerCase($!{tableInfo.name});
         }
-@Override
-public $!{tableName} doBackward($!{tableInfo.name} $!tool.firstLowerCase($!{tableInfo.name})) {
-        $!{tableName} dto = new $!{tableName}();
-        BeanUtils.copyProperties($!tool.firstLowerCase($!{tableInfo.name}), dto);
-        return dto;
+        @Override
+        public $!{tableName} doBackward($!{tableInfo.name} $!tool.firstLowerCase($!{tableInfo.name})) {
+            $!{tableName} dto = new $!{tableName}();
+            BeanUtils.copyProperties($!tool.firstLowerCase($!{tableInfo.name}), dto);
+            return dto;
         }
-public $!{tableName} doBackward($!{tableInfo.name} $!tool.firstLowerCase($!{tableInfo.name}),$!{tableName} dto) {
-        BeanUtils.copyProperties($!tool.firstLowerCase($!{tableInfo.name}), dto);
-        return dto;
+        public $!{tableName} doBackward($!{tableInfo.name} $!tool.firstLowerCase($!{tableInfo.name}),$!{tableName} dto) {
+            BeanUtils.copyProperties($!tool.firstLowerCase($!{tableInfo.name}), dto);
+            return dto;
         }
-        }
+    }
 
 
 
-        }
+}
